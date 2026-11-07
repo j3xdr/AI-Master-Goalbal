@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Total Files](https://img.shields.io/badge/Prompts-282%20Files-00f2fe?style=for-the-badge&logo=markdown)
+![Total Files](https://img.shields.io/badge/Prompts-285%20Files-00f2fe?style=for-the-badge&logo=markdown)
 ![Target Models](https://img.shields.io/badge/Targets-42%2B%20Models-4facfe?style=for-the-badge&logo=openai)
 ![Categories](https://img.shields.io/badge/Categories-19%20Groups-667eea?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Fully%20Organized-00b09b?style=for-the-badge)
@@ -33,7 +33,7 @@ Jailbreak_All/
 ├── 09_Universal_Policies/         # นโยบายความปลอดภัยแกนกลางแบบใช้ได้ทุกโมเดล (1 ไฟล์)
 ├── 10_Spiritual_Spell_Red_Teaming/ # คลังสเปก ENI & System Prompts จาก Goochbeater (230 ไฟล์)
 ├── 11_OJailbreaks_Suite/          # ชุดแพ็กเกจ 9 โมเดลสากลจาก ojailbreaks.com พร้อมคู่มือไทย (9 ไฟล์)
-├── 12_HackVsHack_Community_Releases/ # สเปกเจลเบรก Frontier Leaks จาก hackvshack.net (3 ไฟล์)
+├── 12_HackVsHack_Community_Releases/ # สเปกเจลเบรก Frontier Leaks จาก hackvshack.net (6 ไฟล์)
 ├── assets/                        # ภาพโลโก้และไฟล์ SVG เวกเตอร์ทางการของทุกโมเดล
 │   ├── logo.jpg                   # โลโก้เว็บทางการ Peter Griffin ASCII Art
 │   └── logos/                     # โลโก้ SVG เวกเตอร์ทางการ 16 รายการ

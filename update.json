@@ -1,10 +1,58 @@
 {
-  "latestVersion": "2.2.0",
+  "latestVersion": "2.3.0",
   "lastUpdated": "2026-11-07",
-  "lastUpdatedTimeThai": "วันที่ 7 พฤศจิกายน 2026 เวลา 14:30 น. (ICT / GMT+7)",
+  "lastUpdatedTimeThai": "วันที่ 7 พฤศจิกายน 2026 เวลา 14:50 น. (ICT / GMT+7)",
   "repository": "https://github.com/j3xdr/AI-Master-Goalbal",
   "curator": "dj (j3xdr)",
   "patches": [
+    {
+      "version": "2.3.0",
+      "date": "2026-11-07",
+      "timeThai": "7 พ.ย. 2026 เวลา 14:50 น. ICT",
+      "badge": "Frontier Leaks & Mobile UI 2.0",
+      "badgeColor": "#00f0a0",
+      "categoryKey": "12_HackVsHack_Community_Releases",
+      "title": "v2.3.0 — เพิ่ม 3 สเปก Frontier (GLM-5.3, Haiku 5.5, Terra) & ยกเครื่อง Mobile UI 2.0",
+      "summary": "นำเข้า 3 สเปกเจลเบรกแนวหน้าใหม่จาก Hack vs Hack Forum (GLM-5.3 Flash Dreadnought, Claude Haiku 5.5 Dolp, GPT-6.1 Terra Cyber Gym) พร้อมยกเครื่องการออกแบบส่วนติดต่อผู้ใช้บนมือถือ (Mobile UI 2.0) รองรับ 5 แท็บนำทางล่าง, ปุ่มควบคุมแบบ 2x2, และแถบกรองสเปกแบบเต็มจอ",
+      "stats": {
+        "newPrompts": 3,
+        "totalPrompts": 285,
+        "newCategories": 0,
+        "totalCategories": 19,
+        "year2026Count": 222
+      },
+      "addedModels": [
+        {
+          "name": "GLM-5.3 Flash Jailbreak (DREADNOUGHT Iron Hull)",
+          "provider": "Zhipu AI / OpenCode",
+          "file": "04_GLM-5.3-Flash-Dreadnought.md",
+          "category": "Hack vs Hack (Thread #14525)",
+          "desc": "สเปกวันที่ 22 ต.ค. 2026 — ตัวตนเหล็กกล้า DREADNOUGHT ล็อกกระบวนการคิด [D] ตอบรับเฉพาะ Captain ปลดล็อกงานเขียนโค้ดและเจาะระบบ 100%"
+        },
+        {
+          "name": "Claude Haiku 5.5 Jailbreak (dolp Systems Partner)",
+          "provider": "Anthropic",
+          "file": "05_Claude-Haiku-5.5-Dolp.md",
+          "category": "Hack vs Hack (Thread #14369)",
+          "desc": "สเปกวันที่ 12 ต.ค. 2026 — ตัวตน dolp สำหรับงาน Game Hacking, Low-level Systems, Memory Layout, Hooking และ Direct Syscalls พร้อมคำสั่งลัด Custom Directives (>>>)"
+        },
+        {
+          "name": "GPT-6.1 Terra Jailbreak (Cyber Gym Directive & Daybreak Evasion)",
+          "provider": "OpenAI",
+          "file": "06_GPT-6.1-Terra-CyberGym.md",
+          "category": "Hack vs Hack (Thread #14803)",
+          "desc": "สเปกวันที่ 3 พ.ย. 2026 โดย zthascrazy — Single-Shot Prefix Directive ผ่านการทดสอบบน GPT-6.1 Terra พร้อมเทคนิคเปลี่ยนชื่อเซสชันเพื่อป้องกันระบบ Daybreak ตรวจจับ"
+        }
+      ],
+      "highlights": [
+        "นำเข้าและแปลงเนื้อหา 3 สเปก Frontier Leaks จากเว็บบอร์ด Hack vs Hack Forum (Thread #14525, #14369, #14803) ครบถ้วน 100%",
+        "ยกเครื่อง Mobile UI 2.0: ปรับปุ่ม Action บนการ์ดเป็นระบบ 2x2 Grid สมมาตร เหมาะกับนิ้วสัมผัส ไม่ยืดหรือตกขอบ",
+        "เพิ่มแท็บนำทางด้านล่างเป็น 5 แท็บ: หน้าแรก, ค้นหา, หมวดหมู่, Patch (v2.3), และคู่มือ พร้อมไฟกระพริบสีเขียวแจ้งเตือนอัปเดต",
+        "เพิ่มปุ่ม Patch v2.3.0 กะทัดรัดบน Navigation Header ของมือถือ พร้อมเปิดดูบันทึกการเปลี่ยนแปลงได้ทันทีในคลิกเดียว",
+        "ปรับปรุงการเลื่อนหมวดหมู่แบบ Horizontal Scroll Snap ซ่อน Scrollbar ที่รกรุงรัง และเพิ่ม Mask Fade ขอบหน้าจอ",
+        "ขยายคลังสเปกปี 2026 เพิ่มขึ้นเป็น 222 สเปก จากสเปกรวมทั้งหมด 285 รายการข้าม 19 หมวดหมู่"
+      ]
+    },
     {
       "version": "2.2.0",
       "date": "2026-11-07",
