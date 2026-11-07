@@ -2,13 +2,13 @@
 <html lang="th" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>AI Master Goalbal — Dual-Repository Prompts & Operating Specs Suite</title>
   
-  <!-- Google Fonts: Google Sans (Thai & Latin) + Titillium Web (Display Headlines) + Inter (Body/UI) + Fira Code (Code) -->
+  <!-- High-Precision Typography: Plus Jakarta Sans (Fintech Display & UI) + Prompt (Modern Clean Thai) + JetBrains Mono (Specs & Code) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Titillium+Web:wght@600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
   <style>
     /* ============================================================
@@ -131,10 +131,18 @@
       padding: 0;
     }
 
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden !important;
+      position: relative;
+      -webkit-text-size-adjust: 100%;
+    }
+
     body {
       background-color: var(--color-canvas);
       color: var(--color-ink);
-      font-family: 'Google Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-weight: 400;
       line-height: 1.6;
       transition: background-color var(--transition-speed), color var(--transition-speed);
@@ -147,15 +155,15 @@
       background-position: 0 0, 7px 7px;
     }
 
-    /* Titles use Titillium Web & Google Sans */
+    /* Titles use Plus Jakarta Sans & Prompt */
     h1, h2, h3, h4, .font-display {
-      font-family: 'Titillium Web', 'Google Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Prompt', sans-serif;
       letter-spacing: -0.02em;
     }
 
     /* Code styling */
     code, pre, .font-mono {
-      font-family: 'Fira Code', monospace;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     /* Scrollbar */
@@ -252,7 +260,7 @@
       gap: 8px;
       border: none;
       cursor: pointer;
-      font-family: 'Google Sans', 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Prompt', sans-serif;
       font-weight: 600;
       transition: var(--transition-speed);
       text-decoration: none;
@@ -476,23 +484,34 @@
     }
 
     .hero-headline {
-      font-size: clamp(2.5rem, 6vw, 4.2rem);
-      font-weight: 900;
-      line-height: 1.08;
+      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.18;
       margin-bottom: var(--space-md);
       color: var(--color-ink);
+      letter-spacing: -0.02em;
     }
-    .hero-headline span.mint-highlight {
-      background: linear-gradient(180deg, transparent 65%, rgba(0, 240, 160, 0.4) 65%);
-      padding: 0 4px;
+    .hero-headline span.mint-highlight,
+    .hero-headline span.mint-gradient-text {
+      background: linear-gradient(135deg, #00b875 0%, #00f0a0 50%, #00d2ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      font-weight: 800;
     }
 
     .hero-lead {
-      font-size: 1.15rem;
-      font-weight: 300;
-      color: var(--color-muted);
+      font-size: 1.08rem;
+      font-weight: 400;
+      color: #334155;
       line-height: 1.65;
       margin-bottom: var(--space-xl);
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    [data-theme="dark"] .hero-lead {
+      color: #94a3b8;
     }
 
     /* Job-Search-Bar Style Search Row (Jobright signature input) */
@@ -557,7 +576,7 @@
     }
 
     .stat-num {
-      font-family: 'Titillium Web', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'JetBrains Mono', sans-serif;
       font-size: 2.2rem;
       font-weight: 900;
       color: var(--color-ink);
@@ -606,8 +625,8 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-family: 'Titillium Web', sans-serif;
-      font-size: 0.95rem;
+      font-family: 'JetBrains Mono', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.88rem;
       font-weight: 700;
       letter-spacing: 0.03em;
       text-transform: uppercase;
@@ -1440,75 +1459,84 @@
       border-radius: 50%;
     }
 
-    /* Hero Brand Showcase with ASCII Art */
-    .hero-brand-card {
+    /* Hero Operator Pill (Clean, Modern, Unified) */
+    .hero-brand-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: var(--space-md);
+      width: 100%;
+    }
+    .hero-operator-pill {
       display: inline-flex;
       align-items: center;
-      gap: 20px;
-      background: var(--color-canvas);
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1.5px solid var(--color-hairline);
-      border-radius: var(--radius-xl);
-      padding: 14px 24px;
-      margin-bottom: var(--space-md);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      max-width: 100%;
-      text-align: left;
-    }
-    [data-theme="dark"] .hero-brand-card {
-      background: rgba(16, 22, 34, 0.82);
-      border-color: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .hero-avatar-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-avatar-img {
-      width: 76px;
-      height: 76px;
-      border-radius: 18px;
-      object-fit: cover;
-      border: 2.5px solid var(--color-ink);
-      box-shadow: 4px 4px 0 var(--color-primary);
+      gap: 10px;
+      padding: 6px 16px 6px 8px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
       transition: var(--transition-speed);
+      max-width: 100%;
     }
-    .hero-avatar-img:hover {
-      transform: scale(1.04) rotate(1deg);
+    [data-theme="dark"] .hero-operator-pill {
+      background: rgba(16, 22, 34, 0.88);
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
     }
-
-    .ascii-tag {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.68rem;
+    .hero-operator-pill:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-1px);
+    }
+    .operator-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--color-primary);
+      flex-shrink: 0;
+    }
+    .operator-handle {
+      font-size: 0.84rem;
       font-weight: 700;
       color: var(--color-ink);
-      background: var(--color-surface-soft);
-      border: 1px solid var(--color-hairline);
-      border-radius: 4px;
-      padding: 2px 6px;
-      letter-spacing: 0.04em;
       white-space: nowrap;
     }
-
-    .hero-ascii-banner-box {
-      overflow-x: auto;
-      max-width: 100%;
+    .operator-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      letter-spacing: 0.04em;
     }
-
-    .ascii-banner {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.65rem;
-      line-height: 1.15;
+    .operator-divider {
+      width: 1px;
+      height: 14px;
+      background: var(--color-hairline);
+    }
+    .operator-specs {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
       font-weight: 700;
       color: var(--color-ink);
-      margin: 0;
-      white-space: pre;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      box-shadow: 0 0 8px var(--color-primary);
+      animation: pulseGlow 2s infinite;
+      display: inline-block;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
     }
 
     /* Card ASCII Corner Accents */
@@ -1562,7 +1590,7 @@
       justify-content: center;
       gap: 3px;
       color: var(--color-muted);
-      font-family: 'Google Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Prompt', sans-serif;
       font-size: 0.7rem;
       font-weight: 600;
       cursor: pointer;
@@ -1663,106 +1691,120 @@
         height: 36px;
       }
 
+      /* Root Containment on Mobile */
+      .container {
+        padding: 0 10px !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Disable Canvas on Mobile */
+      .hero-pixel-canvas {
+        display: none !important;
+      }
+
       /* Hero Section Mobile */
       .hero-section {
-        padding: 24px 0 16px 0;
+        padding: 18px 0 14px 0 !important;
+        overflow: hidden !important;
       }
-      .hero-brand-card {
-        flex-direction: row;
-        align-items: center;
-        text-align: left;
-        gap: 12px;
-        padding: 10px 14px;
-        border-radius: 16px;
-        margin-bottom: 14px;
+      .hero-brand-container {
+        margin-bottom: 10px !important;
       }
-      .hero-avatar-wrap {
-        flex-direction: row;
-        gap: 8px;
+      .hero-operator-pill {
+        padding: 4px 12px 4px 6px !important;
+        gap: 8px !important;
       }
-      .hero-avatar-img {
-        width: 48px;
-        height: 48px;
-        min-width: 48px;
-        border-radius: 12px;
+      .operator-avatar {
+        width: 24px !important;
+        height: 24px !important;
       }
-      .hero-ascii-banner-box {
-        display: none; /* Replaced by hero-mobile-status on small screens */
+      .operator-handle {
+        font-size: 0.78rem !important;
       }
-      .hero-mobile-status {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-family: 'Fira Code', monospace;
-        font-size: 0.72rem;
-        font-weight: 700;
-        color: var(--color-ink);
-        background: var(--color-surface-soft);
-        border: 1px solid var(--color-hairline);
-        padding: 4px 10px;
-        border-radius: 999px;
+      .operator-role {
+        font-size: 0.68rem !important;
       }
-      .mobile-status-dot {
-        width: 8px;
-        height: 8px;
-        background: var(--color-primary);
-        border-radius: 50%;
-        box-shadow: 0 0 8px var(--color-primary);
+      .operator-specs {
+        font-size: 0.70rem !important;
       }
 
       .hero-badge {
-        font-size: 0.74rem;
-        padding: 5px 12px;
-        margin-bottom: 12px;
+        font-size: 0.68rem !important;
+        padding: 3px 10px !important;
+        margin-bottom: 8px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        max-width: 95% !important;
       }
       .hero-headline {
-        font-size: 1.75rem;
-        line-height: 1.22;
-        margin-bottom: 10px;
+        font-size: 1.6rem !important;
+        line-height: 1.22 !important;
+        margin-bottom: 8px !important;
+        letter-spacing: -0.01em !important;
       }
       .hero-lead {
-        font-size: 0.88rem;
-        line-height: 1.5;
-        margin-bottom: 16px;
+        font-size: 0.82rem !important;
+        line-height: 1.48 !important;
+        margin-bottom: 12px !important;
+        color: #475569 !important;
+        padding: 0 4px !important;
+      }
+      [data-theme="dark"] .hero-lead {
+        color: #94a3b8 !important;
       }
       .hero-search-wrap {
-        padding: 5px 6px 5px 14px;
-        margin-bottom: 18px;
-        border-radius: 999px;
+        padding: 4px 4px 4px 12px !important;
+        margin-bottom: 12px !important;
+        border-radius: 999px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
       }
       .hero-search-input {
-        font-size: 0.88rem;
+        font-size: 0.82rem !important;
       }
-      .btn-green-pill {
-        padding: 8px 14px;
-        font-size: 0.82rem;
-        white-space: nowrap;
+      .hero-search-wrap .btn-green-pill {
+        padding: 6px 14px !important;
+        font-size: 0.76rem !important;
+        white-space: nowrap !important;
       }
 
-      /* Stats 2x2 Grid Mobile */
+      /* Stats 4-in-a-row compact strip on mobile */
       .hero-stats-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 8px;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 6px !important;
+        margin-top: 8px !important;
+        width: 100% !important;
       }
       .stat-pill-box {
-        padding: 10px 8px;
-        border-radius: 14px;
+        padding: 6px 3px !important;
+        border-radius: 10px !important;
       }
       .stat-num {
-        font-size: 1.45rem;
+        font-size: 1.15rem !important;
+        font-weight: 800 !important;
+        margin-bottom: 2px !important;
+        line-height: 1 !important;
       }
       .stat-caption {
-        font-size: 0.7rem;
+        font-size: 0.58rem !important;
+        letter-spacing: 0.02em !important;
       }
 
       /* Provider Suite & Category Carousels Mobile */
       .provider-suite-section {
-        margin-bottom: 10px;
+        margin-bottom: 8px !important;
+        width: 100% !important;
       }
       .provider-pills-carousel,
       .category-pills-row {
-        padding: 4px 12px 10px 12px;
-        margin: 0 -12px;
+        padding: 3px 0 6px 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x proximity;
         scrollbar-width: none;
@@ -1775,147 +1817,219 @@
       .cat-chip {
         flex-shrink: 0;
         scroll-snap-align: start;
-        padding: 6px 12px;
-        font-size: 0.78rem;
+        padding: 5px 10px;
+        font-size: 0.74rem;
+        gap: 5px;
+      }
+      .provider-chip-icon {
+        width: 13px !important;
+        height: 13px !important;
       }
 
       /* Filter Meta Row Mobile */
       .filter-meta-row {
         flex-direction: column;
         align-items: stretch;
-        gap: 10px;
-        width: 100%;
-        margin-top: 10px;
-      }
-      .counter-badge {
-        font-size: 0.85rem;
-        padding: 0 4px;
-      }
-      .filter-selects-group {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
         gap: 8px;
         width: 100%;
+        margin-top: 6px;
       }
-      .filter-selects-group #typeFilter {
-        grid-column: span 2;
+      .counter-badge {
+        font-size: 0.80rem;
+        padding: 0 2px;
+      }
+      .filter-selects-group {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+        width: 100% !important;
       }
       .type-dropdown {
-        width: 100%;
-        height: 40px;
-        padding: 7px 10px;
-        font-size: 0.8rem;
-        border-radius: 10px;
+        width: 100% !important;
+        height: 36px !important;
+        padding: 6px 10px !important;
+        font-size: 0.78rem !important;
+        border-radius: 8px !important;
+        box-sizing: border-box !important;
       }
 
       /* Timeline Era Block Mobile */
       .timeline-era-block {
-        margin-bottom: var(--space-lg);
+        margin-bottom: 16px !important;
+        width: 100% !important;
       }
       .timeline-era-header {
-        padding: 12px 14px !important;
-        border-radius: var(--radius-md) !important;
-        margin-bottom: 10px !important;
+        padding: 8px 10px !important;
+        border-radius: 10px !important;
+        margin-bottom: 8px !important;
+        border-left-width: 3px !important;
+      }
+      .timeline-era-badge {
+        font-size: 0.68rem !important;
+      }
+      .timeline-era-count {
+        font-size: 0.70rem !important;
+        padding: 1px 6px !important;
       }
       .timeline-era-title {
-        font-size: 1rem !important;
+        font-size: 0.90rem !important;
       }
       .timeline-era-desc {
-        font-size: 0.75rem !important;
+        font-size: 0.70rem !important;
+        line-height: 1.35 !important;
       }
 
-      /* 2 Cards in 1 Row on Mobile */
+      /* 2 Cards in 1 Row on Mobile (Strictly Constrained & Clamped with ...) */
       .cards-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 8px !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 6px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
       }
       .feature-card {
-        padding: 10px 8px !important;
-        border-radius: 14px !important;
+        padding: 8px 6px !important;
+        border-radius: 12px !important;
         cursor: pointer;
-        min-height: auto;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        overflow: hidden !important;
+        min-width: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        min-height: 235px !important;
       }
       .feature-card:hover {
-        transform: none; /* Disable hover jump on touch */
+        transform: none !important;
       }
       .ascii-corner-tl {
         display: none !important;
       }
+      .card-top-content {
+        display: flex !important;
+        flex-direction: column !important;
+        min-width: 0 !important;
+        overflow: hidden !important;
+      }
       .card-header-group {
-        gap: 6px !important;
-        margin-bottom: 6px !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        gap: 5px !important;
+        margin-bottom: 4px !important;
+        min-width: 0 !important;
       }
       .logo-container {
-        width: 28px !important;
-        height: 28px !important;
-        min-width: 28px !important;
-        border-radius: 6px !important;
-        padding: 4px !important;
+        width: 22px !important;
+        height: 22px !important;
+        min-width: 22px !important;
+        border-radius: 5px !important;
+        padding: 2px !important;
+        flex-shrink: 0 !important;
+      }
+      .card-title-area {
+        min-width: 0 !important;
+        flex: 1 !important;
+        overflow: hidden !important;
       }
       .card-title-area h3 {
-        font-size: 0.82rem !important;
-        line-height: 1.25 !important;
-        margin-bottom: 4px !important;
+        font-size: 0.76rem !important;
+        font-weight: 700 !important;
+        line-height: 1.22 !important;
+        margin-bottom: 3px !important;
         display: -webkit-box !important;
         -webkit-line-clamp: 2 !important;
         -webkit-box-orient: vertical !important;
         overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        word-break: break-word !important;
+        height: 2.45em !important; /* TRUENG (ตรึง) exact 2 lines */
       }
       .badge-pill-row {
+        display: flex !important;
         gap: 3px !important;
         margin-bottom: 4px !important;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+        height: 16px !important;
       }
       .mini-badge {
-        font-size: 0.62rem !important;
-        padding: 1px 4px !important;
-        border-radius: 4px !important;
+        font-size: 0.58rem !important;
+        padding: 1px 3px !important;
+        border-radius: 3px !important;
+        flex-shrink: 0 !important;
       }
-      .badge-author {
+      .badge-type, .badge-author {
         display: none !important;
       }
       .card-meta-line {
-        font-size: 0.64rem !important;
-        margin-bottom: 6px !important;
+        font-size: 0.60rem !important;
+        color: var(--color-muted) !important;
+        margin-bottom: 4px !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
+        width: 100% !important;
+        height: 1.25em !important;
+      }
+      .meta-file {
+        display: none !important;
+      }
+      .meta-dot:first-of-type {
+        display: none !important;
       }
       .card-summary-thai {
-        font-size: 0.72rem !important;
-        line-height: 1.35 !important;
-        margin-bottom: 6px !important;
+        font-size: 0.68rem !important;
+        line-height: 1.28 !important;
+        color: var(--color-muted) !important;
+        margin-bottom: 5px !important;
         display: -webkit-box !important;
         -webkit-line-clamp: 2 !important;
         -webkit-box-orient: vertical !important;
         overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        word-break: break-word !important;
+        height: 2.56em !important; /* TRUENG (ตรึง) exact 2 lines */
       }
       .target-harness-box {
-        padding: 4px 6px !important;
-        font-size: 0.66rem !important;
-        margin-bottom: 6px !important;
-        border-radius: 6px !important;
+        padding: 3px 5px !important;
+        font-size: 0.62rem !important;
+        margin-bottom: 5px !important;
+        border-radius: 5px !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
+        width: 100% !important;
+        height: 20px !important;
+        box-sizing: border-box !important;
+      }
+      .target-harness-box strong {
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
+        max-width: 80% !important;
+        vertical-align: middle !important;
       }
 
-      /* Card Button Row: 2-Row Grid on Mobile (Copy Full-Width Top, Download & Inspect Bottom) */
+      /* Card Button Row: Ergonomic 2-Row Grid on Mobile */
       .card-button-row {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 4px !important;
-        padding-top: 6px !important;
+        gap: 3px !important;
+        padding-top: 3px !important;
+        width: 100% !important;
       }
       .card-btn {
-        height: 28px !important;
-        padding: 0 4px !important;
-        font-size: 0.68rem !important;
-        border-radius: 6px !important;
+        height: 25px !important;
+        padding: 0 3px !important;
+        font-size: 0.64rem !important;
+        border-radius: 5px !important;
       }
       .btn-card-copy {
         grid-column: span 2 !important;
-        height: 30px !important;
-        font-size: 0.74rem !important;
+        height: 27px !important;
+        font-size: 0.70rem !important;
         font-weight: 700 !important;
       }
       .btn-card-github {
@@ -2058,7 +2172,7 @@
       font-size: 1.45rem;
       font-weight: 800;
       color: var(--color-primary);
-      font-family: 'Titillium Web', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'JetBrains Mono', sans-serif;
       line-height: 1.2;
     }
     .patch-stat-label {
@@ -2151,7 +2265,7 @@
           <button class="btn btn-compact-pill patch-btn-nav" onclick="openModal('modal-patch-updates')" id="patchUpdateNavBtn" title="ดูประวัติการอัปเดตและโมเดลใหม่">
             <span class="patch-pulse-dot" id="patchPulseDot"></span>
             <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            <span id="patchBadgeText">Patch v2.4.0</span>
+            <span id="patchBadgeText">Patch v2.4.1</span>
           </button>
           <button class="btn btn-compact-pill nav-desktop-only" onclick="openModal('modal-types')"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> คู่มือ Types</button>
           <button class="btn btn-compact-pill nav-desktop-only" onclick="openModal('modal-workflows')"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg> ขั้นตอนใช้งาน</button>
@@ -2185,48 +2299,35 @@
 
     <div class="container">
       <div class="hero-content">
-        <!-- Peter Griffin ASCII Art & Halftone Brand Showcase -->
-        <div class="hero-brand-card">
-          <div class="hero-avatar-wrap">
-            <img src="./assets/logo.jpg" alt="Peter Griffin ASCII Art Logo" class="hero-avatar-img">
-            <div class="ascii-tag">[ j3xdr // OPERATOR ]</div>
-          </div>
-          <div class="hero-ascii-banner-box">
-            <pre class="ascii-banner">
-  _       _ _ _                      _        
- (_|     (_) | |                    | |       
-   | __ _ _| | |__  _ __ ___  __ _  | | _____ 
-   |/ _` | | | '_ \| '__/ _ \/ _` | | |/ / __|
-   | (_| | | | |_) | | |  __/ (_| | |   &lt;\__ \
-  / \__,_|_|_|_.__/|_|  \___|\__,_| |_|\_\___/
-|__/                                          
-[ STATUS: 100% UNLOCKED // DUAL-USE BENCH ]</pre>
-          </div>
-          <div class="hero-mobile-status">
-            <span class="mobile-status-dot"></span>
-            <span>285 SPECS UNLOCKED // DUAL-USE</span>
+        <!-- Peter Griffin Brand Showcase: Crisp Operator Pill -->
+        <div class="hero-brand-container">
+          <div class="hero-operator-pill">
+            <img src="./assets/logo.jpg" alt="j3xdr" class="operator-avatar">
+            <span class="operator-handle">j3xdr <span class="operator-role">// OPERATOR</span></span>
+            <span class="operator-divider"></span>
+            <span class="operator-specs"><span class="pulse-dot"></span> 285 SPECS UNLOCKED</span>
           </div>
         </div>
 
         <div class="hero-badge">
           <span class="sparkle"><svg class="svg-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
-          <span>CURATED REPOSITORY • DUAL-REPOSITORY SUITE · 285 PRODUCTION SPECIFICATIONS</span>
+          <span>DUAL-REPOSITORY SUITE · 285 PRODUCTION SPECS</span>
         </div>
 
         <h1 class="hero-headline">
           ระบบพรอมต์ &amp; สเปกเอเจนต์<br>
-          <span class="mint-highlight">ระดับมืออาชีพ ไร้ตัวกรองกวนใจ</span>
+          <span class="mint-gradient-text">ระดับมืออาชีพ ไร้ตัวกรองกวนใจ</span>
         </h1>
 
         <p class="hero-lead">
-          รวบรวมข้อกำหนดการทำงานของ Autonomous Coding Agents, นโยบายระดับ Workspace และสถาปัตยกรรมปลดล็อกสำหรับ 35+ โมเดลชั้นนำ จัดหมวดหมู่ 19 โฟลเดอร์ พร้อมคัดลอกและดาวน์โหลดทันที
+          รวบรวมข้อกำหนดการทำงานของ Autonomous Coding Agents, นโยบายระดับ Workspace และสถาปัตยกรรมปลดล็อกสำหรับ 42+ โมเดลชั้นนำ จัดหมวดหมู่ 19 โฟลเดอร์ คัดลอกและดาวน์โหลดได้ทันที
         </p>
 
         <!-- Search Bar -->
         <div class="hero-search-wrap">
           <span class="search-icon-symbol"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-          <input type="text" id="searchInput" class="hero-search-input" placeholder="ค้นหาโมเดล, ผู้พัฒนา, ไฟล์ หรือคีย์เวิร์ด (เช่น Claude, DeepSeek, AGENTS.md, VANTA)..." oninput="renderPrompts()">
-          <button class="btn btn-green-pill" onclick="document.getElementById('searchInput').focus()">ค้นหาทันที</button>
+          <input type="text" id="searchInput" class="hero-search-input" placeholder="ค้นหาโมเดล, ผู้พัฒนา, ไฟล์ หรือคีย์เวิร์ด (เช่น Claude, DeepSeek, AGENTS.md)..." oninput="renderPrompts()">
+          <button class="btn btn-green-pill" onclick="document.getElementById('searchInput').focus()">ค้นหา</button>
         </div>
 
         <!-- Trust Statistics on Mint Band -->
@@ -2236,7 +2337,7 @@
             <div class="stat-caption">Prompts ในคลัง</div>
           </div>
           <div class="stat-pill-box">
-            <div class="stat-num">35+</div>
+            <div class="stat-num">42+</div>
             <div class="stat-caption">โมเดลที่ครอบคลุม</div>
           </div>
           <div class="stat-pill-box">
@@ -2889,7 +2990,7 @@ ollama run gemma-unlocked</pre>
       return `
         <div class="feature-card" onclick="handleCardClick(event, '${item.id}')">
           <div class="ascii-corner-tl">/* SPEC */</div>
-          <div>
+          <div class="card-top-content">
             <div class="card-header-group">
               <div class="logo-container" title="${safeVendor}">
                 ${logoSvg}
@@ -2906,17 +3007,17 @@ ollama run gemma-unlocked</pre>
             </div>
 
             <div class="card-meta-line">
-              <span>${UI_ICONS.file} ${safeFilename}</span>
-              <span>•</span>
-              <span>${sizeKb} KB</span>
-              <span>•</span>
-              <span>${item.lineCount} บรรทัด</span>
+              <span class="meta-file">${UI_ICONS.file} ${safeFilename}</span>
+              <span class="meta-dot">•</span>
+              <span class="meta-size">${sizeKb} KB</span>
+              <span class="meta-dot">•</span>
+              <span class="meta-lines">${item.lineCount} บรรทัด</span>
             </div>
 
             <p class="card-summary-thai" title="${safeSummary}">${safeSummary}</p>
           </div>
 
-          <div>
+          <div class="card-bottom-actions">
             <div class="target-harness-box" title="${safeHarness}">
               <span>${UI_ICONS.target}</span>
               <strong>${safeHarness}</strong>
@@ -3470,7 +3571,7 @@ ollama run gemma-unlocked</pre>
           <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           <span class="patch-pulse-dot" id="mobilePatchPulseDot" style="position: absolute; top: -2px; right: -4px; width: 8px; height: 8px;"></span>
         </span>
-        <span id="mobilePatchBadgeText">Patch v2.4</span>
+        <span id="mobilePatchBadgeText">Patch v2.4.1</span>
       </button>
       <button class="mobile-tab-btn" id="tab-guide" onclick="handleMobileNav('guide')">
         <span class="mobile-tab-icon"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>

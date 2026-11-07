@@ -1,11 +1,64 @@
 // update.js - Client fallback and sync for AI Master Goalbal update notifications
 window.UPDATE_DATA = {
-  "latestVersion": "2.4.0",
+  "latestVersion": "2.4.1",
   "lastUpdated": "2026-11-07",
-  "lastUpdatedTimeThai": "วันที่ 7 พฤศจิกายน 2026 เวลา 15:20 น. (ICT / GMT+7)",
+  "lastUpdatedTimeThai": "วันที่ 7 พฤศจิกายน 2026 เวลา 15:30 น. (ICT / GMT+7)",
   "repository": "https://github.com/j3xdr/AI-Master-Goalbal",
   "curator": "dj (j3xdr)",
   "patches": [
+    {
+      "version": "2.4.1",
+      "date": "2026-11-07",
+      "timeThai": "7 พ.ย. 2026 เวลา 15:30 น. ICT",
+      "badge": "Mobile Grid & Header Fix",
+      "badgeColor": "#00f0a0",
+      "categoryKey": "all",
+      "title": "v2.4.1 — ปรับแต่ง Header ให้เป็นระเบียบ, แก้ไข Typography และตรึงการ์ด Mobile 2 คอลัมน์ (แก้บั๊ก Zoom Out)",
+      "summary": "ยกเครื่องส่วน Header จัดระเบียบใหม่ทั้งหมด เปลี่ยนชุดฟอนต์เป็น Plus Jakarta Sans + Prompt + JetBrains Mono, ตรึงเลย์เอาต์ Mobile 2 การ์ดต่อแถวอย่างเคร่งครัด พร้อมตัดทอน Context ที่ยาวเกินด้วยเครื่องหมายจุดไข่ปลา (...) และล็อก Viewport ป้องกันหน้าเว็บล้นหรือเกิดขอบขาวเมื่อซูมออก",
+      "stats": {
+        "newPrompts": 0,
+        "totalPrompts": 285,
+        "newCategories": 0,
+        "totalCategories": 19,
+        "year2026Count": 222
+      },
+      "addedModels": [
+        {
+          "name": "Typography Overhaul (Public Web Fonts)",
+          "provider": "Google Fonts Public CDN",
+          "file": "index.html (Plus Jakarta Sans + Prompt)",
+          "category": "Design System & Typography",
+          "desc": "ยกเลิกการเรียก Google Sans ที่ทำให้ CSS โหลดไม่ผ่าน เปลี่ยนมาใช้ Plus Jakarta Sans (Fintech Display), Prompt (เรขาคณิตคลีนภาษาไทย) และ JetBrains Mono เต็มระบบ"
+        },
+        {
+          "name": "Header Reorganization & Modern Pill",
+          "provider": "Hero Section Architecture",
+          "file": "index.html (.hero-operator-pill)",
+          "category": "UI / UX Polish",
+          "desc": "จัดระเบียบ Header ใหม่: ยุบการ์ดใหญ่เป็น Operator Pill กระชับสวยงาม, เปลี่ยนแถบไฮไลต์สีเขียวเดิมเป็น Gradient Text ป้องกันสระลอย และจัดแถบสถิติ 4 ช่องในแถวเดียว"
+        },
+        {
+          "name": "Mobile 2-Card Strict Clamping (ตรึงการ์ด & จุดไข่ปลา ...)",
+          "provider": "Responsive Grid Engine",
+          "file": "index.html (.feature-card CSS)",
+          "category": "Mobile Ergonomics & Overflow Fix",
+          "desc": "ตรึงความสูงการ์ดและตัดข้อความชื่อเรื่อง/คำอธิบายภาษาไทยให้อยู่ใน 2 บรรทัดด้วย ... พร้อมซ่อนชื่อไฟล์ยาวๆ และจัดปุ่มแบบ 2 แถว เพื่อการแสดงผล 2 คอลัมน์ที่สมบูรณ์แบบบนสมาร์ตโฟน"
+        },
+        {
+          "name": "Viewport Zoom & Canvas Fix",
+          "provider": "Mobile WebKit Engine",
+          "file": "index.html (Meta Viewport & Canvas)",
+          "category": "Stability & Bug Fixes",
+          "desc": "ล็อก Viewport ป้องกันการ Pinch-zoom หลุดขอบจนหน้าเว็บหดเหลือครึ่งจอ และปิดการสัมผัส Pixel Canvas บนมือถือเพื่อไม่ให้เกิดบล็อกสี่เหลี่ยมสีเขียวทับตัวหนังสือ"
+        }
+      ],
+      "highlights": [
+        "Header ใหม่หมดจด: Operator Pill กระชับ ไม่เกะกะ จัดระเบียบหัวข้อพร้อมสีไล่ระดับ Gradient Text อ่านง่าย ไม่ทับสระภาษาไทย",
+        "แก้ปัญหาฟอนต์ไม่แสดงผล: โหลด Plus Jakarta Sans + Prompt สำเร็จ 100% ตัวหนังสือคมชัดระดับสากล",
+        "Mobile 2 Cards per Row สมบูรณ์แบบ: ตรึงความสูงการ์ด ตัดทอน Context ที่ยาวเกินด้วย ... และจัดปุ่มเป็น 2 ชั้น กดง่ายด้วยนิ้วโป้ง",
+        "ขจัดบั๊กขอบขาวและการซูม: ลบ Negative Margin ที่ดันหน้าเว็บเกินขอบจอ และล็อก Viewport ไม่ให้หน้าเว็บเบี้ยวเมื่อ Zoom Out"
+      ]
+    },
     {
       "version": "2.4.0",
       "date": "2026-11-07",
