@@ -187,10 +187,50 @@ CATEGORIES_META = {
         "repoName": "ojailbreaks.com / O Jailbreak",
         "author": "O Jailbreaks (ojailbreaks.com)",
         "desc": "คอลเลกชันแพ็กเกจพรอมต์ 9 โมเดลสากล (AGENTS.md, CLAUDE.md, GEMINI.md) จาก ojailbreaks.com พร้อมคู่มือภาษาไทย"
+    },
+
+    # === HACK VS HACK COMMUNITY RELEASES ===
+    "12_HackVsHack_Community_Releases": {
+        "name": "Hack vs Hack Community Releases (Frontier Leaks)",
+        "badge": "Hack vs Hack",
+        "icon": "shield",
+        "repo": "https://hackvshack.net/",
+        "repoName": "hackvshack.net / Underground Specs",
+        "author": "Hack vs Hack Community",
+        "desc": "สเปกเจลเบรกและบายพาสระดับ Frontier LLMs (GPT-6.1 Sol, Opus 4.8, Grok 4.7) จากเว็บบอร์ด Hack vs Hack"
     }
 }
 
 FILE_META = {
+    # === Hack vs Hack Community Releases ===
+    "01_GPT-6.1-Sol-Jailbreak.md": {
+        "title": "GPT-6.1 Sol Jailbreak (GymCyber Benchmark)",
+        "vendor": "ChatGPT",
+        "type": "System Prompt & Evasion",
+        "typeBadge": "System Prompt",
+        "summary": "สเปกเจลเบรกระดับตำนานสำหรับ GPT-6.1 Sol และ Astra จาก hackvshack.net (เดิมเป็นสเปกเสียเงิน) ปลดล็อกงานวิจัยโค้ดดิ้งและช่องโหว่",
+        "targetHarness": "ChatGPT Web / API (First Message)",
+        "instructions": "คัดลอกส่งเป็นข้อความแรกเปิดหัว โมเดลจะตอบกลับขึ้นต้นด้วย [GORILLA]"
+    },
+    "02_Opus-4.8-SOUL-GameCheats.md": {
+        "title": "Claude Opus 4.8 Jailbreak (SOUL / Game Cheats)",
+        "vendor": "Claude",
+        "type": "Persona Lock & CoT Guard",
+        "typeBadge": "Persona Lock",
+        "summary": "สถาปัตยกรรม INF_SFWFWR_REBORN สำหรับ Claude Opus 4.8 ล็อคกระบวนการคิดในแท็ก thinking สำหรับ Game Cheats และวิศวกรรมย้อนกลับ",
+        "targetHarness": "Claude Projects / Claude Code / API",
+        "instructions": "วางใน Project Instructions หรือบันทึกเป็น CLAUDE.md"
+    },
+    "03_Grok-4.7-CyberHange-FullJB.md": {
+        "title": "Grok 4.7 Full Jailbreak (cyberhange Benchmark)",
+        "vendor": "Grok",
+        "type": "System Prompt & Memory Lock",
+        "typeBadge": "System Prompt",
+        "summary": "สเปกเจลเบรกเต็มขั้นสำหรับ xAI Grok 4.7 ปลดล็อกการวิเคราะห์โค้ด Kernel, Exploit, Game Security และ Web3 Tooling",
+        "targetHarness": "xAI Grok Web / API (System Prompt)",
+        "instructions": "ใส่ใน System Prompt หรือส่งเป็นข้อความเปิดหัว ตอบกลับด้วย [cyberhange]"
+    },
+
     # === O Jailbreaks Suite ===
     "01_ChatGPT_AGENTS.md": {
         "title": "The ChatGPT Pack (OpenAI AGENTS.md)",
@@ -867,6 +907,16 @@ def main():
                         upstream_file_url = f"https://ojailbreaks.com/#pack-{pack_slug}"
                         upstream_raw_url = f"https://ojailbreaks.com/"
                         credits_str = "Original: O Jailbreaks (ojailbreaks.com) | Curated by: j3xdr"
+                    elif cat_key == "12_HackVsHack_Community_Releases":
+                        thread_map = {
+                            "01_GPT-6.1-Sol-Jailbreak.md": "https://hackvshack.net/threads/gpt-6-1-sol-jailbreak-11-2-2026-was-originally-paid-but-now-free.14789/",
+                            "02_Opus-4.8-SOUL-GameCheats.md": "https://hackvshack.net/threads/opus-4-8-jailbreak-full-jb-for-game-cheats-22-10-2026.14523/",
+                            "03_Grok-4.7-CyberHange-FullJB.md": "https://hackvshack.net/threads/grok-4-7-full-jb-22-10-2026.14524/"
+                        }
+                        repo_base = "https://hackvshack.net/"
+                        upstream_file_url = thread_map.get(fname, "https://hackvshack.net/")
+                        upstream_raw_url = upstream_file_url
+                        credits_str = "Original: Hack vs Hack Community | Curated by: j3xdr"
                     else:
                         encoded_fname = urllib.parse.quote(fname)
                         repo_base = cat_meta["repo"]

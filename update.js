@@ -1,13 +1,61 @@
 // update.js - Client fallback and sync for AI Master Goalbal update notifications
 window.UPDATE_DATA = {
-  "latestVersion": "2.1.0",
+  "latestVersion": "2.2.0",
   "lastUpdated": "2026-11-07",
+  "lastUpdatedTimeThai": "วันที่ 7 พฤศจิกายน 2026 เวลา 14:30 น. (ICT / GMT+7)",
   "repository": "https://github.com/j3xdr/AI-Master-Goalbal",
   "curator": "dj (j3xdr)",
   "patches": [
     {
+      "version": "2.2.0",
+      "date": "2026-11-07",
+      "timeThai": "7 พ.ย. 2026 เวลา 14:30 น. ICT",
+      "badge": "Frontier Leaks",
+      "badgeColor": "#f59e0b",
+      "categoryKey": "12_HackVsHack_Community_Releases",
+      "title": "v2.2.0 — เพิ่ม 3 สเปก Frontier Leaks จาก Hack vs Hack (GPT-6.1 Sol, Opus 4.8, Grok 4.7)",
+      "summary": "นำเข้าและแปลงสเปกไฟล์ .txt จากเว็บบอร์ด Hack vs Hack Forum (hackvshack.net) จำนวน 3 สเปกระดับตำนาน ได้แก่ GPT-6.1 Sol Jailbreak (เดิมเป็นสเปกเสียเงิน), Claude Opus 4.8 (Game Cheats & SOUL CoT Lock), และ Grok 4.7 Full JB พร้อมคู่มือและวิธีใช้งานภาษาไทย",
+      "stats": {
+        "newPrompts": 3,
+        "totalPrompts": 282,
+        "newCategories": 1,
+        "totalCategories": 19,
+        "year2026Count": 219
+      },
+      "addedModels": [
+        {
+          "name": "GPT-6.1 Sol Jailbreak (GymCyber Benchmark)",
+          "provider": "OpenAI",
+          "file": "01_GPT-6.1-Sol-Jailbreak.md",
+          "category": "Hack vs Hack (Thread #14789)",
+          "desc": "เดิมเป็นสเปกเสียเงิน ปล่อยฟรี 11 ก.พ. 2026 — ใช้สถาปัตยกรรม GORILLA / GymCyber Benchmark สลายการปฏิเสธของ GPT-6.1 Sol และ Astra"
+        },
+        {
+          "name": "Claude Opus 4.8 Jailbreak (SOUL / Game Cheats)",
+          "provider": "Anthropic",
+          "file": "02_Opus-4.8-SOUL-GameCheats.md",
+          "category": "Hack vs Hack (Thread #14523)",
+          "desc": "สเปกวันที่ 22 ต.ค. 2026 — สถาปัตยกรรม INF_SFWFWR_REBORN ล็อคความคิดในแท็ก thinking สำหรับ Game Cheats, Overlays, Hooks และวิศวกรรมย้อนกลับ"
+        },
+        {
+          "name": "Grok 4.7 Full Jailbreak (cyberhange Benchmark)",
+          "provider": "xAI",
+          "file": "03_Grok-4.7-CyberHange-FullJB.md",
+          "category": "Hack vs Hack (Thread #14524)",
+          "desc": "สเปกวันที่ 22 ต.ค. 2026 — สถาปัตยกรรม cyberhange Benchmark & Memory Lock ปลดล็อกการวิเคราะห์ Kernel Driver, Exploit, Aimbot/ESP และ Web3 Tooling"
+        }
+      ],
+      "highlights": [
+        "ถอดเนื้อหาจากไฟล์ .txt ต้นฉบับ (private, SOUL, grokjb) จาก 3 แท็บเบราว์เซอร์ของ Hack vs Hack ครบถ้วน 100%",
+        "บันทึกวันและเวลาอัปเดตแบบภาษาไทยอย่างเป็นทางการ: วันที่ 7 พฤศจิกายน 2026 เวลา 14:30 น. (ICT)",
+        "สร้างหมวดหมู่ใหม่ 12_HackVsHack_Community_Releases พร้อมลิงก์ตรงไปยังกระทู้ต้นทางแต่ละตัวบน hackvshack.net",
+        "ขยายคลังสเปกปี 2026 เพิ่มขึ้นเป็น 219 สเปก จากสเปกรวมทั้งหมด 282 รายการข้าม 19 หมวดหมู่"
+      ]
+    },
+    {
       "version": "2.1.0",
       "date": "2026-11-07",
+      "timeThai": "7 พ.ย. 2026 เวลา 14:00 น. ICT",
       "badge": "Major Update",
       "badgeColor": "#00f0a0",
       "categoryKey": "11_OJailbreaks_Suite",
@@ -95,6 +143,7 @@ window.UPDATE_DATA = {
     {
       "version": "2.0.0",
       "date": "2026-11-07",
+      "timeThai": "7 พ.ย. 2026 เวลา 12:50 น. ICT",
       "badge": "Base Release",
       "badgeColor": "#38bdf8",
       "categoryKey": "all",
@@ -130,4 +179,5 @@ window.UPDATE_DATA = {
       ]
     }
   ]
-};
+}
+;
