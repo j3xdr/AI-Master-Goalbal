@@ -1530,6 +1530,148 @@
     }
 
   
+    /* ============================================================
+       PATCH UPDATE NOTIFICATION & CHANGELOG MODAL STYLES
+       ============================================================ */
+    .patch-btn-nav {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border-color: rgba(0, 240, 160, 0.45) !important;
+      background: rgba(0, 240, 160, 0.08) !important;
+      color: var(--color-ink) !important;
+      font-weight: 700 !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .patch-btn-nav:hover {
+      background: rgba(0, 240, 160, 0.18) !important;
+      border-color: var(--color-primary) !important;
+      transform: translateY(-1px);
+    }
+    .patch-pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      box-shadow: 0 0 10px var(--color-primary);
+      display: inline-block;
+      animation: pulseDot 1.8s infinite ease-in-out;
+    }
+    .patch-pulse-dot.hidden {
+      display: none;
+    }
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 6px var(--color-primary); }
+      50% { transform: scale(1.6); opacity: 0.5; box-shadow: 0 0 16px var(--color-primary); }
+    }
+
+    .patch-hero-card {
+      background: var(--color-surface-soft);
+      border: 1px solid rgba(0, 240, 160, 0.35);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      box-shadow: 0 8px 24px rgba(0, 240, 160, 0.08);
+      margin-bottom: var(--space-md);
+    }
+    .patch-tag-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .patch-version-badge {
+      background: var(--color-primary);
+      color: #000000;
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 4px 12px;
+      border-radius: 12px;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .patch-date-badge {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .patch-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .patch-stat-box {
+      background: var(--card-bg);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    .patch-stat-num {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      font-family: 'Titillium Web', sans-serif;
+      line-height: 1.2;
+    }
+    .patch-stat-label {
+      font-size: 0.74rem;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      margin-top: 3px;
+      letter-spacing: 0.3px;
+    }
+    .patch-model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .patch-model-card {
+      background: var(--card-bg);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .patch-model-card:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+    .patch-model-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .patch-model-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--color-ink);
+    }
+    .patch-model-file {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      background: rgba(0, 240, 160, 0.12);
+      color: var(--color-primary);
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .patch-model-desc {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      line-height: 1.45;
+    }
+
     /* SVG UI Icons */
     .svg-icon {
       display: inline-block;
@@ -1565,6 +1707,11 @@
         </a>
 
         <div class="nav-actions">
+          <button class="btn btn-compact-pill patch-btn-nav" onclick="openModal('modal-patch-updates')" id="patchUpdateNavBtn" title="ดูประวัติการอัปเดตและโมเดลใหม่">
+            <span class="patch-pulse-dot" id="patchPulseDot"></span>
+            <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span id="patchBadgeText">Patch v2.1.0</span>
+          </button>
           <button class="btn btn-compact-pill" onclick="openModal('modal-types')"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> คู่มือ Types</button>
           <button class="btn btn-compact-pill" onclick="openModal('modal-workflows')"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg> ขั้นตอนใช้งาน</button>
           
@@ -1982,14 +2129,42 @@ ollama run gemma-unlocked</pre>
     </div>
   </div>
 
+  <div class="modal-backdrop" id="modal-patch-updates" onclick="handleBackdropClick(event, 'modal-patch-updates')">
+    <div class="modal-surface" style="max-width: 900px;">
+      <div class="modal-drag-handle"></div>
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <svg class="svg-icon" style="color: var(--color-primary); width: 1.35em; height: 1.35em;" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <div>
+            <h3 style="margin: 0; font-size: 1.25rem;">บันทึกการอัปเดตระบบ (Patch Updates)</h3>
+            <span style="font-size: 0.78rem; color: var(--color-muted);">ตรวจจับการอัปเดตล่าสุดอัตโนมัติจาก GitHub / update.json</span>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('modal-patch-updates')">&times;</button>
+      </div>
+      <div class="modal-body" id="patchModalBody" style="max-height: 70vh; overflow-y: auto;">
+        <!-- Dynamic content rendered from update.json / update.js -->
+        <div style="text-align: center; padding: 40px; color: var(--color-muted);">กำลังโหลดข้อมูลการอัปเดตล่าสุด...</div>
+      </div>
+      <div class="modal-footer" style="justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+        <button class="btn btn-compact-pill" onclick="closeModal('modal-patch-updates')">ปิดหน้าต่าง</button>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-primary-pill" id="patchExploreBtn" onclick="exploreLatestPatch()"><svg class="svg-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> สำรวจโมเดลใหม่ใน Patch นี้</button>
+          <button class="btn btn-green-pill" onclick="acknowledgePatch()">รับทราบการอัปเดต (Got it)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification Pill -->
   <div class="toast-pill" id="toast">
     <span class="toast-icon"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
     <span id="toast-text">คัดลอกสำเร็จ!</span>
   </div>
 
-  <!-- Data Script -->
+  <!-- Data Scripts -->
   <script src="prompts_data.js"></script>
+  <script src="update.js"></script>
 
   <!-- Application Logic & Authentic Model Logo SVGs -->
   <script>
@@ -2395,11 +2570,194 @@ ollama run gemma-unlocked</pre>
       );
     }
 
+    // ============================================================
+    // PATCH UPDATE NOTIFICATION & CHANGELOG SYSTEM
+    // ============================================================
+    let activePatchData = null;
+
+    async function checkPatchUpdates() {
+      let data = (typeof window.UPDATE_DATA !== 'undefined') ? window.UPDATE_DATA : null;
+      
+      try {
+        const res = await fetch('update.json?t=' + Date.now(), { cache: 'no-store' });
+        if (res.ok) {
+          const remoteData = await res.json();
+          if (remoteData && remoteData.patches) {
+            data = remoteData;
+          }
+        }
+      } catch (err) {
+        // Fallback to embedded/window.UPDATE_DATA when offline or file:// protocol
+      }
+
+      if (!data || !data.patches || data.patches.length === 0) return;
+      activePatchData = data;
+
+      renderPatchModal(data);
+
+      const latestVer = data.latestVersion || data.patches[0].version;
+      const lastSeen = localStorage.getItem('ai_goalbal_last_seen_patch');
+
+      const badgeText = document.getElementById('patchBadgeText');
+      if (badgeText && latestVer) {
+        badgeText.textContent = 'Patch v' + latestVer.replace(/^v/, '');
+      }
+
+      // Auto-popup if user has not seen this latest version
+      if (latestVer && latestVer !== lastSeen) {
+        showPatchPulse();
+        setTimeout(() => {
+          openModal('modal-patch-updates');
+        }, 750);
+      } else {
+        hidePatchPulse();
+      }
+    }
+
+    function showPatchPulse() {
+      const dot = document.getElementById('patchPulseDot');
+      if (dot) dot.classList.remove('hidden');
+    }
+
+    function hidePatchPulse() {
+      const dot = document.getElementById('patchPulseDot');
+      if (dot) dot.classList.add('hidden');
+    }
+
+    function renderPatchModal(data) {
+      const container = document.getElementById('patchModalBody');
+      if (!container || !data || !data.patches) return;
+
+      const latest = data.patches[0];
+      const stats = latest.stats || {};
+      
+      let html = `
+        <div class="patch-hero-card">
+          <div class="patch-tag-row">
+            <span class="patch-version-badge">${latest.badge || 'New Patch'} · v${latest.version}</span>
+            <span class="patch-date-badge"><svg class="svg-icon" style="width: 0.9em; height: 0.9em;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${latest.date}</span>
+          </div>
+          <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--color-ink); margin: 6px 0 8px;">${latest.title}</h4>
+          <p style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.55; margin: 0;">${latest.summary}</p>
+
+          <div class="patch-stats-grid">
+            <div class="patch-stat-box">
+              <div class="patch-stat-num">+${stats.newPrompts || 0}</div>
+              <div class="patch-stat-label">โมเดลเพิ่มใหม่</div>
+            </div>
+            <div class="patch-stat-box">
+              <div class="patch-stat-num">${stats.totalPrompts || 0}</div>
+              <div class="patch-stat-label">สเปกรวมทั้งคลัง</div>
+            </div>
+            <div class="patch-stat-box">
+              <div class="patch-stat-num">${stats.totalCategories || 0}</div>
+              <div class="patch-stat-label">หมวดหมู่ทั้งหมด</div>
+            </div>
+            <div class="patch-stat-box">
+              <div class="patch-stat-num">${stats.year2026Count || 0}</div>
+              <div class="patch-stat-label">สเปกปี 2026</div>
+            </div>
+          </div>
+      `;
+
+      if (latest.addedModels && latest.addedModels.length > 0) {
+        html += `
+          <div style="margin-top: 16px;">
+            <div style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-primary); margin-bottom: 8px;">
+              ⚡ โมเดลที่เพิ่มเข้ามาใน Patch นี้ (${latest.addedModels.length} รายการ):
+            </div>
+            <div class="patch-model-grid">
+        `;
+        latest.addedModels.forEach(m => {
+          html += `
+            <div class="patch-model-card">
+              <div class="patch-model-header">
+                <span class="patch-model-name">${m.name}</span>
+                <span class="patch-model-file">${m.file || 'SPEC.md'}</span>
+              </div>
+              <div class="patch-model-desc">${m.desc || ''}</div>
+            </div>
+          `;
+        });
+        html += `
+            </div>
+          </div>
+        `;
+      }
+
+      if (latest.highlights && latest.highlights.length > 0) {
+        html += `
+          <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--color-hairline);">
+            <div style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-muted); margin-bottom: 6px;">
+              ไฮไลต์และรายการปรับปรุง:
+            </div>
+            <ul style="margin: 0; padding-left: 18px; font-size: 0.86rem; color: var(--color-muted); line-height: 1.6;">
+              ${latest.highlights.map(h => `<li>${h}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+
+      html += `</div>`; // end patch-hero-card
+
+      // History of previous patches
+      if (data.patches.length > 1) {
+        html += `
+          <details style="margin-top: 12px; border: 1px solid var(--color-hairline); border-radius: var(--radius-sm); padding: 10px 14px; background: var(--color-surface-soft);">
+            <summary style="cursor: pointer; font-size: 0.88rem; font-weight: 700; color: var(--color-ink); display: flex; align-items: center; justify-content: space-between;">
+              <span>📜 ดูประวัติ Patch ก่อนหน้า (Changelog History)</span>
+              <span style="font-size: 0.78rem; color: var(--color-muted);">${data.patches.length - 1} เวอร์ชัน</span>
+            </summary>
+            <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 12px;">
+        `;
+        for (let i = 1; i < data.patches.length; i++) {
+          const p = data.patches[i];
+          html += `
+            <div style="padding: 10px; background: var(--card-bg); border-radius: 6px; border: 1px solid var(--color-hairline);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <span style="font-weight: 700; font-size: 0.9rem; color: var(--color-ink);">${p.title}</span>
+                <span style="font-size: 0.75rem; color: var(--color-muted);">${p.date}</span>
+              </div>
+              <p style="font-size: 0.82rem; color: var(--color-muted); margin: 0 0 6px;">${p.summary}</p>
+              ${p.highlights ? `<ul style="margin: 0; padding-left: 18px; font-size: 0.78rem; color: var(--color-muted); line-height: 1.5;">${p.highlights.map(h => `<li>${h}</li>`).join('')}</ul>` : ''}
+            </div>
+          `;
+        }
+        html += `
+            </div>
+          </details>
+        `;
+      }
+
+      container.innerHTML = html;
+    }
+
+    function acknowledgePatch() {
+      if (activePatchData && (activePatchData.latestVersion || (activePatchData.patches[0] && activePatchData.patches[0].version))) {
+        const ver = activePatchData.latestVersion || activePatchData.patches[0].version;
+        localStorage.setItem('ai_goalbal_last_seen_patch', ver);
+      }
+      hidePatchPulse();
+      closeModal('modal-patch-updates');
+      showToast('บันทึกการรับทราบ Patch แล้ว');
+    }
+
+    function exploreLatestPatch() {
+      acknowledgePatch();
+      if (activePatchData && activePatchData.patches && activePatchData.patches[0]) {
+        const cat = activePatchData.patches[0].categoryKey || 'all';
+        selectCategory(cat);
+      }
+      const grid = document.getElementById('promptsSection');
+      if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
     // Initialize on load
     window.addEventListener('DOMContentLoaded', () => {
       initTheme();
       buildCategoryTabs();
       renderPrompts();
+      checkPatchUpdates();
     });
   </script>
 

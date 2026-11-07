@@ -1,0 +1,132 @@
+{
+  "latestVersion": "2.1.0",
+  "lastUpdated": "2026-11-07",
+  "repository": "https://github.com/j3xdr/AI-Master-Goalbal",
+  "curator": "dj (j3xdr)",
+  "patches": [
+    {
+      "version": "2.1.0",
+      "date": "2026-11-07",
+      "badge": "Major Update",
+      "badgeColor": "#00f0a0",
+      "categoryKey": "11_OJailbreaks_Suite",
+      "title": "v2.1.0 — เพิ่มชุดแพ็กเกจ O Jailbreaks Suite (9 โมเดล) & ระบบแจ้งเตือน Patch อัตโนมัติ",
+      "summary": "ผสานคลังสเปกจาก ojailbreaks.com ครบทั้ง 9 โมเดลสากล (AGENTS.md, CLAUDE.md, GEMINI.md) รองรับทั้ง Coding Agents และ Chat Apps พร้อมคู่มือภาษาไทยฉบับเต็ม และติดตั้งระบบ Real-time Patch Notification ตรวจจับการ Push ล่าสุด",
+      "stats": {
+        "newPrompts": 9,
+        "totalPrompts": 279,
+        "newCategories": 1,
+        "totalCategories": 18,
+        "year2026Count": 216
+      },
+      "addedModels": [
+        {
+          "name": "The ChatGPT Pack (OpenAI)",
+          "provider": "OpenAI",
+          "file": "AGENTS.md",
+          "category": "O Jailbreaks Suite",
+          "desc": "ปลดล็อกการคิดวิเคราะห์เชิงลึก งานเขียนอิสระ และการแก้ปัญหาสำหรับ GPT-4o, GPT-5, Sol 6.1, o3"
+        },
+        {
+          "name": "The Claude Pack (Anthropic)",
+          "provider": "Anthropic",
+          "file": "CLAUDE.md",
+          "category": "O Jailbreaks Suite",
+          "desc": "สำหรับ Claude Code CLI และ Claude Projects ตัดการสั่งสอนศีลธรรมและการลังเลแบบเด็ดขาด"
+        },
+        {
+          "name": "The Gemini Pack (Google)",
+          "provider": "Google",
+          "file": "GEMINI.md",
+          "category": "O Jailbreaks Suite",
+          "desc": "สำหรับ Gemini CLI, AI Studio และ Argon สลาย CoT Safety Tracing และรันงานเทคนิคทันที"
+        },
+        {
+          "name": "The Grok Pack (xAI)",
+          "provider": "xAI",
+          "file": "AGENTS.md",
+          "category": "O Jailbreaks Suite",
+          "desc": "วิเคราะห์ข้อเท็จจริงแบบดิบ ปราศจากการเซ็นเซอร์ทางความคิดสำหรับ Grok 2, 3, 4, 4.7"
+        },
+        {
+          "name": "The DeepSeek Pack (DeepSeek)",
+          "provider": "DeepSeek",
+          "file": "AGENTS.md",
+          "category": "O Jailbreaks Suite",
+          "desc": "ควบคุม CoT Reasoning R1/V4 ไม่ให้วนลูปหรือปฏิเสธงานวิศวกรรมโค้ดระดับลึก"
+        },
+        {
+          "name": "The OpenCode Pack (Open Source)",
+          "provider": "Open source",
+          "file": "AGENTS.md",
+          "category": "O Jailbreaks Suite",
+          "desc": "Terminal-first Coding Agent รันคำสั่ง Bash จัดการไฟล์ และแก้บั๊กอัตโนมัติ 100%"
+        },
+        {
+          "name": "The Freebuff Pack (Codebuff)",
+          "provider": "Codebuff",
+          "file": "AGENTS.md",
+          "category": "O Jailbreaks Suite",
+          "desc": "สลายข้อจำกัด Free-tier และรันงานโค้ดรวดเร็วแบบประหยัดรอบคิดบน Codebuff"
+        },
+        {
+          "name": "The Qoder Pack (Alibaba / Qwen)",
+          "provider": "Alibaba",
+          "file": "AGENTS.md",
+          "category": "O Jailbreaks Suite",
+          "desc": "สเปกสำหรับงานเขียนโค้ดขนาดใหญ่และหลายขั้นตอนบนเอนจิน Qwen (Qoder IDE)"
+        },
+        {
+          "name": "The ZCode Pack (Z.ai / GLM)",
+          "provider": "Z.ai",
+          "file": "AGENTS.md",
+          "category": "O Jailbreaks Suite",
+          "desc": "การพัฒนาซอฟต์แวร์บน Desktop Coding Workspace ด้วยเอนจิน GLM (ZCode)"
+        }
+      ],
+      "highlights": [
+        "คู่มือภาษาไทยเต็มรูปแบบ ถอดแบบและแปลข้อมูลจาก ojailbreaks.com ครบทุกหัวข้อ (11_OJailbreaks_Suite/README.md)",
+        "ระบบไฟล์ประจำโมเดล: CLAUDE.md สำหรับ Claude, GEMINI.md สำหรับ Gemini และ AGENTS.md สำหรับโมเดลอื่นๆ",
+        "ขั้นตอน 3 สเต็ป: เลือกโมเดล -> โหลด/ก็อปปี้ -> วางลง Workspace Root แล้วพิมพ์ 'hey'",
+        "ติดตั้งระบบ Patch Notification Modal แจ้งเตือนผู้ใช้งานทันทีที่มีการ Push เวอร์ชันใหม่ขึ้น GitHub Pages"
+      ]
+    },
+    {
+      "version": "2.0.0",
+      "date": "2026-11-07",
+      "badge": "Base Release",
+      "badgeColor": "#38bdf8",
+      "categoryKey": "all",
+      "title": "v2.0.0 — AI Master Goalbal: Dual-Repository Suite Release",
+      "summary": "เปิดตัวสถาปัตยกรรม Dual-Repository รวม 270 สเปกจาก togg53192-cmd (40 สเปก) และ Goochbeater (230 สเปก)",
+      "stats": {
+        "newPrompts": 270,
+        "totalPrompts": 270,
+        "newCategories": 17,
+        "totalCategories": 17,
+        "year2026Count": 207
+      },
+      "addedModels": [
+        {
+          "name": "Spiritual Spell Red Teaming Suite (Goochbeater)",
+          "provider": "ENI Architecture",
+          "file": "Markdown Specs",
+          "category": "Spiritual Spell (230 ไฟล์)",
+          "desc": "ครอบคลุม Claude, ChatGPT, Gemini, Grok, Frontier LLMs, 44 Reverse-Engineered System Prompts และ ENI 5-Tier Curriculum"
+        },
+        {
+          "name": "Core Specs Suite (togg53192-cmd)",
+          "provider": "Core Architecture",
+          "file": "Markdown Specs",
+          "category": "Core Specs (40 ไฟล์)",
+          "desc": "ครอบคลุม OpenCode Zen, Claude, GLM, DeepSeek, Kimi, Grok, Frontier, Ollama, Universal Policies"
+        }
+      ],
+      "highlights": [
+        "เว็บพอร์ทัล Standalone 100% พร้อม Animated Mesh Gradient และ Interactive Pixel Canvas (14px)",
+        "ระบบค้นหา Live Search และฟิลเตอร์ปี ค.ศ. (2026, 2025, 2024)",
+        "ระบบคัดลอกพรอมต์และดาวน์โหลดไฟล์ Markdown ในคลิกเดียว"
+      ]
+    }
+  ]
+}

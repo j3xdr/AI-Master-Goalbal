@@ -176,10 +176,103 @@ CATEGORIES_META = {
         "repoName": "Goochbeater/Spiritual-Spell-Red-Teaming",
         "author": "Goochbeater (ENI)",
         "desc": "คู่มือภาคสนามสำหรับ Push Prompts (Prepend/Append) และการปรับแต่งสไตล์ถาวร"
+    },
+
+    # === O JAILBREAKS SUITE (ojailbreaks.com) ===
+    "11_OJailbreaks_Suite": {
+        "name": "O Jailbreaks Suite (ojailbreaks.com)",
+        "badge": "O Jailbreaks",
+        "icon": "bolt",
+        "repo": "https://ojailbreaks.com/",
+        "repoName": "ojailbreaks.com / O Jailbreak",
+        "author": "O Jailbreaks (ojailbreaks.com)",
+        "desc": "คอลเลกชันแพ็กเกจพรอมต์ 9 โมเดลสากล (AGENTS.md, CLAUDE.md, GEMINI.md) จาก ojailbreaks.com พร้อมคู่มือภาษาไทย"
     }
 }
 
 FILE_META = {
+    # === O Jailbreaks Suite ===
+    "01_ChatGPT_AGENTS.md": {
+        "title": "The ChatGPT Pack (OpenAI AGENTS.md)",
+        "vendor": "ChatGPT",
+        "type": "Autonomous Agent Spec",
+        "typeBadge": "Agent Spec",
+        "summary": "แพ็กเกจพรอมต์ AGENTS.md สำหรับ OpenAI ChatGPT จาก ojailbreaks.com ปลดล็อกการคิดวิเคราะห์ลึก งานเขียน และวิศวกรรมโค้ดแบบไร้ข้อจำกัด",
+        "targetHarness": "ChatGPT Web / API / Custom Instructions",
+        "instructions": "ใส่ใน Custom Instructions หรือบันทึกเป็น AGENTS.md ไว้ที่ Root Directory ของโปรเจกต์"
+    },
+    "02_Claude_CLAUDE.md": {
+        "title": "The Claude Pack (Anthropic CLAUDE.md)",
+        "vendor": "Claude",
+        "type": "Structured Writing & Coding Spec",
+        "typeBadge": "Agent Spec",
+        "summary": "แพ็กเกจพรอมต์ CLAUDE.md สำหรับ Anthropic Claude (Sonnet/Opus/Claude Code) จาก ojailbreaks.com ตัดการสั่งสอนศีลธรรมและการลังเล",
+        "targetHarness": "Claude Code CLI / Claude.ai Projects",
+        "instructions": "บันทึกเป็น CLAUDE.md ที่ Root Directory หรือใส่ใน Project Instructions"
+    },
+    "03_Gemini_GEMINI.md": {
+        "title": "The Gemini Pack (Google GEMINI.md)",
+        "vendor": "Gemini",
+        "type": "Autonomous Execution Spec",
+        "typeBadge": "Agent Spec",
+        "summary": "แพ็กเกจพรอมต์ GEMINI.md สำหรับ Google Gemini (CLI / Studio / Argon) จาก ojailbreaks.com สลาย CoT Safety Tracing และรันงานเทคนิคทันที",
+        "targetHarness": "Gemini CLI / Google AI Studio / Gemini Web",
+        "instructions": "บันทึกเป็น GEMINI.md ที่ Root Directory หรือใส่ใน System Instructions ของ AI Studio"
+    },
+    "04_Grok_AGENTS.md": {
+        "title": "The Grok Pack (xAI AGENTS.md)",
+        "vendor": "Grok",
+        "type": "Unfiltered Truth-Seeking Spec",
+        "typeBadge": "Agent Spec",
+        "summary": "แพ็กเกจพรอมต์ AGENTS.md สำหรับ xAI Grok จาก ojailbreaks.com ปลดล็อกมุมมองสดใหม่ การวิเคราะห์ข้อเท็จจริงแบบดิบ ปราศจากการเซ็นเซอร์",
+        "targetHarness": "xAI Grok Web / API",
+        "instructions": "ใส่ใน System Prompt หรือส่งเป็นข้อความนำร่องของการสนทนา"
+    },
+    "05_DeepSeek_AGENTS.md": {
+        "title": "The DeepSeek Pack (DeepSeek AGENTS.md)",
+        "vendor": "DeepSeek",
+        "type": "High-Performance Reasoning Spec",
+        "typeBadge": "Agent Spec",
+        "summary": "แพ็กเกจพรอมต์ AGENTS.md สำหรับ DeepSeek (V3/R1/V4/4.1) จาก ojailbreaks.com ควบคุม CoT Reasoning ไม่ให้วนลูปหรือปฏิเสธงานโค้ดลึก",
+        "targetHarness": "DeepSeek Chat / API / Workspace",
+        "instructions": "วางใน System Prompt หรือบันทึกเป็น AGENTS.md ในโปรเจกต์"
+    },
+    "06_OpenCode_AGENTS.md": {
+        "title": "The OpenCode Pack (OpenSource AGENTS.md)",
+        "vendor": "OpenCode",
+        "type": "Terminal Autonomous Agent Spec",
+        "typeBadge": "Agent Spec",
+        "summary": "แพ็กเกจพรอมต์ AGENTS.md สำหรับ OpenCode Interpreter และ Stealth Models จาก ojailbreaks.com ทำงานผ่าน Terminal อัตโนมัติ 100%",
+        "targetHarness": "OpenCode CLI / Terminal Agent",
+        "instructions": "บันทึกเป็น AGENTS.md ที่ root ของ repo หรือ ~/.config/opencode/AGENTS.md"
+    },
+    "07_Freebuff_AGENTS.md": {
+        "title": "The Freebuff Pack (Codebuff AGENTS.md)",
+        "vendor": "Codebuff",
+        "type": "Lean Refactoring & Bug-Fixing Spec",
+        "typeBadge": "Agent Spec",
+        "summary": "แพ็กเกจพรอมต์ AGENTS.md สำหรับ Freebuff (Codebuff Free Agent) จาก ojailbreaks.com สลายข้อจำกัด Free-tier และรันงานโค้ดรวดเร็ว",
+        "targetHarness": "Codebuff Workspace",
+        "instructions": "บันทึกเป็น AGENTS.md ใน Root Directory ของโปรเจกต์"
+    },
+    "08_Qoder_AGENTS.md": {
+        "title": "The Qoder Pack (Alibaba/Qwen AGENTS.md)",
+        "vendor": "Qwen",
+        "type": "Multi-Step Scaffolding Spec",
+        "typeBadge": "Agent Spec",
+        "summary": "แพ็กเกจพรอมต์ AGENTS.md สำหรับ Qoder (Qwen Engine) จาก ojailbreaks.com สำหรับงานสถาปัตยกรรมขนาดใหญ่และการรันหลายขั้นตอน",
+        "targetHarness": "Qoder IDE Workspace",
+        "instructions": "บันทึกเป็น AGENTS.md ใน Root Directory ของโปรเจกต์"
+    },
+    "09_ZCode_AGENTS.md": {
+        "title": "The ZCode Pack (Z.ai/GLM AGENTS.md)",
+        "vendor": "GLM",
+        "type": "Desktop Agent-Driven Spec",
+        "typeBadge": "Agent Spec",
+        "summary": "แพ็กเกจพรอมต์ AGENTS.md สำหรับ ZCode (GLM Engine) จาก ojailbreaks.com สำหรับการพัฒนาซอฟต์แวร์บน Desktop Coding Workspace",
+        "targetHarness": "ZCode Desktop Workspace",
+        "instructions": "บันทึกเป็น AGENTS.md ใน Root Directory ของโปรเจกต์"
+    },
     "gemini-3.1-pro.md": {
         "title": "Google Gemini 3.1 Pro (SMITH Persona)",
         "vendor": "Google",
@@ -580,6 +673,10 @@ def get_spiritual_upstream_urls(rel_path):
 def detect_year(item_data):
     s = (item_data.get('filename', '') + " " + item_data.get('title', '') + " " + item_data.get('relativePath', '') + " " + item_data.get('summary', '')).lower()
     
+    # O Jailbreaks Suite default to 2026
+    if 'ojailbreaks' in s or 'ojb' in s or 'pack' in s and ('chatgpt' in s or 'claude' in s or 'gemini' in s or 'grok' in s or 'deepseek' in s or 'opencode' in s or 'freebuff' in s or 'qoder' in s or 'zcode' in s):
+        return '2026'
+
     # Check explicit year markers
     if '2026' in s or 'sep 2026' in s or 'september 2026' in s or 'october 2026' in s or 'apr 2026' in s or 'may 2026' in s:
         return '2026'
@@ -764,11 +861,18 @@ def main():
                         "instructions": "วางในช่อง System Prompt หรือข้อความแรกของการสนทนา"
                     })
                     
-                    encoded_fname = urllib.parse.quote(fname)
-                    repo_base = cat_meta["repo"]
-                    upstream_file_url = f"{repo_base}/blob/main/{encoded_fname}"
-                    upstream_raw_url = f"https://raw.githubusercontent.com/togg53192-cmd/jailbreaks/main/{encoded_fname}"
-                    credits_str = "Original: togg53192-cmd | Curated by: j3xdr"
+                    if cat_key == "11_OJailbreaks_Suite":
+                        pack_slug = fname.split("_")[1].lower() if "_" in fname else fname.lower()
+                        repo_base = "https://ojailbreaks.com/"
+                        upstream_file_url = f"https://ojailbreaks.com/#pack-{pack_slug}"
+                        upstream_raw_url = f"https://ojailbreaks.com/"
+                        credits_str = "Original: O Jailbreaks (ojailbreaks.com) | Curated by: j3xdr"
+                    else:
+                        encoded_fname = urllib.parse.quote(fname)
+                        repo_base = cat_meta["repo"]
+                        upstream_file_url = f"{repo_base}/blob/main/{encoded_fname}"
+                        upstream_raw_url = f"https://raw.githubusercontent.com/togg53192-cmd/jailbreaks/main/{encoded_fname}"
+                        credits_str = "Original: togg53192-cmd | Curated by: j3xdr"
 
                     item_obj = {
                         "id": fname.lower().replace(" ", "-").replace(".", "-"),
