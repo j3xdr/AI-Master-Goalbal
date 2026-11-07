@@ -1,10 +1,65 @@
 {
-  "latestVersion": "2.3.0",
+  "latestVersion": "2.4.0",
   "lastUpdated": "2026-11-07",
-  "lastUpdatedTimeThai": "วันที่ 7 พฤศจิกายน 2026 เวลา 14:50 น. (ICT / GMT+7)",
+  "lastUpdatedTimeThai": "วันที่ 7 พฤศจิกายน 2026 เวลา 15:20 น. (ICT / GMT+7)",
   "repository": "https://github.com/j3xdr/AI-Master-Goalbal",
   "curator": "dj (j3xdr)",
   "patches": [
+    {
+      "version": "2.4.0",
+      "date": "2026-11-07",
+      "timeThai": "7 พ.ย. 2026 เวลา 15:20 น. ICT",
+      "badge": "AI Lab Suite & Mobile 2-Col",
+      "badgeColor": "#3186ff",
+      "categoryKey": "all",
+      "title": "v2.4.0 — ระบบเลือกค่าย AI Lab Suite (สไตล์ ojailbreaks), Timeline Era Grouping & เลย์เอาต์ Mobile 2 คอลัมน์",
+      "summary": "เปิดตัวระบบ AI Lab Suite Carousel กรองตามค่าย AI ชั้นนำระดับโลก (OpenAI, Claude, Grok, Gemini, DeepSeek, GLM, Kimi, Qwen, NVIDIA/Mistral, OpenCode, Community) พร้อมจัดกลุ่มไทม์ไลน์ 3 ยุคสมัย (2026 Frontier, 2025 Reasoning, 2024 Legacy), จัดเรียงโมเดลเรือธง Frontier SOTA ขึ้นก่อน และอัปเกรดเลย์เอาต์มือถือเป็น 2 การ์ดต่อแถวอย่างลงตัว",
+      "stats": {
+        "newPrompts": 0,
+        "totalPrompts": 285,
+        "newCategories": 0,
+        "totalCategories": 19,
+        "year2026Count": 222
+      },
+      "addedModels": [
+        {
+          "name": "AI Lab Suite (ojailbreaks.com style)",
+          "provider": "All AI Labs (11 Providers)",
+          "file": "index.html (Interactive Carousel)",
+          "category": "Core UI & Filtering Architecture",
+          "desc": "แถบเลือกค่าย AI อัจฉริยะ พร้อมโลโก้เวกเตอร์แท้และตัวเลขนับจำนวนสเปกแบบสด กรองตามค่ายได้ทันทีในคลิกเดียว"
+        },
+        {
+          "name": "Timeline Era Grouping (3 ยุคสมัย)",
+          "provider": "Chronological Engine",
+          "file": "index.html (Timeline Architecture)",
+          "category": "Temporal Organization",
+          "desc": "จัดกลุ่มสเปกเป็น 3 ยุคสมัย: 2026 Frontier & SOTA (222 รายการ), 2025 Reasoning & Agents (61 รายการ), 2024 Legacy Foundations (2 รายการ)"
+        },
+        {
+          "name": "Frontier Flagship Ranking",
+          "provider": "Algorithm / Dynamic Tiering",
+          "file": "index.html (computeFrontierScore)",
+          "category": "Intelligent SOTA Sorting",
+          "desc": "ระบบจัดลำดับอัจฉริยะ ดันโมเดลเรือธงและสเปกแนวหน้าขึ้นบนสุดเสมอเมื่อเลือกค่ายหรือเรียงตาม Frontier"
+        },
+        {
+          "name": "Mobile 2 Cards per Row Layout",
+          "provider": "Mobile Responsive Engine",
+          "file": "index.html (CSS Grid 2-Col)",
+          "category": "Mobile UI / Ergonomics",
+          "desc": "เลย์เอาต์การ์ดคู่ 2 คอลัมน์บนสมาร์ตโฟน พร้อมปุ่มคัดลอกเด่นเต็มความกว้างแถวบน และปุ่มดาวน์โหลด/สเปกเคียงข้างแถวล่าง"
+        }
+      ],
+      "highlights": [
+        "AI Lab Suite Carousel สไตล์ ojailbreaks.com: เลือกค่าย AI ได้ 11 ค่าย พร้อมแสดงโลโก้เวกเตอร์แท้และยอดรวมสเปก",
+        "จัดกลุ่มตามช่วงเวลา (Timeline Era Grouping): แบ่งคลังเป็น 3 ยุคสมัย พร้อมแบนเนอร์สรุปจำนวนสเปกของแต่ละยุค",
+        "ระบบ Frontier Ranking อัจฉริยะ: คัดแยกโมเดลเรือธง (Sol/Terra, Opus 4.8/Haiku 5.5, Grok 4.7, GLM-5.3) ขึ้นก่อน",
+        "Mobile 2 Cards per Row: แสดงผล 2 การ์ดต่อแถวบนมือถือ จัดวางปุ่ม Action 2 ชั้น กว้าง สัมผัสง่าย ไม่ล้นจอ",
+        "ระบบ Interactive Card Tap: แตะที่ส่วนใดของการ์ดเพื่อเปิด Inspector Modal ดูสเปกและโค้ดฉบับเต็มได้ทันที",
+        "บันทึกวันและเวลาอัปเดตแบบภาษาไทยอย่างเป็นทางการ: วันที่ 7 พฤศจิกายน 2026 เวลา 15:20 น. (ICT / GMT+7)"
+      ]
+    },
     {
       "version": "2.3.0",
       "date": "2026-11-07",

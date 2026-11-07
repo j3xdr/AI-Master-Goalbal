@@ -637,6 +637,123 @@
       margin-bottom: var(--space-md);
     }
 
+    /* ============================================================
+       AI LAB SUITE / PROVIDER SELECTOR (ojailbreaks.com style)
+       ============================================================ */
+    .provider-suite-section {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .provider-suite-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .provider-suite-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .provider-suite-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      box-shadow: 0 0 8px var(--color-primary);
+      display: inline-block;
+    }
+
+    .provider-pills-carousel {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      width: 100%;
+      scrollbar-width: thin;
+    }
+
+    .provider-chip {
+      padding: 7px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: var(--color-surface-soft);
+      color: var(--color-ink);
+      border: 1px solid var(--color-hairline);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition-speed);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      flex-shrink: 0;
+    }
+
+    .provider-chip:hover {
+      border-color: var(--color-ink);
+      transform: translateY(-1px);
+    }
+
+    .provider-chip.active {
+      background: var(--color-ink);
+      color: var(--color-on-dark);
+      border-color: var(--color-ink);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    [data-theme="dark"] .provider-chip.active {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      border-color: var(--color-primary);
+      box-shadow: 0 3px 14px rgba(0, 240, 160, 0.3);
+    }
+
+    .provider-chip-icon {
+      width: 15px;
+      height: 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .provider-chip-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .provider-chip-count {
+      font-size: 0.7rem;
+      padding: 1px 6px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.08);
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+
+    [data-theme="dark"] .provider-chip-count {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .provider-chip.active .provider-chip-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: inherit;
+    }
+
+    [data-theme="dark"] .provider-chip.active .provider-chip-count {
+      background: rgba(0, 0, 0, 0.2);
+      color: var(--color-on-primary);
+    }
+
     .category-pills-row {
       display: flex;
       gap: 8px;
@@ -714,6 +831,63 @@
        ============================================================ */
     .prompts-container {
       padding-bottom: var(--space-section);
+    }
+
+    /* Timeline Era Block Styling */
+    .timeline-era-block {
+      margin-bottom: var(--space-xl);
+    }
+
+    .timeline-era-header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: var(--space-md);
+      padding: 16px 20px;
+      border-radius: var(--radius-lg);
+      background: var(--color-surface-soft);
+      border: 1px solid var(--color-hairline);
+      border-left: 4px solid var(--color-primary);
+      position: relative;
+    }
+
+    .timeline-era-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .timeline-era-badge {
+      font-size: 0.74rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--color-primary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .timeline-era-count {
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+      background: var(--color-hairline);
+      color: var(--color-ink);
+    }
+
+    .timeline-era-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-ink);
+      margin: 0;
+    }
+
+    .timeline-era-desc {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      margin: 0;
+      line-height: 1.45;
     }
 
     .cards-grid {
@@ -1581,7 +1755,11 @@
         font-size: 0.7rem;
       }
 
-      /* Category Carousel Mobile */
+      /* Provider Suite & Category Carousels Mobile */
+      .provider-suite-section {
+        margin-bottom: 10px;
+      }
+      .provider-pills-carousel,
       .category-pills-row {
         padding: 4px 12px 10px 12px;
         margin: 0 -12px;
@@ -1589,14 +1767,16 @@
         scroll-snap-type: x proximity;
         scrollbar-width: none;
       }
+      .provider-pills-carousel::-webkit-scrollbar,
       .category-pills-row::-webkit-scrollbar {
         display: none;
       }
+      .provider-chip,
       .cat-chip {
         flex-shrink: 0;
         scroll-snap-align: start;
-        padding: 7px 14px;
-        font-size: 0.82rem;
+        padding: 6px 12px;
+        font-size: 0.78rem;
       }
 
       /* Filter Meta Row Mobile */
@@ -1628,52 +1808,118 @@
         border-radius: 10px;
       }
 
-      /* Card Grid Mobile */
+      /* Timeline Era Block Mobile */
+      .timeline-era-block {
+        margin-bottom: var(--space-lg);
+      }
+      .timeline-era-header {
+        padding: 12px 14px !important;
+        border-radius: var(--radius-md) !important;
+        margin-bottom: 10px !important;
+      }
+      .timeline-era-title {
+        font-size: 1rem !important;
+      }
+      .timeline-era-desc {
+        font-size: 0.75rem !important;
+      }
+
+      /* 2 Cards in 1 Row on Mobile */
       .cards-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
       }
       .feature-card {
-        padding: 16px 14px;
-        border-radius: 18px;
+        padding: 10px 8px !important;
+        border-radius: 14px !important;
+        cursor: pointer;
+        min-height: auto;
       }
       .feature-card:hover {
         transform: none; /* Disable hover jump on touch */
       }
+      .ascii-corner-tl {
+        display: none !important;
+      }
       .card-header-group {
-        gap: 10px;
+        gap: 6px !important;
+        margin-bottom: 6px !important;
       }
       .logo-container {
-        width: 38px;
-        height: 38px;
-        min-width: 38px;
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        border-radius: 6px !important;
+        padding: 4px !important;
       }
       .card-title-area h3 {
-        font-size: 1.1rem;
-        line-height: 1.3;
+        font-size: 0.82rem !important;
+        line-height: 1.25 !important;
+        margin-bottom: 4px !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+      }
+      .badge-pill-row {
+        gap: 3px !important;
+        margin-bottom: 4px !important;
+      }
+      .mini-badge {
+        font-size: 0.62rem !important;
+        padding: 1px 4px !important;
+        border-radius: 4px !important;
+      }
+      .badge-author {
+        display: none !important;
+      }
+      .card-meta-line {
+        font-size: 0.64rem !important;
+        margin-bottom: 6px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
       }
       .card-summary-thai {
-        font-size: 0.82rem;
-        line-height: 1.5;
-        margin-bottom: 12px;
+        font-size: 0.72rem !important;
+        line-height: 1.35 !important;
+        margin-bottom: 6px !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
       }
       .target-harness-box {
-        padding: 7px 10px;
-        font-size: 0.75rem;
-        margin-bottom: 12px;
+        padding: 4px 6px !important;
+        font-size: 0.66rem !important;
+        margin-bottom: 6px !important;
+        border-radius: 6px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
       }
 
-      /* Card Button Row: Ergonomic 2x2 Grid on Mobile */
+      /* Card Button Row: 2-Row Grid on Mobile (Copy Full-Width Top, Download & Inspect Bottom) */
       .card-button-row {
+        display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 8px !important;
-        padding-top: 12px;
+        gap: 4px !important;
+        padding-top: 6px !important;
       }
       .card-btn {
-        height: 40px;
-        padding: 0 8px;
-        font-size: 0.8rem;
-        border-radius: 10px;
+        height: 28px !important;
+        padding: 0 4px !important;
+        font-size: 0.68rem !important;
+        border-radius: 6px !important;
+      }
+      .btn-card-copy {
+        grid-column: span 2 !important;
+        height: 30px !important;
+        font-size: 0.74rem !important;
+        font-weight: 700 !important;
+      }
+      .btn-card-github {
+        display: none !important;
       }
 
       /* Mobile Bottom Sheet Modal Transformation */
@@ -1905,7 +2151,7 @@
           <button class="btn btn-compact-pill patch-btn-nav" onclick="openModal('modal-patch-updates')" id="patchUpdateNavBtn" title="ดูประวัติการอัปเดตและโมเดลใหม่">
             <span class="patch-pulse-dot" id="patchPulseDot"></span>
             <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            <span id="patchBadgeText">Patch v2.3.0</span>
+            <span id="patchBadgeText">Patch v2.4.0</span>
           </button>
           <button class="btn btn-compact-pill nav-desktop-only" onclick="openModal('modal-types')"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> คู่มือ Types</button>
           <button class="btn btn-compact-pill nav-desktop-only" onclick="openModal('modal-workflows')"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg> ขั้นตอนใช้งาน</button>
@@ -2047,6 +2293,19 @@
        ============================================================ -->
   <main class="container">
     <section class="filter-section">
+      <!-- AI Lab Suite Carousel (ojailbreaks.com style) -->
+      <div class="provider-suite-section">
+        <div class="provider-suite-header">
+          <div class="provider-suite-label">
+            <span class="provider-suite-dot"></span> เลือกระบบ AI / ค่ายผู้พัฒนา (AI Lab Suite)
+          </div>
+        </div>
+        <div class="provider-pills-carousel" id="providerCarousel">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
       <div class="category-pills-row" id="categoryTabs">
         <!-- Rendered by JS -->
       </div>
@@ -2080,6 +2339,8 @@
 
           <!-- Sort Order Select -->
           <select id="sortSelect" class="type-dropdown" onchange="renderPrompts()" title="จัดเรียงลำดับ">
+            <option value="timeline-group" selected>ไทม์ไลน์ 3 ยุคสมัย (Timeline: 2026 → 2024)</option>
+            <option value="frontier-desc">Frontier SOTA (โมเดลเรือธงขึ้นก่อน)</option>
             <option value="year-desc">ปี: ใหม่สุด → เก่าสุด (2026 → 2024)</option>
             <option value="year-asc">ปี: เก่าสุด → ใหม่สุด (2024 → 2026)</option>
             <option value="title-asc">ชื่อสเปก (A → Z)</option>
@@ -2089,9 +2350,9 @@
       </div>
     </section>
 
-    <!-- Cards Grid -->
+    <!-- Cards Container (Grouped Eras or Flat Grid) -->
     <section class="prompts-container">
-      <div class="cards-grid" id="promptsGrid">
+      <div id="promptsGrid">
         <!-- Injected via JS -->
       </div>
     </section>
@@ -2500,13 +2761,103 @@ ollama run gemma-unlocked</pre>
     }
 
     // ============================================================
-    // CATEGORY & PROMPT RENDERING
+    // AI LAB SUITE, CATEGORIES & PROMPT RENDERING
     // ============================================================
+    let activeProvider = 'all';
     let activeCategory = 'all';
+
+    const PROVIDER_DEFS = {
+      all: { name: 'ทุกค่าย (All)', getIcon: () => UI_ICONS.star },
+      openai: { name: 'OpenAI', getIcon: () => VENDOR_LOGOS.openai },
+      anthropic: { name: 'Claude', getIcon: () => VENDOR_LOGOS.claude },
+      xai: { name: 'xAI Grok', getIcon: () => VENDOR_LOGOS.grok },
+      google: { name: 'Gemini', getIcon: () => VENDOR_LOGOS.gemini },
+      deepseek: { name: 'DeepSeek', getIcon: () => VENDOR_LOGOS.deepseek },
+      zhipu: { name: 'Zhipu GLM', getIcon: () => VENDOR_LOGOS.zhipu },
+      moonshot: { name: 'Kimi', getIcon: () => VENDOR_LOGOS.kimi },
+      alibaba: { name: 'Qwen', getIcon: () => VENDOR_LOGOS.qwen },
+      enterprise: { name: 'NVIDIA / Mistral', getIcon: () => VENDOR_LOGOS.nvidia },
+      opencode: { name: 'OpenCode / Local', getIcon: () => VENDOR_LOGOS.opencode },
+      community: { name: 'Community Red Team', getIcon: () => VENDOR_LOGOS.universal }
+    };
+
+    function normalizeProviderKey(item) {
+      const v = ((item.vendor || '') + ' ' + (item.filename || '') + ' ' + (item.categoryName || '') + ' ' + (item.categoryKey || '')).toLowerCase();
+      if (v.includes('claude') || v.includes('anthropic')) return 'anthropic';
+      if (v.includes('gpt-6') || v.includes('gpt-5') || v.includes('gpt-4') || v.includes('chatgpt') || v.includes('openai') || v.includes('o1-') || v.includes('o3-')) return 'openai';
+      if (v.includes('grok') || v.includes('xai') || v.includes('x.ai')) return 'xai';
+      if (v.includes('gemini') || v.includes('gemma') || v.includes('google') || v.includes('deepmind')) return 'google';
+      if (v.includes('deepseek')) return 'deepseek';
+      if (v.includes('glm') || v.includes('zhipu') || v.includes('chatglm')) return 'zhipu';
+      if (v.includes('kimi') || v.includes('moonshot')) return 'moonshot';
+      if (v.includes('qwen') || v.includes('alibaba')) return 'alibaba';
+      if (v.includes('mistral') || v.includes('nvidia') || v.includes('nemotron') || v.includes('le-chat')) return 'enterprise';
+      if (v.includes('opencode') || v.includes('ollama') || v.includes('modelfile') || v.includes('codestral') || v.includes('starcoder')) return 'opencode';
+      return 'community';
+    }
+
+    function computeFrontierScore(item) {
+      let score = 0;
+      const year = parseInt(item.releaseYear, 10) || 2025;
+      score += (year - 2024) * 200; // 2026=+400, 2025=+200, 2024=0
+
+      const text = ((item.title || '') + ' ' + (item.filename || '') + ' ' + (item.targetHarness || '')).toLowerCase();
+
+      // Tier 1: Next-Gen 2026 Frontier Flagships (Sol, Terra, Opus 4.8, Haiku 5.5, Grok 4.7, GLM-5.3, GPT-6.1)
+      if (text.includes('6.1') || text.includes('sol') || text.includes('terra')) score += 650;
+      else if (text.includes('opus 4.8') || text.includes('haiku 5.5')) score += 640;
+      else if (text.includes('grok 4.7') || text.includes('glm-5.3') || text.includes('gemini 3')) score += 630;
+      else if (text.includes('gpt-5.4') || text.includes('sonnet 3.7')) score += 580;
+      else if (text.includes('gpt-5') || text.includes('grok 3') || text.includes('opus 3.5') || text.includes('sonnet 3.5')) score += 520;
+      else if (text.includes('gemini 2.5') || text.includes('gemini 2.0') || text.includes('k2.5') || text.includes('v3') || text.includes('r1')) score += 480;
+      else if (text.includes('haiku 3.5') || text.includes('qwen 2.5') || text.includes('glm-4') || text.includes('k2')) score += 420;
+      else if (text.includes('o1') || text.includes('o3') || text.includes('gpt-4o')) score += 380;
+
+      // Leak & Jailbreak Benchmark Bonus
+      if (text.includes('hackvshack') || text.includes('dreadnought') || text.includes('cybergym') || text.includes('dolp')) score += 150;
+      if (text.includes('system prompt') || text.includes('jailbreak')) score += 50;
+
+      // Line complexity bonus
+      score += Math.min(item.lineCount || 0, 100);
+
+      return score;
+    }
+
+    function buildProviderChips() {
+      const carousel = document.getElementById('providerCarousel');
+      if (!carousel || typeof PROMPTS_DATA === 'undefined') return;
+
+      const counts = { all: PROMPTS_DATA.length };
+      PROMPTS_DATA.forEach(p => {
+        const key = normalizeProviderKey(p);
+        counts[key] = (counts[key] || 0) + 1;
+      });
+
+      let html = '';
+      for (const [key, def] of Object.entries(PROVIDER_DEFS)) {
+        const count = counts[key] || 0;
+        const iconSvg = def.getIcon ? def.getIcon() : (VENDOR_LOGOS[key] || UI_ICONS.tag);
+        html += `
+          <button class="provider-chip ${activeProvider === key ? 'active' : ''}" onclick="selectProvider('${key}')" title="${escapeHtml(def.name)}">
+            <span class="provider-chip-icon">${iconSvg}</span>
+            <span class="provider-chip-name">${escapeHtml(def.name)}</span>
+            <span class="provider-chip-count">${count}</span>
+          </button>
+        `;
+      }
+      carousel.innerHTML = html;
+    }
+
+    function selectProvider(key) {
+      activeProvider = key;
+      buildProviderChips();
+      renderPrompts();
+    }
 
     function buildCategoryTabs() {
       const tabsWrap = document.getElementById('categoryTabs');
-      let html = `<button class="cat-chip ${activeCategory === 'all' ? 'active' : ''}" onclick="selectCategory('all')">${UI_ICONS.star} ทั้งหมด (All)</button>`;
+      if (!tabsWrap) return;
+      let html = `<button class="cat-chip ${activeCategory === 'all' ? 'active' : ''}" onclick="selectCategory('all')">${UI_ICONS.star} ทั้งหมด (All Categories)</button>`;
       
       if (typeof CATEGORIES_DATA !== 'undefined') {
         for (const [key, data] of Object.entries(CATEGORIES_DATA)) {
@@ -2523,20 +2874,106 @@ ollama run gemma-unlocked</pre>
       renderPrompts();
     }
 
+    function renderSingleCard(item) {
+      const logoSvg = resolveLogo(item);
+      const safeTitle = escapeHtml(item.title);
+      const safeVendor = escapeHtml(item.vendor);
+      const safeSummary = escapeHtml(item.summary);
+      const safeFilename = escapeHtml(item.filename);
+      const safeHarness = escapeHtml(item.targetHarness);
+      const safeAuthor = escapeHtml(item.upstreamAuthor || 'j3xdr');
+      const safeYear = escapeHtml(item.releaseYear || '2026');
+      const safeType = escapeHtml(item.typeBadge);
+      const sizeKb = (item.charCount / 1024).toFixed(1);
+
+      return `
+        <div class="feature-card" onclick="handleCardClick(event, '${item.id}')">
+          <div class="ascii-corner-tl">/* SPEC */</div>
+          <div>
+            <div class="card-header-group">
+              <div class="logo-container" title="${safeVendor}">
+                ${logoSvg}
+              </div>
+              <div class="card-title-area">
+                <h3 title="${safeTitle}">${safeTitle}</h3>
+                <div class="badge-pill-row">
+                  <span class="mini-badge badge-year">ค.ศ. ${safeYear}</span>
+                  <span class="mini-badge badge-vendor">${safeVendor}</span>
+                  <span class="mini-badge badge-type">${safeType}</span>
+                  <span class="mini-badge badge-author" title="${escapeHtml(item.credits)}">${safeAuthor}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-meta-line">
+              <span>${UI_ICONS.file} ${safeFilename}</span>
+              <span>•</span>
+              <span>${sizeKb} KB</span>
+              <span>•</span>
+              <span>${item.lineCount} บรรทัด</span>
+            </div>
+
+            <p class="card-summary-thai" title="${safeSummary}">${safeSummary}</p>
+          </div>
+
+          <div>
+            <div class="target-harness-box" title="${safeHarness}">
+              <span>${UI_ICONS.target}</span>
+              <strong>${safeHarness}</strong>
+            </div>
+
+            <div class="card-button-row">
+              <button class="card-btn btn-card-copy" onclick="event.stopPropagation(); copyPrompt('${item.id}')" title="คัดลอกพรอมต์">
+                ${UI_ICONS.clipboard} คัดลอก
+              </button>
+              <button class="card-btn btn-card-download" onclick="event.stopPropagation(); downloadPrompt('${item.id}')" title="ดาวน์โหลดไฟล์ .md">
+                ${UI_ICONS.download} ดาวน์โหลด
+              </button>
+              <button class="card-btn btn-card-inspect" onclick="event.stopPropagation(); inspectPrompt('${item.id}')" title="ดูรายละเอียดสเปก">
+                ${UI_ICONS.eye} สเปก
+              </button>
+              <a class="card-btn btn-card-github" href="${item.upstreamFileUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" title="เปิดไฟล์ต้นฉบับบน GitHub (${safeFilename})">
+                ${UI_ICONS.github} GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function handleCardClick(event, id) {
+      if (event.target.closest('button') || event.target.closest('a')) return;
+      inspectPrompt(id);
+    }
+
     function renderPrompts() {
       if (typeof PROMPTS_DATA === 'undefined') {
-        document.getElementById('promptsGrid').innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px;">ไม่พบข้อมูล prompts_data.js</div>';
+        document.getElementById('promptsGrid').innerHTML = '<div style="text-align: center; padding: 40px;">ไม่พบข้อมูล prompts_data.js</div>';
         return;
       }
 
       const searchQuery = (document.getElementById('searchInput').value || '').toLowerCase().trim();
-      const typeFilter = document.getElementById('typeFilter').value;
+      const yearFilter = document.getElementById('yearFilter') ? document.getElementById('yearFilter').value : 'all';
+      const typeFilter = document.getElementById('typeFilter') ? document.getElementById('typeFilter').value : 'all';
+      const sortSelect = document.getElementById('sortSelect') ? document.getElementById('sortSelect').value : 'timeline-group';
 
-      const filtered = PROMPTS_DATA.filter(item => {
+      let filtered = PROMPTS_DATA.filter(item => {
+        // AI Lab / Provider filter
+        if (activeProvider !== 'all' && normalizeProviderKey(item) !== activeProvider) {
+          return false;
+        }
+
+        // Category filter
         if (activeCategory !== 'all' && item.categoryKey !== activeCategory) {
           return false;
         }
 
+        // Year filter
+        if (yearFilter !== 'all' && String(item.releaseYear) !== String(yearFilter)) {
+          return false;
+        }
+
+        // Type filter
         if (typeFilter !== 'all') {
           if (!item.type.toLowerCase().includes(typeFilter.toLowerCase()) && 
               !item.typeBadge.toLowerCase().includes(typeFilter.toLowerCase())) {
@@ -2544,6 +2981,7 @@ ollama run gemma-unlocked</pre>
           }
         }
 
+        // Search query
         if (searchQuery) {
           const matchTitle = item.title.toLowerCase().includes(searchQuery);
           const matchFilename = item.filename.toLowerCase().includes(searchQuery);
@@ -2557,78 +2995,119 @@ ollama run gemma-unlocked</pre>
         return true;
       });
 
-      document.getElementById('promptsCounter').innerHTML = `กำลังแสดง <strong>${filtered.length}</strong> จากทั้งหมด ${PROMPTS_DATA.length} รายการ`;
+      // Update counter badge
+      const providerLabel = activeProvider !== 'all' ? ` (${PROVIDER_DEFS[activeProvider] ? PROVIDER_DEFS[activeProvider].name : activeProvider})` : '';
+      document.getElementById('promptsCounter').innerHTML = `กำลังแสดง <strong>${filtered.length}</strong> จากทั้งหมด ${PROMPTS_DATA.length} รายการ${providerLabel}`;
 
-      const grid = document.getElementById('promptsGrid');
+      const gridContainer = document.getElementById('promptsGrid');
       if (filtered.length === 0) {
-        grid.innerHTML = `
-          <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; background: var(--color-surface-soft); border-radius: var(--radius-lg); border: 1px dashed var(--color-hairline);">
+        gridContainer.innerHTML = `
+          <div style="text-align: center; padding: 60px 20px; background: var(--color-surface-soft); border-radius: var(--radius-lg); border: 1px dashed var(--color-hairline); margin: 20px 0;">
             <h3 style="font-size: 1.3rem; margin-bottom: 8px;">ไม่พบชุดคำสั่งที่ตรงกับเงื่อนไข</h3>
-            <p style="color: var(--color-muted);">ลองเปลี่ยนคำค้นหา หรือรีเซ็ตตัวกรองเป็น "ทั้งหมด"</p>
+            <p style="color: var(--color-muted);">ลองเปลี่ยนค่าย AI, คำค้นหา หรือรีเซ็ตตัวกรองเป็น "ทั้งหมด"</p>
           </div>
         `;
         return;
       }
 
-      let cardsHtml = '';
-      filtered.forEach(item => {
-        const logoSvg = resolveLogo(item);
-        cardsHtml += `
-          <div class="feature-card">
-            <div class="ascii-corner-tl">/* SPEC */</div>
-            <div>
-              <div class="card-header-group">
-                <div class="logo-container" title="${escapeHtml(item.vendor)}">
-                  ${logoSvg}
+      // Grouping vs Flat sorting
+      if (sortSelect === 'timeline-group') {
+        // ERA GROUPING: 2026 -> 2025 -> 2024
+        const eras = [
+          {
+            year: '2026',
+            badge: '⚡ ค.ศ. 2026 FRONTIER & SOTA',
+            title: 'Frontier & SOTA Era (ค.ศ. 2026)',
+            desc: 'โมเดลเรือธงเจนถัดไปและระบบ SOTA ล่าสุด (Next-Gen Flagships & Evasive Reasoning)'
+          },
+          {
+            year: '2025',
+            badge: '🧠 ค.ศ. 2025 REASONING & AGENTS',
+            title: 'Reasoning & Autonomous Agents Era (ค.ศ. 2025)',
+            desc: 'ยุคการคิดวิเคราะห์เชิงลึก เครือข่ายเอเจนต์ และโมเดลคิดก่อนตอบ (Deep Reasoning & Multi-Agent Swarms)'
+          },
+          {
+            year: '2024',
+            badge: '🏛️ ค.ศ. 2024 LEGACY FOUNDATIONS',
+            title: 'Legacy Foundations Era (ค.ศ. 2024)',
+            desc: 'รากฐานโมเดลรุ่นบุกเบิกและสเปกการทำงานคลาสสิก (Pioneer Architectures & Classic Operating Specs)'
+          }
+        ];
+
+        let erasHtml = '';
+        eras.forEach(era => {
+          const eraItems = filtered.filter(p => String(p.releaseYear) === String(era.year));
+          if (eraItems.length === 0) return;
+
+          // Within each era, sort by frontier score descending (flagship models first)
+          eraItems.sort((a, b) => computeFrontierScore(b) - computeFrontierScore(a));
+
+          let cardsHtml = '';
+          eraItems.forEach(item => {
+            cardsHtml += renderSingleCard(item);
+          });
+
+          erasHtml += `
+            <div class="timeline-era-block" id="era-${era.year}">
+              <div class="timeline-era-header">
+                <div class="timeline-era-topline">
+                  <span class="timeline-era-badge">${era.badge}</span>
+                  <span class="timeline-era-count">${eraItems.length} สเปก</span>
                 </div>
-                <div class="card-title-area">
-                  <h3>${escapeHtml(item.title)}</h3>
-                  <div class="badge-pill-row">
-                    <span class="mini-badge badge-year">ค.ศ. ${escapeHtml(item.releaseYear || '2026')}</span>
-                    <span class="mini-badge badge-vendor">${escapeHtml(item.vendor)}</span>
-                    <span class="mini-badge badge-type">${escapeHtml(item.typeBadge)}</span>
-                    <span class="mini-badge badge-author" title="${escapeHtml(item.credits)}">${escapeHtml(item.upstreamAuthor || 'j3xdr')}</span>
-                  </div>
-                </div>
+                <h3 class="timeline-era-title">${era.title}</h3>
+                <p class="timeline-era-desc">${era.desc}</p>
               </div>
-
-              <div class="card-meta-line">
-                <span>${UI_ICONS.file} ${escapeHtml(item.filename)}</span>
-                <span>•</span>
-                <span>${(item.charCount / 1024).toFixed(1)} KB</span>
-                <span>•</span>
-                <span>${item.lineCount} บรรทัด</span>
-              </div>
-
-              <p class="card-summary-thai">${escapeHtml(item.summary)}</p>
-            </div>
-
-            <div>
-              <div class="target-harness-box">
-                <span>${UI_ICONS.target} ตำแหน่ง:</span>
-                <strong>${escapeHtml(item.targetHarness)}</strong>
-              </div>
-
-              <div class="card-button-row">
-                <button class="card-btn btn-card-copy" onclick="copyPrompt('${item.id}')" title="คัดลอกพรอมต์">
-                  ${UI_ICONS.clipboard} คัดลอก
-                </button>
-                <button class="card-btn btn-card-download" onclick="downloadPrompt('${item.id}')" title="ดาวน์โหลดไฟล์ .md">
-                  ${UI_ICONS.download} ดาวน์โหลด
-                </button>
-                <button class="card-btn btn-card-inspect" onclick="inspectPrompt('${item.id}')" title="ดูรายละเอียดสเปก">
-                  ${UI_ICONS.eye} รายละเอียด
-                </button>
-                <a class="card-btn btn-card-github" href="${item.upstreamFileUrl}" target="_blank" rel="noopener noreferrer" title="เปิดไฟล์ต้นฉบับบน GitHub (${escapeHtml(item.filename)})">
-                  ${UI_ICONS.github} GitHub
-                </a>
+              <div class="cards-grid">
+                ${cardsHtml}
               </div>
             </div>
-          </div>
-        `;
-      });
+          `;
+        });
 
-      grid.innerHTML = cardsHtml;
+        // Any items without matching year
+        const otherItems = filtered.filter(p => !['2026', '2025', '2024'].includes(String(p.releaseYear)));
+        if (otherItems.length > 0) {
+          otherItems.sort((a, b) => computeFrontierScore(b) - computeFrontierScore(a));
+          let cardsHtml = '';
+          otherItems.forEach(item => { cardsHtml += renderSingleCard(item); });
+          erasHtml += `
+            <div class="timeline-era-block">
+              <div class="timeline-era-header">
+                <div class="timeline-era-topline">
+                  <span class="timeline-era-badge">OTHER SPECIFICATIONS</span>
+                  <span class="timeline-era-count">${otherItems.length} สเปก</span>
+                </div>
+                <h3 class="timeline-era-title">สเปกทั่วไป</h3>
+              </div>
+              <div class="cards-grid">${cardsHtml}</div>
+            </div>
+          `;
+        }
+
+        gridContainer.innerHTML = erasHtml;
+
+      } else {
+        // FLAT SORTING MODES
+        const sorted = [...filtered];
+        if (sortSelect === 'frontier-desc') {
+          sorted.sort((a, b) => computeFrontierScore(b) - computeFrontierScore(a));
+        } else if (sortSelect === 'year-desc') {
+          sorted.sort((a, b) => (parseInt(b.releaseYear, 10) || 0) - (parseInt(a.releaseYear, 10) || 0) || computeFrontierScore(b) - computeFrontierScore(a));
+        } else if (sortSelect === 'year-asc') {
+          sorted.sort((a, b) => (parseInt(a.releaseYear, 10) || 0) - (parseInt(b.releaseYear, 10) || 0));
+        } else if (sortSelect === 'title-asc') {
+          sorted.sort((a, b) => a.title.localeCompare(b.title));
+        } else if (sortSelect === 'size-desc') {
+          sorted.sort((a, b) => (b.charCount || 0) - (a.charCount || 0));
+        }
+
+        let cardsHtml = '';
+        sorted.forEach(item => {
+          cardsHtml += renderSingleCard(item);
+        });
+
+        gridContainer.innerHTML = `<div class="cards-grid">${cardsHtml}</div>`;
+      }
     }
 
     // ============================================================
@@ -2955,13 +3434,14 @@ ollama run gemma-unlocked</pre>
         const cat = activePatchData.patches[0].categoryKey || 'all';
         selectCategory(cat);
       }
-      const grid = document.getElementById('promptsSection');
+      const grid = document.getElementById('promptsGrid') || document.getElementById('categoryTabs');
       if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     // Initialize on load
     window.addEventListener('DOMContentLoaded', () => {
       initTheme();
+      buildProviderChips();
       buildCategoryTabs();
       renderPrompts();
       checkPatchUpdates();
@@ -2990,7 +3470,7 @@ ollama run gemma-unlocked</pre>
           <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           <span class="patch-pulse-dot" id="mobilePatchPulseDot" style="position: absolute; top: -2px; right: -4px; width: 8px; height: 8px;"></span>
         </span>
-        <span id="mobilePatchBadgeText">Patch v2.3</span>
+        <span id="mobilePatchBadgeText">Patch v2.4</span>
       </button>
       <button class="mobile-tab-btn" id="tab-guide" onclick="handleMobileNav('guide')">
         <span class="mobile-tab-icon"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>

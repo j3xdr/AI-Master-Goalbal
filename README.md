@@ -12,6 +12,14 @@
 
 [เปิดหน้าเว็บแอป (index.html)](./index.html) · [คู่มือประเภทของพรอมต์](./docs/PROMPT_TYPES_GUIDE.md) · [ขั้นตอนการใช้งานทุกรูปแบบ](./docs/USAGE_WORKFLOWS.md)
 
+> [!NOTE]
+> **อัปเดตเวอร์ชัน 2.4.0 (Patch v2.4.0 — 7 พ.ย. 2026):**
+> - **AI Lab Suite Carousel (สไตล์ ojailbreaks.com):** แถบเลือกค่าย AI 11 ค่าย พร้อมแสดงโลโก้เวกเตอร์แท้และตัวเลขนับสเปกแบบสด
+> - **Timeline Era Grouping (3 ยุคสมัย):** จัดกลุ่มสเปกตามช่วงเวลา ค.ศ. 2026 Frontier & SOTA (222 รายการ), 2025 Reasoning (61 รายการ), และ 2024 Legacy (2 รายการ)
+> - **Frontier Flagship Ranking:** จัดเรียงโมเดลเรือธงเจนถัดไป (Sol, Terra, Opus 4.8, Haiku 5.5, Grok 4.7, GLM-5.3) ขึ้นก่อนเสมอ
+> - **Mobile 2 Cards per Row Layout:** ปรับแต่งการแสดงผลบนมือถือเป็น 2 การ์ดต่อแถวอย่างลงตัว ปุ่มคัดลอกเต็มแถวบน พร้อมรองรับการแตะการ์ดเปิด Inspector Modal ทันที
+
+
 </div>
 
 ---
