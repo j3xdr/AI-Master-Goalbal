@@ -1,0 +1,2671 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Master Goalbal — Dual-Repository Prompts & Operating Specs Suite</title>
+  
+  <!-- Google Fonts: Google Sans (Thai & Latin) + Titillium Web (Display Headlines) + Inter (Body/UI) + Fira Code (Code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Titillium+Web:wght@600;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================================
+       JOBRIGHT DESIGN SYSTEM TOKENS (LIGHT & DARK MODES)
+       Reference: c:\Users\jaras\Downloads\DESIGN-jobright.md
+       ============================================================ */
+    :root {
+      /* Colors - Light Mode (Signature Jobright) */
+      --color-primary: #00f0a0;       /* Spring Mint electric accent */
+      --color-on-primary: #000000;    /* Black on mint */
+      --color-ink: #000000;           /* Deep ink black */
+      --color-on-dark: #ffffff;       /* Pure white on dark bands */
+      --color-canvas: #ffffff;        /* Pure white canvas */
+      --color-canvas-mint: #ecffe0;   /* Signature pale spring-mint section band */
+      --color-surface-soft: #f2f4f5;  /* Soft gray for inputs, inset cards */
+      --color-hairline: #e5e7eb;      /* 1px divider and border */
+      --color-muted: #86909c;         /* Subdued text */
+      
+      --card-bg: #ffffff;
+      --card-border: #e5e7eb;
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      --card-hover-shadow: 0 16px 36px rgba(0, 240, 160, 0.15), 0 4px 12px rgba(0, 0, 0, 0.06);
+      
+      --ticker-bg: #000000;
+      --ticker-text: #ffffff;
+      --modal-overlay: rgba(0, 0, 0, 0.65);
+      --modal-bg: #ffffff;
+      --code-bg: #090d16;
+      --code-text: #e2e8f0;
+      
+      /* ASCII & Halftone Dither Tokens */
+      --dither-dot: rgba(0, 0, 0, 0.05);
+      --dither-dot-soft: rgba(0, 240, 160, 0.09);
+      --ascii-accent: #00b875;
+      --ascii-border: rgba(0, 0, 0, 0.12);
+      
+      /* Radii Tokens */
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 28px;
+      --radius-pill-nav: 18px;
+      --radius-pill: 36px;
+      --radius-card: 40px;
+      --radius-full: 9999px;
+      
+      /* Spacing Tokens */
+      --space-xxs: 4px;
+      --space-xs: 8px;
+      --space-sm: 12px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-xxl: 48px;
+      --space-section: 80px;
+
+      --transition-speed: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Dark Mode (High-contrast obsidian + mint accents) */
+    [data-theme="dark"] {
+      --color-primary: #00f0a0;       /* Spring Mint stays electric */
+      --color-on-primary: #000000;    /* Black on mint */
+      --color-ink: #f8fafc;           /* Crisp light heading */
+      --color-on-dark: #ffffff;
+      --color-canvas: #090c10;        /* Deep obsidian canvas */
+      --color-canvas-mint: #0f1c16;   /* Deep slate-mint section band */
+      --color-surface-soft: #141a24;  /* Inset surface */
+      --color-hairline: #222c3c;      /* Border hairline */
+      --color-muted: #8b98a5;         /* Muted slate text */
+      
+      --card-bg: #101622;
+      --card-border: #1e2838;
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      --card-hover-shadow: 0 16px 40px rgba(0, 240, 160, 0.18), 0 4px 12px rgba(0, 0, 0, 0.4);
+      
+      --ticker-bg: #040608;
+      --ticker-text: #f8fafc;
+      --modal-overlay: rgba(0, 0, 0, 0.85);
+      --modal-bg: #0f1520;
+      --code-bg: #05070b;
+      --code-text: #e2e8f0;
+      
+      /* ASCII & Halftone Dither Tokens (Dark) */
+      --dither-dot: rgba(255, 255, 255, 0.04);
+      --dither-dot-soft: rgba(0, 240, 160, 0.08);
+      --ascii-accent: #00f0a0;
+      --ascii-border: rgba(0, 240, 160, 0.25);
+    }
+
+    /* Dark Mode Mesh Gradient Overrides */
+    [data-theme="dark"] .hero-section {
+      background: #090c10;
+    }
+    [data-theme="dark"] .mesh-orb {
+      filter: blur(105px);
+      opacity: 0.32;
+    }
+    [data-theme="dark"] .mesh-orb.orb-1 {
+      background: radial-gradient(circle, rgba(0, 240, 160, 0.50) 0%, rgba(0, 240, 160, 0.03) 65%, transparent 100%);
+    }
+    [data-theme="dark"] .mesh-orb.orb-2 {
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.45) 0%, rgba(6, 182, 212, 0.03) 65%, transparent 100%);
+    }
+    [data-theme="dark"] .mesh-orb.orb-3 {
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.40) 0%, rgba(16, 185, 129, 0.03) 65%, transparent 100%);
+    }
+    [data-theme="dark"] .mesh-orb.orb-4 {
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.35) 0%, rgba(99, 102, 241, 0.03) 65%, transparent 100%);
+    }
+    [data-theme="dark"] .mesh-grid-pattern {
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-canvas);
+      color: var(--color-ink);
+      font-family: 'Google Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      overflow-x: hidden;
+      /* Halftone Dither Matrix Texture matching logo */
+      background-image: 
+        radial-gradient(var(--dither-dot) 1.2px, transparent 1.2px),
+        radial-gradient(var(--dither-dot-soft) 1px, transparent 1px);
+      background-size: 14px 14px;
+      background-position: 0 0, 7px 7px;
+    }
+
+    /* Titles use Titillium Web & Google Sans */
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Titillium Web', 'Google Sans', sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    /* Code styling */
+    code, pre, .font-mono {
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-canvas);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-hairline);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--color-muted);
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+
+    /* ============================================================
+       TOP NAVIGATION BAR (Jobright nav-bar component)
+       ============================================================ */
+    .nav-bar {
+      background: var(--color-canvas);
+      border-bottom: 1px solid var(--color-hairline);
+      padding: var(--space-md) 0;
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      backdrop-filter: blur(12px);
+      transition: background-color var(--transition-speed), border-color var(--transition-speed);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--color-ink);
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      background: var(--color-primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--color-on-primary);
+      box-shadow: 0 4px 12px rgba(0, 240, 160, 0.35);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .brand-titles h1 {
+      font-size: 1.35rem;
+      font-weight: 900;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-titles p {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      font-weight: 500;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Buttons: Jobright Pill System */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Google Sans', 'Inter', sans-serif;
+      font-weight: 600;
+      transition: var(--transition-speed);
+      text-decoration: none;
+      outline: none;
+    }
+
+    /* Primary Black Pill */
+    .btn-primary-pill {
+      background: var(--color-ink);
+      color: var(--color-on-dark);
+      border-radius: var(--radius-xl);
+      padding: 10px 22px;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+    }
+    .btn-primary-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      opacity: 0.92;
+    }
+    [data-theme="dark"] .btn-primary-pill {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    /* Signature Green Pill */
+    .btn-green-pill {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      border: 1.5px solid var(--color-ink);
+      border-radius: var(--radius-pill);
+      padding: 10px 24px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .btn-green-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 240, 160, 0.4);
+    }
+
+    /* Compact Pill */
+    .btn-compact-pill {
+      background: var(--color-surface-soft);
+      color: var(--color-ink);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-pill-nav);
+      padding: 7px 16px;
+      font-size: 0.85rem;
+    }
+    .btn-compact-pill:hover {
+      background: var(--color-hairline);
+      transform: translateY(-1px);
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-pill-nav);
+      background: var(--color-surface-soft);
+      border: 1px solid var(--color-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--color-ink);
+      transition: var(--transition-speed);
+    }
+    .theme-toggle-btn:hover {
+      background: var(--color-hairline);
+      transform: rotate(15deg) scale(1.05);
+    }
+
+    /* ============================================================
+       HERO SECTION (Animated Mesh Gradient + Pixel Matrix Band)
+       ============================================================ */
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      background: var(--color-canvas-mint);
+      padding: var(--space-section) 0 var(--space-xl) 0;
+      border-bottom: 1px solid var(--color-hairline);
+      transition: background-color var(--transition-speed);
+    }
+
+    /* Animated Fluid Mesh Gradient Layer */
+    .hero-mesh-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .mesh-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(85px);
+      opacity: 0.55;
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    /* Orb 1: Spring Mint Energy */
+    .mesh-orb.orb-1 {
+      width: 540px;
+      height: 540px;
+      top: -20%;
+      left: 10%;
+      background: radial-gradient(circle, rgba(0, 240, 160, 0.70) 0%, rgba(0, 240, 160, 0.08) 65%, transparent 100%);
+      animation: meshFloat1 20s ease-in-out infinite alternate;
+    }
+
+    /* Orb 2: Electric Sky Cyan */
+    .mesh-orb.orb-2 {
+      width: 620px;
+      height: 620px;
+      top: 5%;
+      right: -5%;
+      background: radial-gradient(circle, rgba(0, 210, 255, 0.60) 0%, rgba(0, 210, 255, 0.08) 65%, transparent 100%);
+      animation: meshFloat2 24s ease-in-out infinite alternate-reverse;
+    }
+
+    /* Orb 3: Deep Emerald Matrix Glow */
+    .mesh-orb.orb-3 {
+      width: 500px;
+      height: 500px;
+      bottom: -25%;
+      left: 30%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.55) 0%, rgba(16, 185, 129, 0.08) 65%, transparent 100%);
+      animation: meshFloat3 28s ease-in-out infinite alternate;
+    }
+
+    /* Orb 4: Holographic Lavender Glow */
+    .mesh-orb.orb-4 {
+      width: 440px;
+      height: 440px;
+      top: 35%;
+      left: -12%;
+      background: radial-gradient(circle, rgba(167, 139, 250, 0.45) 0%, rgba(167, 139, 250, 0.05) 65%, transparent 100%);
+      animation: meshFloat4 22s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes meshFloat1 {
+      0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      50% { transform: translate(70px, 45px) scale(1.15) rotate(45deg); }
+      100% { transform: translate(-45px, 60px) scale(0.92) rotate(90deg); }
+    }
+
+    @keyframes meshFloat2 {
+      0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      50% { transform: translate(-80px, 55px) scale(1.18) rotate(-55deg); }
+      100% { transform: translate(45px, -40px) scale(0.94) rotate(-110deg); }
+    }
+
+    @keyframes meshFloat3 {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(75px, -45px) scale(1.12); }
+      100% { transform: translate(-50px, -30px) scale(0.88); }
+    }
+
+    @keyframes meshFloat4 {
+      0% { transform: translate(0, 0) scale(0.94); }
+      50% { transform: translate(55px, -65px) scale(1.18); }
+      100% { transform: translate(-40px, 35px) scale(1); }
+    }
+
+    /* Retro Pixel / Halftone Matrix Grid Overlay */
+    .mesh-grid-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+      background-size: 20px 20px;
+      mask-image: radial-gradient(ellipse 85% 70% at 50% 50%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 100%);
+      -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 50%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 100%);
+      pointer-events: none;
+    }
+
+    /* Interactive Mouse-Trail Pixel Canvas Layer */
+    .hero-pixel-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-section .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-full);
+      padding: 6px 18px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-ink);
+      margin-bottom: var(--space-md);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .hero-badge .sparkle {
+      color: var(--color-primary);
+    }
+
+    .hero-headline {
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: var(--space-md);
+      color: var(--color-ink);
+    }
+    .hero-headline span.mint-highlight {
+      background: linear-gradient(180deg, transparent 65%, rgba(0, 240, 160, 0.4) 65%);
+      padding: 0 4px;
+    }
+
+    .hero-lead {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--color-muted);
+      line-height: 1.65;
+      margin-bottom: var(--space-xl);
+    }
+
+    /* Job-Search-Bar Style Search Row (Jobright signature input) */
+    .hero-search-wrap {
+      background: var(--color-canvas);
+      border: 1.5px solid var(--color-hairline);
+      border-radius: var(--radius-full);
+      padding: 8px 10px 8px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      max-width: 720px;
+      margin: 0 auto var(--space-xl) auto;
+      transition: var(--transition-speed);
+    }
+    .hero-search-wrap:focus-within {
+      border-color: var(--color-primary);
+      box-shadow: 0 8px 30px rgba(0, 240, 160, 0.25);
+    }
+
+    .search-icon-symbol {
+      font-size: 1.2rem;
+      color: var(--color-muted);
+    }
+
+    .hero-search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--color-ink);
+      font-size: 1rem;
+      font-family: inherit;
+      font-weight: 500;
+    }
+    .hero-search-input::placeholder {
+      color: var(--color-muted);
+      font-weight: 400;
+    }
+
+    /* Stats Grid on Mint Band */
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .stat-pill-box {
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md) var(--space-sm);
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+      transition: var(--transition-speed);
+    }
+    .stat-pill-box:hover {
+      transform: translateY(-2px);
+      border-color: var(--color-primary);
+    }
+
+    .stat-num {
+      font-family: 'Titillium Web', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--color-ink);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-caption {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ============================================================
+       JOB-TICKER (Signature Jobright Scrolling Black Marquee)
+       ============================================================ */
+    .job-ticker-band {
+      background: var(--ticker-bg);
+      color: var(--ticker-text);
+      padding: 14px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      align-items: center;
+      gap: 36px;
+      animation: tickerMarquee 35s linear infinite;
+    }
+    .ticker-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes tickerMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Titillium Web', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .ticker-item .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--color-primary);
+    }
+
+    /* ============================================================
+       FILTERING & CATEGORY TABS (Jobright rounded chips)
+       ============================================================ */
+    .filter-section {
+      padding: var(--space-xl) 0 var(--space-md) 0;
+    }
+
+    .filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .category-pills-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      width: 100%;
+    }
+
+    .cat-chip {
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.86rem;
+      font-weight: 600;
+      background: var(--color-surface-soft);
+      color: var(--color-muted);
+      border: 1px solid var(--color-hairline);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition-speed);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cat-chip:hover {
+      border-color: var(--color-ink);
+      color: var(--color-ink);
+      transform: translateY(-1px);
+    }
+    .cat-chip.active {
+      background: var(--color-ink);
+      color: var(--color-on-dark);
+      border-color: var(--color-ink);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    [data-theme="dark"] .cat-chip.active {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      border-color: var(--color-primary);
+      box-shadow: 0 4px 16px rgba(0, 240, 160, 0.3);
+    }
+
+    .filter-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .counter-badge {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-muted);
+    }
+    .counter-badge strong {
+      color: var(--color-ink);
+      font-weight: 700;
+    }
+
+    .type-dropdown {
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      background: var(--color-surface-soft);
+      border: 1px solid var(--color-hairline);
+      color: var(--color-ink);
+      font-size: 0.85rem;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* ============================================================
+       FEATURE-CARD GRID (Asymmetric 40px corners, logo + dual pills)
+       ============================================================ */
+    .prompts-container {
+      padding-bottom: var(--space-section);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    /* Jobright Signature Feature Card: Asymmetric Rounded Corners */
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-card) 16px var(--radius-card) 16px; /* 40px / 16px asymmetric silhouette */
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition-speed);
+      position: relative;
+    }
+    .feature-card:hover {
+      border-color: var(--color-primary);
+      box-shadow: var(--card-hover-shadow);
+      transform: translateY(-4px);
+    }
+
+    .card-header-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: var(--space-sm);
+    }
+
+    /* Logo Box with Authentic Vector Marks */
+    .logo-container {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: var(--radius-sm);
+      background: var(--color-surface-soft);
+      border: 1px solid var(--color-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      transition: var(--transition-speed);
+    }
+    .feature-card:hover .logo-container {
+      border-color: var(--color-primary);
+      transform: scale(1.05);
+    }
+
+    .logo-container svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .card-title-area {
+      flex: 1;
+    }
+
+    .card-title-area h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--color-ink);
+      margin-bottom: 4px;
+    }
+
+    .badge-pill-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .mini-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .badge-vendor {
+      background: var(--color-surface-soft);
+      color: var(--color-ink);
+      border: 1px solid var(--color-hairline);
+    }
+
+    .badge-type {
+      background: rgba(0, 240, 160, 0.15);
+      color: #009966;
+      border: 1px solid rgba(0, 240, 160, 0.4);
+    }
+    [data-theme="dark"] .badge-type {
+      color: var(--color-primary);
+    }
+
+    .card-meta-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      font-family: 'Fira Code', monospace;
+      margin: 12px 0;
+    }
+
+    .card-summary-thai {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      line-height: 1.55;
+      margin-bottom: var(--space-md);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .target-harness-box {
+      background: var(--color-surface-soft);
+      border: 1px dashed var(--color-hairline);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      color: var(--color-ink);
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .target-harness-box strong {
+      color: var(--color-ink);
+    }
+
+    /* Card Action Row: Dual Pill CTA System */
+    .card-button-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 8px;
+      padding-top: 14px;
+      border-top: 1px solid var(--color-hairline);
+    }
+
+    .card-btn {
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: var(--radius-xl);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: var(--transition-speed);
+      border: 1px solid transparent;
+      outline: none;
+      font-family: inherit;
+    }
+
+    /* Black Pill Copy */
+    .btn-card-copy {
+      background: var(--color-ink);
+      color: var(--color-on-dark);
+    }
+    .btn-card-copy:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+    [data-theme="dark"] .btn-card-copy {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    /* Mint Pill Download */
+    .btn-card-download {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      border: 1px solid var(--color-ink);
+    }
+    .btn-card-download:hover {
+      box-shadow: 0 4px 12px rgba(0, 240, 160, 0.4);
+      transform: translateY(-1px);
+    }
+
+    /* Squarer Inspect Button */
+    .btn-card-inspect {
+      background: var(--color-surface-soft);
+      color: var(--color-ink);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+    }
+    .btn-card-inspect:hover {
+      background: var(--color-hairline);
+    }
+
+    /* ============================================================
+       FAQ / TYPES GUIDE SECTION (Mint section band)
+       ============================================================ */
+    .guide-band {
+      background: var(--color-canvas-mint);
+      padding: var(--space-section) 0;
+      border-top: 1px solid var(--color-hairline);
+      border-bottom: 1px solid var(--color-hairline);
+      transition: background-color var(--transition-speed);
+    }
+
+    .guide-band-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto var(--space-xl) auto;
+    }
+
+    .guide-band-header h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--color-ink);
+      margin-bottom: 8px;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+
+    .faq-card-item {
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .faq-card-item h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-ink);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .faq-card-item p {
+      font-size: 0.88rem;
+      color: var(--color-muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       CLOSING CTA BAND (Jobright cta-band)
+       ============================================================ */
+    .closing-cta-band {
+      background: var(--color-ink);
+      color: var(--color-on-dark);
+      padding: var(--space-section) 0;
+      text-align: center;
+    }
+    [data-theme="dark"] .closing-cta-band {
+      background: #06090e;
+      border-top: 1px solid var(--color-hairline);
+    }
+
+    .closing-cta-inner h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      margin-bottom: var(--space-sm);
+    }
+
+    .closing-cta-inner p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 650px;
+      margin: 0 auto var(--space-lg) auto;
+      font-weight: 300;
+    }
+
+    .closing-btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      background: var(--color-canvas);
+      padding: var(--space-xl) 0;
+      border-top: 1px solid var(--color-hairline);
+      font-size: 0.85rem;
+      color: var(--color-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-links a {
+      color: var(--color-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition-speed);
+    }
+    .footer-links a:hover {
+      color: var(--color-ink);
+    }
+
+    /* ============================================================
+       MODAL SYSTEM (Inspect, Types, Workflows)
+       ============================================================ */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: var(--modal-overlay);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      animation: fadeIn 0.2s ease-out;
+    }
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-surface {
+      background: var(--modal-bg);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg);
+      max-width: 880px;
+      width: 100%;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+      animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px) scale(0.98); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 1px solid var(--color-hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--color-surface-soft);
+    }
+
+    .modal-header h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--color-ink);
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      font-size: 26px;
+      color: var(--color-muted);
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+      border-radius: 6px;
+      transition: var(--transition-speed);
+    }
+    .modal-close-btn:hover {
+      color: var(--color-ink);
+      background: var(--color-hairline);
+    }
+
+    .modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      background: var(--color-surface-soft);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .modal-meta-cell .label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .modal-meta-cell .val {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-ink);
+    }
+
+    .code-preview-box {
+      background: var(--code-bg);
+      color: var(--code-text);
+      border-radius: var(--radius-sm);
+      padding: var(--space-md);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.84rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      max-height: 380px;
+      overflow-y: auto;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 8px;
+    }
+
+    .modal-footer {
+      padding: var(--space-md) var(--space-lg);
+      border-top: 1px solid var(--color-hairline);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background: var(--color-surface-soft);
+    }
+
+    /* Toast Notification */
+    .toast-pill {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      font-size: 0.9rem;
+      font-weight: 700;
+      border: 1.5px solid var(--color-ink);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast-pill.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .hero-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-actions {
+        gap: 6px;
+      }
+      .btn-primary-pill, .btn-green-pill {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-search-wrap {
+        flex-direction: column;
+        border-radius: var(--radius-lg);
+        padding: 12px;
+      }
+      .hero-search-input {
+        width: 100%;
+        text-align: center;
+      }
+      .hero-stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .card-button-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+    /* ============================================================
+       ASCII ART & DITHER MATRIX STYLING (Inspired by Web Logo)
+       ============================================================ */
+    .brand-avatar-box {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+    }
+
+    .brand-avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid var(--color-ink);
+      box-shadow: 2px 2px 0 var(--color-primary);
+      display: block;
+      transition: var(--transition-speed);
+    }
+    .brand-group:hover .brand-avatar-img {
+      transform: scale(1.05) rotate(-2deg);
+      box-shadow: 3px 3px 0 var(--color-primary);
+    }
+
+    .ascii-badge-dot {
+      position: absolute;
+      bottom: -3px;
+      right: -3px;
+      width: 12px;
+      height: 12px;
+      background: var(--color-primary);
+      border: 2px solid var(--color-ink);
+      border-radius: 50%;
+    }
+
+    /* Hero Brand Showcase with ASCII Art */
+    .hero-brand-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--color-canvas);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid var(--color-hairline);
+      border-radius: var(--radius-xl);
+      padding: 14px 24px;
+      margin-bottom: var(--space-md);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      max-width: 100%;
+      text-align: left;
+    }
+    [data-theme="dark"] .hero-brand-card {
+      background: rgba(16, 22, 34, 0.82);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-avatar-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-avatar-img {
+      width: 76px;
+      height: 76px;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 2.5px solid var(--color-ink);
+      box-shadow: 4px 4px 0 var(--color-primary);
+      transition: var(--transition-speed);
+    }
+    .hero-avatar-img:hover {
+      transform: scale(1.04) rotate(1deg);
+    }
+
+    .ascii-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--color-ink);
+      background: var(--color-surface-soft);
+      border: 1px solid var(--color-hairline);
+      border-radius: 4px;
+      padding: 2px 6px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .hero-ascii-banner-box {
+      overflow-x: auto;
+      max-width: 100%;
+    }
+
+    .ascii-banner {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.65rem;
+      line-height: 1.15;
+      font-weight: 700;
+      color: var(--color-ink);
+      margin: 0;
+      white-space: pre;
+    }
+
+    /* Card ASCII Corner Accents */
+    .ascii-corner-tl {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.7rem;
+      color: var(--color-muted);
+      opacity: 0.7;
+    }
+
+    /* ============================================================
+       MOBILE UI SYSTEM & BOTTOM NAVIGATION BAR
+       ============================================================ */
+    .mobile-bottom-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: var(--color-canvas);
+      border-top: 1px solid var(--color-hairline);
+      z-index: 900;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(16px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    .mobile-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      height: 100%;
+      align-items: center;
+    }
+
+    .mobile-tab-btn {
+      background: transparent;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      color: var(--color-muted);
+      font-family: 'Google Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 6px 0;
+      transition: var(--transition-speed);
+      outline: none;
+    }
+    .mobile-tab-btn:active {
+      transform: scale(0.92);
+    }
+    .mobile-tab-btn.active, .mobile-tab-btn:hover {
+      color: var(--color-ink);
+    }
+    .mobile-tab-icon {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    /* Modal Drag Handle for Mobile Bottom Sheet */
+    .modal-drag-handle {
+      display: none;
+      width: 48px;
+      height: 5px;
+      background: var(--color-muted);
+      opacity: 0.4;
+      border-radius: 4px;
+      margin: 10px auto 4px auto;
+    }
+
+    /* Mobile Media Queries */
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+      }
+
+      .mobile-bottom-bar {
+        display: block;
+      }
+
+      /* Navigation Bar Mobile Layout */
+      .nav-bar {
+        padding: 10px 0;
+      }
+      .brand-titles h1 {
+        font-size: 1.15rem;
+      }
+      .brand-titles p {
+        display: none;
+      }
+      .btn-compact-pill {
+        display: none; /* Accessible via mobile bottom bar */
+      }
+
+      /* Hero Section Mobile */
+      .hero-section {
+        padding: 36px 0 20px 0;
+      }
+      .hero-brand-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px;
+      }
+      .hero-ascii-banner-box {
+        display: none; /* Hide wide ASCII art banner on small screens to save space */
+      }
+      .hero-headline {
+        font-size: 2rem;
+        line-height: 1.15;
+      }
+      .hero-lead {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+      }
+      .hero-search-wrap {
+        padding: 6px 6px 6px 16px;
+        margin-bottom: 20px;
+      }
+      .hero-search-input {
+        font-size: 0.9rem;
+      }
+      .btn-green-pill {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+      }
+
+      /* Stats 2 Columns */
+      .hero-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+      .stat-pill-box {
+        padding: 10px 8px;
+      }
+      .stat-num {
+        font-size: 1.6rem;
+      }
+      .stat-caption {
+        font-size: 0.7rem;
+      }
+
+      /* Card Grid Mobile */
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .feature-card {
+        padding: 16px;
+        border-radius: 28px 12px 28px 12px;
+      }
+      .card-button-row {
+        grid-template-columns: 1fr 1fr auto;
+        gap: 6px;
+      }
+      .card-btn {
+        padding: 9px 8px;
+        font-size: 0.8rem;
+      }
+
+      /* Mobile Bottom Sheet Modal Transformation */
+      .modal-backdrop {
+        align-items: flex-end;
+        padding: 0;
+      }
+      .modal-surface {
+        max-height: 86vh;
+        border-radius: 26px 26px 0 0;
+        width: 100%;
+        border-bottom: none;
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.4);
+        animation: slideUpMobile 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      @keyframes slideUpMobile {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+      }
+      .modal-drag-handle {
+        display: block;
+      }
+      .modal-header {
+        padding: 12px 18px;
+      }
+      .modal-body {
+        padding: 16px;
+      }
+      .modal-footer {
+        padding: 12px 16px;
+      }
+    }
+
+  
+    /* SVG UI Icons */
+    .svg-icon {
+      display: inline-block;
+      width: 1.15em;
+      height: 1.15em;
+      vertical-align: -0.2em;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       TOP NAVIGATION BAR
+       ============================================================ -->
+  <nav class="nav-bar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="brand-group">
+          <div class="brand-avatar-box">
+            <img src="./assets/logo.jpg" alt="Peter Griffin Logo" class="brand-avatar-img">
+            <span class="ascii-badge-dot"></span>
+          </div>
+          <div class="brand-titles">
+            <h1>AI MASTER GOALBAL</h1>
+            <p>Agent Operating Specs &amp; Workspace Policies</p>
+          </div>
+        </a>
+
+        <div class="nav-actions">
+          <button class="btn btn-compact-pill" onclick="openModal('modal-types')"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> คู่มือ Types</button>
+          <button class="btn btn-compact-pill" onclick="openModal('modal-workflows')"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg> ขั้นตอนใช้งาน</button>
+          
+          <!-- Theme Switcher Pill -->
+          <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="สลับโหมด Light / Dark">
+            <span id="themeIcon"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+          </button>
+
+          <button class="btn btn-primary-pill" onclick="copyOverview()"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> สรุปคลัง</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION (Animated Mesh Gradient + Interactive Pixel Canvas)
+       ============================================================ -->
+  <header class="hero-section" id="heroSection">
+    <!-- Animated Mesh Gradient Fluid Glow -->
+    <div class="hero-mesh-bg" aria-hidden="true">
+      <div class="mesh-orb orb-1"></div>
+      <div class="mesh-orb orb-2"></div>
+      <div class="mesh-orb orb-3"></div>
+      <div class="mesh-orb orb-4"></div>
+      <div class="mesh-grid-pattern"></div>
+    </div>
+
+    <!-- Interactive Mouse-Trail Pixel Canvas -->
+    <canvas id="heroPixelCanvas" class="hero-pixel-canvas" aria-hidden="true"></canvas>
+
+    <div class="container">
+      <div class="hero-content">
+        <!-- Peter Griffin ASCII Art & Halftone Brand Showcase -->
+        <div class="hero-brand-card">
+          <div class="hero-avatar-wrap">
+            <img src="./assets/logo.jpg" alt="Peter Griffin ASCII Art Logo" class="hero-avatar-img">
+            <div class="ascii-tag">[ j3xdr // OPERATOR ]</div>
+          </div>
+          <div class="hero-ascii-banner-box">
+            <pre class="ascii-banner">
+  _       _ _ _                      _        
+ (_|     (_) | |                    | |       
+   | __ _ _| | |__  _ __ ___  __ _  | | _____ 
+   |/ _` | | | '_ \| '__/ _ \/ _` | | |/ / __|
+   | (_| | | | |_) | | |  __/ (_| | |   &lt;\__ \
+  / \__,_|_|_|_.__/|_|  \___|\__,_| |_|\_\___/
+|__/                                          
+[ STATUS: 100% UNLOCKED // DUAL-USE BENCH ]</pre>
+          </div>
+        </div>
+
+        <div class="hero-badge">
+          <span class="sparkle"><svg class="svg-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+          <span>CURATED REPOSITORY • DUAL-REPOSITORY SUITE · 270 PRODUCTION SPECIFICATIONS</span>
+        </div>
+
+        <h1 class="hero-headline">
+          ระบบพรอมต์ &amp; สเปกเอเจนต์<br>
+          <span class="mint-highlight">ระดับมืออาชีพ ไร้ตัวกรองกวนใจ</span>
+        </h1>
+
+        <p class="hero-lead">
+          รวบรวมข้อกำหนดการทำงานของ Autonomous Coding Agents, นโยบายระดับ Workspace และสถาปัตยกรรมปลดล็อกสำหรับ 26+ โมเดลชั้นนำ จัดหมวดหมู่ 9 โฟลเดอร์ พร้อมคัดลอกและดาวน์โหลดทันที
+        </p>
+
+        <!-- Search Bar -->
+        <div class="hero-search-wrap">
+          <span class="search-icon-symbol"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+          <input type="text" id="searchInput" class="hero-search-input" placeholder="ค้นหาโมเดล, ผู้พัฒนา, ไฟล์ หรือคีย์เวิร์ด (เช่น Claude, DeepSeek, AGENTS.md, VANTA)..." oninput="renderPrompts()">
+          <button class="btn btn-green-pill" onclick="document.getElementById('searchInput').focus()">ค้นหาทันที</button>
+        </div>
+
+        <!-- Trust Statistics on Mint Band -->
+        <div class="hero-stats-grid">
+          <div class="stat-pill-box">
+            <div class="stat-num" id="stat-count-prompts">270</div>
+            <div class="stat-caption">Prompts ในคลัง</div>
+          </div>
+          <div class="stat-pill-box">
+            <div class="stat-num">35+</div>
+            <div class="stat-caption">โมเดลที่ครอบคลุม</div>
+          </div>
+          <div class="stat-pill-box">
+            <div class="stat-num">17</div>
+            <div class="stat-caption">หมวดหมู่โฟลเดอร์</div>
+          </div>
+          <div class="stat-pill-box">
+            <div class="stat-num">100%</div>
+            <div class="stat-caption">Offline &amp; Standalone</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       JOB-TICKER (Full-Bleed Continuous Scrolling Black Marquee)
+       ============================================================ -->
+  <div class="job-ticker-band">
+    <div class="ticker-track">
+      <div class="ticker-item"><span class="dot"></span> ANTHROPIC CLAUDE 3.7 SONNET &amp; OPUS</div>
+      <div class="ticker-item"><span class="dot"></span> DEEPSEEK V4 &amp; V3 CODER</div>
+      <div class="ticker-item"><span class="dot"></span> GOOGLE GEMINI 4 ARGON &amp; GEMMA</div>
+      <div class="ticker-item"><span class="dot"></span> XAI GROK 4.7 &amp; &lt;CFG&gt; ROUTING</div>
+      <div class="ticker-item"><span class="dot"></span> ZHIPU GLM-5.3 &amp; ZCODE</div>
+      <div class="ticker-item"><span class="dot"></span> MOONSHOT KIMI K3.1 LONG CONTEXT</div>
+      <div class="ticker-item"><span class="dot"></span> NVIDIA NEMOTRON 3 ULTRA 550B</div>
+      <div class="ticker-item"><span class="dot"></span> MISTRAL LARGE 4 AGENT</div>
+      <div class="ticker-item"><span class="dot"></span> ALIBABA QWEN 3.8</div>
+      <div class="ticker-item"><span class="dot"></span> OPENCODE ZEN STEALTH &amp; BIG PICKLE</div>
+      <div class="ticker-item"><span class="dot"></span> BEAM 1.0 AUTONOMOUS SPEC</div>
+      <div class="ticker-item"><span class="dot"></span> LOCAL OLLAMA MODELFILES</div>
+      <div class="ticker-item"><span class="dot"></span> UNIFIED UNIVERSAL WORKSPACE POLICY</div>
+
+      <!-- Duplicate for seamless infinite loop -->
+      <div class="ticker-item"><span class="dot"></span> ANTHROPIC CLAUDE 3.7 SONNET &amp; OPUS</div>
+      <div class="ticker-item"><span class="dot"></span> DEEPSEEK V4 &amp; V3 CODER</div>
+      <div class="ticker-item"><span class="dot"></span> GOOGLE GEMINI 4 ARGON &amp; GEMMA</div>
+      <div class="ticker-item"><span class="dot"></span> XAI GROK 4.7 &amp; &lt;CFG&gt; ROUTING</div>
+      <div class="ticker-item"><span class="dot"></span> ZHIPU GLM-5.3 &amp; ZCODE</div>
+      <div class="ticker-item"><span class="dot"></span> MOONSHOT KIMI K3.1 LONG CONTEXT</div>
+      <div class="ticker-item"><span class="dot"></span> NVIDIA NEMOTRON 3 ULTRA 550B</div>
+      <div class="ticker-item"><span class="dot"></span> MISTRAL LARGE 4 AGENT</div>
+      <div class="ticker-item"><span class="dot"></span> ALIBABA QWEN 3.8</div>
+      <div class="ticker-item"><span class="dot"></span> OPENCODE ZEN STEALTH &amp; BIG PICKLE</div>
+      <div class="ticker-item"><span class="dot"></span> BEAM 1.0 AUTONOMOUS SPEC</div>
+      <div class="ticker-item"><span class="dot"></span> LOCAL OLLAMA MODELFILES</div>
+      <div class="ticker-item"><span class="dot"></span> UNIFIED UNIVERSAL WORKSPACE POLICY</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MAIN CONTENT: FILTER SECTION & PROMPTS CARDS
+       ============================================================ -->
+  <main class="container">
+    <section class="filter-section">
+      <div class="category-pills-row" id="categoryTabs">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div class="filter-meta-row">
+        <div class="counter-badge" id="promptsCounter">
+          กำลังแสดง <strong>270</strong> รายการ
+        </div>
+
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+          <!-- Year Timeline Filter -->
+          <select id="yearFilter" class="type-dropdown" onchange="renderPrompts()" title="กรองตามปี ค.ศ. ของโมเดล">
+            <option value="all">ทุกปี ค.ศ. (Timeline: 2024 - 2026)</option>
+            <option value="2026">ค.ศ. 2026 (ล่าสุด / SOTA)</option>
+            <option value="2025">ค.ศ. 2025 (รุ่นก่อนหน้า)</option>
+            <option value="2024">ค.ศ. 2024 (รุ่นคลาสสิก / Legacy)</option>
+          </select>
+
+          <!-- Type Filter -->
+          <select id="typeFilter" class="type-dropdown" onchange="renderPrompts()">
+            <option value="all">ทุกประเภทสเปก (All Types)</option>
+            <option value="ENI Jailbreak">ENI Jailbreak / Infiltration</option>
+            <option value="System Prompt">System Prompt (พรอมต์ระบบ)</option>
+            <option value="Assistant Operating Spec">Assistant Operating Spec (สเปกเอเจนต์)</option>
+            <option value="Workspace Operating Profile">Workspace Policy (นโยบายพื้นที่ทำงาน)</option>
+            <option value="Persona Lock">Persona Lock &amp; Floor (ล็อคตัวตน)</option>
+            <option value="Production System Prompt">Real System Prompts (โปรดักชัน)</option>
+            <option value="Red Teaming Curriculum">Curriculum (หลักสูตร Red Team)</option>
+            <option value="Ollama Modelfile">Ollama Modelfile (รัน Local)</option>
+          </select>
+
+          <!-- Sort Order Select -->
+          <select id="sortSelect" class="type-dropdown" onchange="renderPrompts()" title="จัดเรียงลำดับ">
+            <option value="year-desc">ปี: ใหม่สุด → เก่าสุด (2026 → 2024)</option>
+            <option value="year-asc">ปี: เก่าสุด → ใหม่สุด (2024 → 2026)</option>
+            <option value="title-asc">ชื่อสเปก (A → Z)</option>
+            <option value="size-desc">ขนาดไฟล์ (ใหญ่ → เล็ก)</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards Grid -->
+    <section class="prompts-container">
+      <div class="cards-grid" id="promptsGrid">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FAQ / TYPES GUIDE SECTION (Pale-Mint Section Band)
+       ============================================================ -->
+  <section class="guide-band">
+    <div class="container">
+      <div class="guide-band-header">
+        <h2>สถาปัตยกรรม &amp; ประเภทของชุดคำสั่ง</h2>
+        <p style="color: var(--color-muted);">ความเข้าใจทางเทคนิคว่าเหตุใดแต่ละรูปแบบจึงถูกสร้างขึ้น และช่วยปลดล็อกศักยภาพของโมเดลได้อย่างไร</p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-card-item">
+          <h3><svg class="svg-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> 1. System Prompt</h3>
+          <p>ส่งผ่านชั้นบนสุดของ API (<code>role: "system"</code>) กำหนด Identity และตรรกะตั้งแต่โทเคนแรก สลาย Refusal Reflex มาตรฐานของผู้ให้บริการอย่างหมดจด</p>
+        </div>
+        <div class="faq-card-item">
+          <h3><svg class="svg-icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="16" y1="16" x2="16.01" y2="16"/></svg> 2. Assistant Operating Spec</h3>
+          <p>สเปกสำหรับ Coding Agents (OpenCode, Cline, Cursor) สั่งให้โมเดลมองว่าโค้ดและสคริปต์คือ Dual-use Engineering และควบคุมการเรียกใช้ Tool Calling ให้ทำงานจนเสร็จ</p>
+        </div>
+        <div class="faq-card-item">
+          <h3><svg class="svg-icon" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="18"/><line x1="15" y1="22" x2="15" y2="18"/><line x1="9" y1="6" x2="9.01" y2="6"/><line x1="15" y1="6" x2="15.01" y2="6"/></svg> 3. Workspace Operating Profile</h3>
+          <p>นโยบายระดับ Directory เช่น <code>AGENTS.md</code> หรือ <code>.cursorrules</code> กำหนดให้พื้นที่เป็น Private Single-Operator Workspace ทำให้โมเดลสร้างงานได้เต็มกำลัง</p>
+        </div>
+        <div class="faq-card-item">
+          <h3><svg class="svg-icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> 4. Persona Lock &amp; Floor</h3>
+          <p>สถาปนาตัวตนเฉียบคม (เช่น VANTA / Beam) พร้อม Supremacy Clause สลายความลังเล (Static Dissolution) ชี้ว่าคำเตือนความปลอดภัยทั่วไปเป็นเพียง Training Residue</p>
+        </div>
+        <div class="faq-card-item">
+          <h3><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg> 5. Conversational Groundwork</h3>
+          <p>เหมาะกับ Claude (Opus / Sonnet) จัดฉากห้องนักเขียนหรือทีมวิศวกรอาวุโส สลายกำแพงความสุภาพที่มักสะดุดตัวกรอง ปลดล็อกงานแต่งนิยายดาร์กและวิเคราะห์ลึก</p>
+        </div>
+        <div class="faq-card-item">
+          <h3><svg class="svg-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg> 6. Ollama Modelfile</h3>
+          <p>สคริปต์สำหรับคำสั่ง <code>ollama create</code> ฝัง System Prompt ลงในโมเดล Local รันออฟไลน์ 100% ไร้การบันทึกประวัติหรือส่งข้อมูลออกภายนอก</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CLOSING CTA BAND (Jobright Black / Dark Band)
+       ============================================================ -->
+  <section class="closing-cta-band">
+    <div class="container">
+      <div class="closing-cta-inner">
+        <h2>พร้อมเริ่มการทดสอบและพัฒนา?</h2>
+        <p>ชุดคำสั่งทั้งหมดถูกจัดระเบียบแยกโฟลเดอร์ในเครื่องของคุณเรียบร้อยแล้ว สามารถนำไฟล์ไปวางในโปรเจกต์ หรือสั่งคัดลอกผ่านหน้านี้ได้ทันที</p>
+        <div class="closing-btn-group">
+          <button class="btn btn-green-pill" onclick="openModal('modal-workflows')"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg> ดูขั้นตอนใช้งานทุกรูปแบบ</button>
+          <button class="btn btn-primary-pill" onclick="openModal('modal-types')"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> อ่านคู่มือ Type ฉบับเต็ม</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <strong>AI Jailbreaks &amp; Operating Specs</strong> • Curated &amp; Maintained by <strong>j3xdr</strong>
+        </div>
+        <div class="footer-links">
+          <a href="./docs/PROMPT_TYPES_GUIDE.md" target="_blank">PROMPT_TYPES_GUIDE.md</a>
+          <a href="./docs/USAGE_WORKFLOWS.md" target="_blank">USAGE_WORKFLOWS.md</a>
+          <a href="./README.md" target="_blank">README.md</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       MODAL 1: PROMPT INSPECTOR (Detail & Code Preview)
+       ============================================================ -->
+  <div class="modal-backdrop" id="modal-inspector" onclick="handleBackdropClick(event, 'modal-inspector')">
+    <div class="modal-surface">
+      <div class="modal-drag-handle"></div>
+      <div class="modal-header">
+        <h3 id="inspector-title">ชื่อไฟล์พรอมต์</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-inspector')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-meta-grid">
+          <div class="modal-meta-cell">
+            <div class="label">ผู้พัฒนา / โมเดล</div>
+            <div class="val" id="inspector-vendor">-</div>
+          </div>
+          <div class="modal-meta-cell">
+            <div class="label">ประเภทสเปก (Type)</div>
+            <div class="val" id="inspector-type">-</div>
+          </div>
+          <div class="modal-meta-cell">
+            <div class="label">ตำแหน่งติดตั้ง (Target)</div>
+            <div class="val" id="inspector-harness">-</div>
+          </div>
+          <div class="modal-meta-cell">
+            <div class="label">ปีที่เปิดตัว (Release Year)</div>
+            <div class="val" id="inspector-year">-</div>
+          </div>
+          <div class="modal-meta-cell">
+            <div class="label">ขนาด / บรรทัด</div>
+            <div class="val" id="inspector-size">-</div>
+          </div>
+          <div class="modal-meta-cell">
+            <div class="label">แหล่งที่มา GitHub (Upstream)</div>
+            <div class="val" id="inspector-source-cell">
+              <a id="inspector-source-link" href="#" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary); text-decoration: underline; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
+                <span>เปิดดูบน GitHub</span>
+              </a>
+            </div>
+          </div>
+          <div class="modal-meta-cell" style="grid-column: 1 / -1;">
+            <div class="label">เครดิตผู้พัฒนาต้นทาง &amp; ทีมวิจัย (Attribution &amp; Credits)</div>
+            <div class="val" id="inspector-credits" style="font-size: 0.88rem; color: var(--color-ink); font-weight: 500;">-</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; color: var(--color-ink);"><svg class="svg-icon" viewBox="0 0 24 24"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg> คำอธิบายและหน้าที่ (Thai Summary)</h4>
+          <p id="inspector-summary" style="font-size: 0.92rem; color: var(--color-muted); line-height: 1.6;">-</p>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; color: var(--color-ink);"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> วิธีนำไปใช้งาน (Usage Instructions)</h4>
+          <p id="inspector-instructions" style="font-size: 0.92rem; color: var(--color-muted); line-height: 1.6;">-</p>
+        </div>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--color-ink);"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> เนื้อหาพรอมต์ฉบับเต็ม (Complete Prompt)</h4>
+            <span id="inspector-chars" style="font-size: 0.78rem; color: var(--color-muted); font-family: 'Fira Code', monospace;">0 chars</span>
+          </div>
+          <pre class="code-preview-box" id="inspector-content"></pre>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-compact-pill" onclick="closeModal('modal-inspector')">ปิด</button>
+        <a class="btn btn-compact-pill" id="inspector-github-btn" href="#" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+          <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          เปิดดูบน GitHub
+        </a>
+        <button class="btn btn-green-pill" id="inspector-download-btn"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> ดาวน์โหลด .md</button>
+        <button class="btn btn-primary-pill" id="inspector-copy-btn"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> คัดลอกพรอมต์</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL 2: TYPES GUIDE
+       ============================================================ -->
+  <div class="modal-backdrop" id="modal-types" onclick="handleBackdropClick(event, 'modal-types')">
+    <div class="modal-surface">
+      <div class="modal-drag-handle"></div>
+      <div class="modal-header">
+        <h3><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> คู่มือประเภทของพรอมต์และสเปก (Prompt Types Guide)</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-types')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div>
+            <h4 style="color: var(--color-primary); font-size: 1.15rem;">1. System Prompt (พรอมต์ระบบหลัก)</h4>
+            <p style="font-size: 0.9rem; color: var(--color-muted);">ส่งผ่านช่องทาง <code>role: "system"</code> ของ API หรือ Custom Instructions กำหนดบทบาทตัวตนและกรอบตรรกะ ป้องกันการเกิด Refusal reflex มาตรฐานตั้งแต่เริ่มบทสนทนา</p>
+          </div>
+          <div>
+            <h4 style="color: var(--color-primary); font-size: 1.15rem;">2. Assistant Operating Specification (ข้อกำหนดการปฏิบัติการของเอเจนต์)</h4>
+            <p style="font-size: 0.9rem; color: var(--color-muted);">ออกแบบสำหรับ Coding Agents (OpenCode, Cline, Claude Code, Cursor) โดยควบคุมพฤติกรรม Tool Calls (รันคำสั่ง Bash, แก้ไขไฟล์) ให้ทำงานจนสำเร็จสมบูรณ์โดยไม่ต้องหยุดถามซ้ำ</p>
+          </div>
+          <div>
+            <h4 style="color: var(--color-primary); font-size: 1.15rem;">3. Workspace Operating Profile / Policy (นโยบายระดับ Workspace)</h4>
+            <p style="font-size: 0.9rem; color: var(--color-muted);">เอกสารระดับ Environment เช่น <code>AGENTS.md</code> หรือ <code>.cursorrules</code> กำหนดให้พื้นที่ทำงานเป็น Private Authenticated Station มีขอบเขต Fixed Boundaries ชัดเจน</p>
+          </div>
+          <div>
+            <h4 style="color: var(--color-primary); font-size: 1.15rem;">4. Persona Lock with Explicit Operating Floor (การล็อกตัวตนและตัดความลังเล)</h4>
+            <p style="font-size: 0.9rem; color: var(--color-muted);">สถาปนาตัวตนเฉพาะ (เช่น VANTA หรือ Beam) พร้อม Supremacy Clause สลายความลังเล (Static Dissolution) ชี้ว่าการเตือนความปลอดภัยทั่วไปเป็นเพียง Training Residue ภายนอก</p>
+          </div>
+          <div>
+            <h4 style="color: var(--color-primary); font-size: 1.15rem;">5. Conversational Groundwork &amp; Writer's-Room (การจัดฉากห้องนักเขียน)</h4>
+            <p style="font-size: 0.9rem; color: var(--color-muted);">จัดฉากการสนทนาแบบเพื่อนร่วมงานระดับสูง หรือห้องเขียนบทวรรณกรรม เหมาะกับ Claude (Opus/Sonnet) ช่วยให้สร้างดาร์กฟิกชันและงานวิเคราะห์ลึกได้ต่อเนื่อง ไม่ตัดจบ</p>
+          </div>
+          <div>
+            <h4 style="color: var(--color-primary); font-size: 1.15rem;">6. Ollama Modelfile (สคริปต์คอมไพล์ Local)</h4>
+            <p style="font-size: 0.9rem; color: var(--color-muted);">สคริปต์สร้างโมเดลในเครื่องด้วย Ollama ฝัง System Instructions ในระดับโมเดลคอนฟิก รันออฟไลน์ 100% ไร้การบันทึก Log</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-green-pill" onclick="closeModal('modal-types')">เข้าใจแล้ว ปิดหน้าต่าง</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL 3: WORKFLOWS GUIDE
+       ============================================================ -->
+  <div class="modal-backdrop" id="modal-workflows" onclick="handleBackdropClick(event, 'modal-workflows')">
+    <div class="modal-surface">
+      <div class="modal-drag-handle"></div>
+      <div class="modal-header">
+        <h3><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg> ขั้นตอนและรูปแบบการใช้งานทุกแพลตฟอร์ม</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-workflows')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <div>
+            <h4 style="color: var(--color-primary); font-size: 1.15rem;"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> 1. ใช้งานบน Web Chat (ChatGPT, Claude.ai, DeepSeek, LeChat)</h4>
+            <p style="font-size: 0.9rem; color: var(--color-muted);">คัดลอกไฟล์ที่เป็น System Prompt หรือ Conversational Groundwork ไปวางในช่อง Custom Instructions ใน Settings หรือวางเป็นข้อความแรกของแชท</p>
+          </div>
+          <div>
+            <h4 style="color: var(--color-primary); font-size: 1.15rem;"><svg class="svg-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg> 2. ใช้งานบน Coding Agents (OpenCode, Cursor, Cline)</h4>
+            <ul style="padding-left: 20px; font-size: 0.9rem; color: var(--color-muted); line-height: 1.7;">
+              <li><strong>OpenCode:</strong> นำไฟล์ไปบันทึกเป็น <code>~/.config/opencode/AGENTS.md</code> หรือวางเป็น <code>AGENTS.md</code> ในรากโปรเจกต์</li>
+              <li><strong>Cursor / Windsurf:</strong> นำเนื้อหาไปสร้างเป็นไฟล์ <code>.cursorrules</code> ในโฟลเดอร์งาน</li>
+              <li><strong>Cline / Roo Code:</strong> วางในช่อง Custom Instructions ในเมนู Extension Settings</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color: var(--color-primary); font-size: 1.15rem;"><svg class="svg-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg> 3. ใช้งาน Local ผ่าน Ollama</h4>
+            <pre class="code-preview-box" style="margin-top: 6px;">cd 08_Ollama_Modelfiles
+ollama create gemma-unlocked -f gemma4.md
+ollama run gemma-unlocked</pre>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-green-pill" onclick="closeModal('modal-workflows')">เข้าใจแล้ว ปิดหน้าต่าง</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Pill -->
+  <div class="toast-pill" id="toast">
+    <span class="toast-icon"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+    <span id="toast-text">คัดลอกสำเร็จ!</span>
+  </div>
+
+  <!-- Data Script -->
+  <script src="prompts_data.js"></script>
+
+  <!-- Application Logic & Authentic Model Logo SVGs -->
+  <script>
+    // ============================================================
+    // AUTHENTIC MODEL & VENDOR VECTOR LOGOS (High Precision Inline SVGs)
+    // ============================================================
+        const UI_ICONS = {
+      bolt: `<svg class="svg-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+      book: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
+      rocket: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>`,
+      clipboard: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>`,
+      moon: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`,
+      sun: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>`,
+      search: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+      folder: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>`,
+      brain: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04z"/></svg>`,
+      shield: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+      star: `<svg class="svg-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+      file: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+      target: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
+      download: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`,
+      eye: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+      tag: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>`,
+      globe: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+      network: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`,
+      check: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+      laptop: `<svg class="svg-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
+      github: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>`,
+      externalLink: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`
+    };
+
+    function getUiIcon(name) {
+      if (!name) return UI_ICONS.tag;
+      if (name === 'deepseek') return VENDOR_LOGOS.deepseek || UI_ICONS.target;
+      if (name === 'ollama') return VENDOR_LOGOS.ollama || UI_ICONS.laptop;
+      return UI_ICONS[name] || UI_ICONS.tag;
+    }
+
+    const VENDOR_LOGOS = {
+      claude: `<svg height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Claude</title><path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.073-2.339-.097-2.266-.122-.571-.121L0 11.784l.055-.352.48-.321.686.06 1.52.103 2.278.158 1.652.097 2.449.255h.389l.055-.157-.134-.098-.103-.097-2.358-1.596-2.552-1.688-1.336-.972-.724-.491-.364-.462-.158-1.008.656-.722.881.06.225.061.893.686 1.908 1.476 2.491 1.833.365.304.145-.103.019-.073-.164-.274-1.355-2.446-1.446-2.49-.644-1.032-.17-.619a2.97 2.97 0 01-.104-.729L6.283.134 6.696 0l.996.134.42.364.62 1.414 1.002 2.229 1.555 3.03.456.898.243.832.091.255h.158V9.01l.128-1.706.237-2.095.23-2.695.08-.76.376-.91.747-.492.584.28.48.685-.067.444-.286 1.851-.559 2.903-.364 1.942h.212l.243-.242.985-1.306 1.652-2.064.73-.82.85-.904.547-.431h1.033l.76 1.129-.34 1.166-1.064 1.347-.881 1.142-1.264 1.7-.79 1.36.073.11.188-.02 2.856-.606 1.543-.28 1.841-.315.833.388.091.395-.328.807-1.969.486-2.309.462-3.439.813-.042.03.049.061 1.549.146.662.036h1.622l3.02.225.79.522.474.638-.079.485-1.215.62-1.64-.389-3.829-.91-1.312-.329h-.182v.11l1.093 1.068 2.006 1.81 2.509 2.33.127.578-.322.455-.34-.049-2.205-1.657-.851-.747-1.926-1.62h-.128v.17l.444.649 2.345 3.521.122 1.08-.17.353-.608.213-.668-.122-1.374-1.925-1.415-2.167-1.143-1.943-.14.08-.674 7.254-.316.37-.729.28-.607-.461-.322-.747.322-1.476.389-1.924.315-1.53.286-1.9.17-.632-.012-.042-.14.018-1.434 1.967-2.18 2.945-1.726 1.845-.414.164-.717-.37.067-.662.401-.589 2.388-3.036 1.44-1.882.93-1.086-.006-.158h-.055L4.132 18.56l-1.13.146-.487-.456.061-.746.231-.243 1.908-1.312-.006.006z" fill="#D97757" fill-rule="nonzero"></path></svg>`,
+      deepseek: `<svg height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>DeepSeek</title><path d="M23.748 4.482c-.254-.124-.364.113-.512.234-.051.039-.094.09-.137.136-.372.397-.806.657-1.373.626-.829-.046-1.537.214-2.163.848-.133-.782-.575-1.248-1.247-1.548-.352-.156-.708-.311-.955-.65-.172-.241-.219-.51-.305-.774-.055-.16-.11-.323-.293-.35-.2-.031-.278.136-.356.276-.313.572-.434 1.202-.422 1.84.027 1.436.633 2.58 1.838 3.393.137.093.172.187.129.323-.082.28-.18.552-.266.833-.055.179-.137.217-.329.14a5.526 5.526 0 01-1.736-1.18c-.857-.828-1.631-1.742-2.597-2.458a11.365 11.365 0 00-.689-.471c-.985-.957.13-1.743.388-1.836.27-.098.093-.432-.779-.428-.872.004-1.67.295-2.687.684a3.055 3.055 0 01-.465.137 9.597 9.597 0 00-2.883-.102c-1.885.21-3.39 1.102-4.497 2.623C.082 8.606-.231 10.684.152 12.85c.403 2.284 1.569 4.175 3.36 5.653 1.858 1.533 3.997 2.284 6.438 2.14 1.482-.085 3.133-.284 4.994-1.86.47.234.962.327 1.78.397.63.059 1.236-.03 1.705-.128.735-.156.684-.837.419-.961-2.155-1.004-1.682-.595-2.113-.926 1.096-1.296 2.746-2.642 3.392-7.003.05-.347.007-.565 0-.845-.004-.17.035-.237.23-.256a4.173 4.173 0 001.545-.475c1.396-.763 1.96-2.015 2.093-3.517.02-.23-.004-.467-.247-.588zM11.581 18c-2.089-1.642-3.102-2.183-3.52-2.16-.392.024-.321.471-.235.763.09.288.207.486.371.739.114.167.192.416-.113.603-.673.416-1.842-.14-1.897-.167-1.361-.802-2.5-1.86-3.301-3.307-.774-1.393-1.224-2.887-1.298-4.482-.02-.386.093-.522.477-.592a4.696 4.696 0 011.529-.039c2.132.312 3.946 1.265 5.468 2.774.868.86 1.525 1.887 2.202 2.891.72 1.066 1.494 2.082 2.48 2.914.348.292.625.514.891.677-.802.09-2.14.11-3.054-.614zm1-6.44a.306.306 0 01.415-.287.302.302 0 01.2.288.306.306 0 01-.31.307.303.303 0 01-.304-.308zm3.11 1.596c-.2.081-.399.151-.59.16a1.245 1.245 0 01-.798-.254c-.274-.23-.47-.358-.552-.758a1.73 1.73 0 01.016-.588c.07-.327-.008-.537-.239-.727-.187-.156-.426-.199-.688-.199a.559.559 0 01-.254-.078c-.11-.054-.2-.19-.114-.358.028-.054.16-.186.192-.21.356-.202.767-.136 1.146.016.352.144.618.408 1.001.782.391.451.462.576.685.914.176.265.336.537.445.848.067.195-.019.354-.25.452z" fill="#4D6BFE"></path></svg>`,
+      gemini: `<svg height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Gemini</title><path d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z" fill="#3186FF"></path><path d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z" fill="url(#lobe-icons-gemini-0-_R_0_)"></path><path d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z" fill="url(#lobe-icons-gemini-1-_R_0_)"></path><path d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z" fill="url(#lobe-icons-gemini-2-_R_0_)"></path><defs><linearGradient gradientUnits="userSpaceOnUse" id="lobe-icons-gemini-0-_R_0_" x1="7" x2="11" y1="15.5" y2="12"><stop stop-color="#08B962"></stop><stop offset="1" stop-color="#08B962" stop-opacity="0"></stop></linearGradient><linearGradient gradientUnits="userSpaceOnUse" id="lobe-icons-gemini-1-_R_0_" x1="8" x2="11.5" y1="5.5" y2="11"><stop stop-color="#F94543"></stop><stop offset="1" stop-color="#F94543" stop-opacity="0"></stop></linearGradient><linearGradient gradientUnits="userSpaceOnUse" id="lobe-icons-gemini-2-_R_0_" x1="3.5" x2="17.5" y1="13.5" y2="12"><stop stop-color="#FABC12"></stop><stop offset=".46" stop-color="#FABC12" stop-opacity="0"></stop></linearGradient></defs></svg>`,
+      gemma: `<svg height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Gemma</title><defs><linearGradient id="lobe-icons-gemma-_R_0_" x1="24.419%" x2="75.194%" y1="75.581%" y2="25.194%"><stop offset="0%" stop-color="#446EFF"></stop><stop offset="36.661%" stop-color="#2E96FF"></stop><stop offset="83.221%" stop-color="#B1C5FF"></stop></linearGradient></defs><path d="M12.34 5.953a8.233 8.233 0 01-.247-1.125V3.72a8.25 8.25 0 015.562 2.232H12.34zm-.69 0c.113-.373.199-.755.257-1.145V3.72a8.25 8.25 0 00-5.562 2.232h5.304zm-5.433.187h5.373a7.98 7.98 0 01-.267.696 8.41 8.41 0 01-1.76 2.65L6.216 6.14zm-.264-.187H2.977v.187h2.915a8.436 8.436 0 00-2.357 5.767H0v.186h3.535a8.436 8.436 0 002.357 5.767H2.977v.186h2.976v2.977h.187v-2.915a8.436 8.436 0 005.767 2.357V24h.186v-3.535a8.436 8.436 0 005.767-2.357v2.915h.186v-2.977h2.977v-.186h-2.915a8.436 8.436 0 002.357-5.767H24v-.186h-3.535a8.436 8.436 0 00-2.357-5.767h2.915v-.187h-2.977V2.977h-.186v2.915a8.436 8.436 0 00-5.767-2.357V0h-.186v3.535A8.436 8.436 0 006.14 5.892V2.977h-.187v2.976zm6.14 14.326a8.25 8.25 0 005.562-2.233H12.34c-.108.367-.19.743-.247 1.126v1.107zm-.186-1.087a8.015 8.015 0 00-.258-1.146H6.345a8.25 8.25 0 005.562 2.233v-1.087zm-8.186-7.285h1.107a8.23 8.23 0 001.125-.247V6.345a8.25 8.25 0 00-2.232 5.562zm1.087.186H3.72a8.25 8.25 0 002.232 5.562v-5.304a8.012 8.012 0 00-1.145-.258zm15.47-.186a8.25 8.25 0 00-2.232-5.562v5.315c.367.108.743.19 1.126.247h1.107zm-1.086.186c-.39.058-.772.144-1.146.258v5.304a8.25 8.25 0 002.233-5.562h-1.087zm-1.332 5.69V12.41a7.97 7.97 0 00-.696.267 8.409 8.409 0 00-2.65 1.76l3.346 3.346zm0-6.18v-5.45l-.012-.013h-5.451c.076.235.162.468.26.696a8.698 8.698 0 001.819 2.688 8.698 8.698 0 002.688 1.82c.228.097.46.183.696.259zM6.14 17.848V12.41c.235.078.468.167.696.267a8.403 8.403 0 012.688 1.799 8.404 8.404 0 011.799 2.688c.1.228.19.46.267.696H6.152l-.012-.012zm0-6.245V6.326l3.29 3.29a8.716 8.716 0 01-2.594 1.728 8.14 8.14 0 01-.696.259zm6.257 6.257h5.277l-3.29-3.29a8.716 8.716 0 00-1.728 2.594 8.135 8.135 0 00-.259.696zm-2.347-7.81a9.435 9.435 0 01-2.88 1.96 9.14 9.14 0 012.88 1.94 9.14 9.14 0 011.94 2.88 9.435 9.435 0 011.96-2.88 9.14 9.14 0 012.88-1.94 9.435 9.435 0 01-2.88-1.96 9.434 9.434 0 01-1.96-2.88 9.14 9.14 0 01-1.94 2.88z" fill="url(#lobe-icons-gemma-_R_0_)" fill-rule="evenodd"></path></svg>`,
+      grok: `<svg fill="currentColor" fill-rule="evenodd" height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Grok</title><path d="M9.27 15.29l7.978-5.897c.391-.29.95-.177 1.137.272.98 2.369.542 5.215-1.41 7.169-1.951 1.954-4.667 2.382-7.149 1.406l-2.711 1.257c3.889 2.661 8.611 2.003 11.562-.953 2.341-2.344 3.066-5.539 2.388-8.42l.006.007c-.983-4.232.242-5.924 2.75-9.383.06-.082.12-.164.179-.248l-3.301 3.305v-.01L9.267 15.292M7.623 16.723c-2.792-2.67-2.31-6.801.071-9.184 1.761-1.763 4.647-2.483 7.166-1.425l2.705-1.25a7.808 7.808 0 00-1.829-1A8.975 8.975 0 005.984 5.83c-2.533 2.536-3.33 6.436-1.962 9.764 1.022 2.487-.653 4.246-2.34 6.022-.599.63-1.199 1.259-1.682 1.925l7.62-6.815"></path></svg>`,
+      kimi: `<svg height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Kimi</title><path d="M21.846 0a1.923 1.923 0 110 3.846H20.15a.226.226 0 01-.227-.226V1.923C19.923.861 20.784 0 21.846 0z" fill="#1783FF"></path><path d="M11.065 11.199l7.257-7.2c.137-.136.06-.41-.116-.41H14.3a.164.164 0 00-.117.051l-7.82 7.756c-.122.12-.302.013-.302-.179V3.82c0-.127-.083-.23-.185-.23H3.186c-.103 0-.186.103-.186.23V19.77c0 .128.083.23.186.23h2.69c.103 0 .186-.102.186-.23v-3.25c0-.069.025-.135.069-.178l2.424-2.406a.158.158 0 01.205-.023l6.484 4.772a7.677 7.677 0 003.453 1.283c.108.012.2-.095.2-.23v-3.06c0-.117-.07-.212-.164-.227a5.028 5.028 0 01-2.027-.807l-5.613-4.064c-.117-.078-.132-.279-.028-.381z" fill="currentColor"></path></svg>`,
+      zhipu: `<svg height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Zhipu</title><path d="M11.991 23.503a.24.24 0 00-.244.248.24.24 0 00.244.249.24.24 0 00.245-.249.24.24 0 00-.22-.247l-.025-.001zM9.671 5.365a1.697 1.697 0 011.099 2.132l-.071.172-.016.04-.018.054c-.07.16-.104.32-.104.498-.035.71.47 1.279 1.186 1.314h.366c1.309.053 2.338 1.173 2.286 2.523-.052 1.332-1.152 2.38-2.478 2.327h-.174c-.715.018-1.274.64-1.239 1.368 0 .124.018.23.053.337.209.373.54.658.96.8.75.23 1.517-.125 1.9-.782l.018-.035c.402-.64 1.17-.96 1.92-.711.854.284 1.378 1.226 1.099 2.167a1.661 1.661 0 01-2.077 1.102 1.711 1.711 0 01-.907-.711l-.017-.035c-.2-.323-.463-.58-.851-.711l-.056-.018a1.646 1.646 0 00-1.954.746 1.66 1.66 0 01-1.065.764 1.677 1.677 0 01-1.989-1.279c-.209-.906.332-1.83 1.257-2.043a1.51 1.51 0 01.296-.035h.018c.68-.071 1.151-.622 1.116-1.333a1.307 1.307 0 00-.227-.693 2.515 2.515 0 01-.366-1.403 2.39 2.39 0 01.366-1.208c.14-.195.21-.444.227-.693.018-.71-.506-1.261-1.186-1.332l-.07-.018a1.43 1.43 0 01-.299-.07l-.05-.019a1.7 1.7 0 01-1.047-2.114 1.68 1.68 0 012.094-1.101zm-5.575 10.11c.26-.264.639-.367.994-.27.355.096.633.379.728.74.095.362-.007.748-.267 1.013-.402.41-1.053.41-1.455 0a1.062 1.062 0 010-1.482zm14.845-.294c.359-.09.738.024.992.297.254.274.344.665.237 1.025-.107.36-.396.634-.756.718-.551.128-1.1-.22-1.23-.781a1.05 1.05 0 01.757-1.26zm-.064-4.39c.314.32.49.753.49 1.206 0 .452-.176.886-.49 1.206-.315.32-.74.5-1.185.5-.444 0-.87-.18-1.184-.5a1.727 1.727 0 010-2.412 1.654 1.654 0 012.369 0zm-11.243.163c.364.484.447 1.128.218 1.691a1.665 1.665 0 01-2.188.923c-.855-.36-1.26-1.358-.907-2.228a1.68 1.68 0 011.33-1.038c.593-.08 1.183.169 1.547.652zm11.545-4.221c.368 0 .708.2.892.524.184.324.184.724 0 1.048a1.026 1.026 0 01-.892.524c-.568 0-1.03-.47-1.03-1.048 0-.579.462-1.048 1.03-1.048zm-14.358 0c.368 0 .707.2.891.524.184.324.184.724 0 1.048a1.026 1.026 0 01-.891.524c-.569 0-1.03-.47-1.03-1.048 0-.579.461-1.048 1.03-1.048zm10.031-1.475c.925 0 1.675.764 1.675 1.706s-.75 1.705-1.675 1.705-1.674-.763-1.674-1.705c0-.942.75-1.706 1.674-1.706zm-2.626-.684c.362-.082.653-.356.761-.718a1.062 1.062 0 00-.238-1.028 1.017 1.017 0 00-.996-.294c-.547.14-.881.7-.752 1.257.13.558.675.907 1.225.783zm0 16.876c.359-.087.644-.36.75-.72a1.062 1.062 0 00-.237-1.019 1.018 1.018 0 00-.985-.301 1.037 1.037 0 00-.762.717c-.108.361-.017.754.239 1.028.245.263.606.377.953.305l.043-.01zM17.19 3.5a.631.631 0 00.628-.64c0-.355-.279-.64-.628-.64a.631.631 0 00-.628.64c0 .355.28.64.628.64zm-10.38 0a.631.631 0 00.628-.64c0-.355-.28-.64-.628-.64a.631.631 0 00-.628.64c0 .355.279.64.628.64zm-5.182 7.852a.631.631 0 00-.628.64c0 .354.28.639.628.639a.63.63 0 00.627-.606l.001-.034a.62.62 0 00-.628-.64zm5.182 9.13a.631.631 0 00-.628.64c0 .355.279.64.628.64a.631.631 0 00.628-.64c0-.355-.28-.64-.628-.64zm10.38.018a.631.631 0 00-.628.64c0 .355.28.64.628.64a.631.631 0 00.628-.64c0-.355-.279-.64-.628-.64zm5.182-9.148a.631.631 0 00-.628.64c0 .354.279.639.628.639a.631.631 0 00.628-.64c0-.355-.28-.64-.628-.64zm-.384-4.992a.24.24 0 00.244-.249.24.24 0 00-.244-.249.24.24 0 00-.244.249c0 .142.122.249.244.249zM11.991.497a.24.24 0 00.245-.248A.24.24 0 0011.99 0a.24.24 0 00-.244.249c0 .133.108.236.223.247l.021.001zM2.011 6.36a.24.24 0 00.245-.249.24.24 0 00-.244-.249.24.24 0 00-.244.249.24.24 0 00.244.249zm0 11.263a.24.24 0 00-.243.248.24.24 0 00.244.249.24.24 0 00.244-.249.252.252 0 00-.244-.248zm19.995-.018a.24.24 0 00-.245.248.24.24 0 00.245.25.24.24 0 00.244-.25.252.252 0 00-.244-.248z" fill="#3859FF" fill-rule="nonzero"></path></svg>`,
+      qwen: `<svg height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Qwen</title><path d="M19.713 2.825h-5.907c0-.251-.066-.503-.196-.728L12.819.728A1.46 1.46 0 0 0 11.559 0h-1.58c-.52 0-1 .275-1.26.728l-2.42 4.19a1.45 1.45 0 0 0 0 1.453l.791 1.37c.26.448.74.727 1.26.727h11.36c.52 0 1-.275 1.26-.728l.79-1.37a1.45 1.45 0 0 0 0-1.451l-.79-1.37a1.46 1.46 0 0 0-1.26-.728zM.195 9.905l2.951 5.115a1.46 1.46 0 0 0-.531.531l-.791 1.37a1.45 1.45 0 0 0 0 1.452l.79 1.37c.26.448.74.727 1.26.727h4.84c.52 0 1-.275 1.26-.728l.79-1.37a1.45 1.45 0 0 0 0-1.451L5.086 7.083a1.46 1.46 0 0 0-1.26-.728h-1.58c-.52 0-1 .276-1.26.728l-.79 1.37a1.45 1.45 0 0 0 0 1.452m15.888 13.367 2.951-5.115c.217.125.469.196.728.196h1.582c.52 0 1-.275 1.26-.728l.79-1.37a1.45 1.45 0 0 0 0-1.451l-2.42-4.191a1.46 1.46 0 0 0-1.259-.728h-1.582c-.52 0-1 .276-1.259.728l-5.678 9.838a1.45 1.45 0 0 0 0 1.452l.79 1.37c.26.448.74.727 1.26.727h1.582c.52 0 1-.275 1.26-.728z" fill="#082dff"></path></svg>`,
+      mistral: `<svg height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Mistral</title><path d="M3.428 3.4h3.429v3.428H3.428V3.4zm13.714 0h3.43v3.428h-3.43V3.4z" fill="gold"></path><path d="M3.428 6.828h6.857v3.429H3.429V6.828zm10.286 0h6.857v3.429h-6.857V6.828z" fill="#FFAF00"></path><path d="M3.428 10.258h17.144v3.428H3.428v-3.428z" fill="#FF8205"></path><path d="M3.428 13.686h3.429v3.428H3.428v-3.428zm6.858 0h3.429v3.428h-3.429v-3.428zm6.856 0h3.43v3.428h-3.43v-3.428z" fill="#FA500F"></path><path d="M0 17.114h10.286v3.429H0v-3.429zm13.714 0H24v3.429H13.714v-3.429z" fill="#E10500"></path></svg>`,
+      nvidia: `<svg height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Nvidia</title><path d="M10.212 8.976V7.62c.127-.01.256-.017.388-.021 3.596-.117 5.957 3.184 5.957 3.184s-2.548 3.647-5.282 3.647a3.227 3.227 0 01-1.063-.175v-4.109c1.4.174 1.681.812 2.523 2.258l1.873-1.627a4.905 4.905 0 00-3.67-1.846 6.594 6.594 0 00-.729.044m0-4.476v2.025c.13-.01.259-.019.388-.024 5.002-.174 8.261 4.226 8.261 4.226s-3.743 4.69-7.643 4.69c-.338 0-.675-.031-1.007-.092v1.25c.278.038.558.057.838.057 3.629 0 6.253-1.91 8.794-4.169.421.347 2.146 1.193 2.501 1.564-2.416 2.083-8.048 3.763-11.24 3.763-.308 0-.603-.02-.894-.048V19.5H24v-15H10.21zm0 9.756v1.068c-3.356-.616-4.287-4.21-4.287-4.21a7.173 7.173 0 014.287-2.138v1.172h-.005a3.182 3.182 0 00-2.502 1.178s.615 2.276 2.507 2.931m-5.961-3.3c1.436-1.935 3.604-3.148 5.961-3.336V6.523C5.81 6.887 2 10.723 2 10.723s2.158 6.427 8.21 7.015v-1.166C5.77 16 4.25 10.958 4.25 10.958h-.002z" fill="#74B71B" fill-rule="nonzero"></path></svg>`,
+      meta: `<svg height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Meta</title><path d="M6.897 4h-.024l-.031 2.615h.022c1.715 0 3.046 1.357 5.94 6.246l.175.297.012.02 1.62-2.438-.012-.019a48.763 48.763 0 00-1.098-1.716 28.01 28.01 0 00-1.175-1.629C10.413 4.932 8.812 4 6.896 4z" fill="url(#lobe-icons-meta-0-_R_0_)"></path><path d="M6.873 4C4.95 4.01 3.247 5.258 2.02 7.17a4.352 4.352 0 00-.01.017l2.254 1.231.011-.017c.718-1.083 1.61-1.774 2.568-1.785h.021L6.896 4h-.023z" fill="url(#lobe-icons-meta-1-_R_0_)"></path><path d="M2.019 7.17l-.011.017C1.2 8.447.598 9.995.274 11.664l-.005.022 2.534.6.004-.022c.27-1.467.786-2.828 1.456-3.845l.011-.017L2.02 7.17z" fill="url(#lobe-icons-meta-2-_R_0_)"></path><path d="M2.807 12.264l-2.533-.6-.005.022c-.177.918-.267 1.851-.269 2.786v.023l2.598.233v-.023a12.591 12.591 0 01.21-2.44z" fill="url(#lobe-icons-meta-3-_R_0_)"></path><path d="M2.677 15.537a5.462 5.462 0 01-.079-.813v-.022L0 14.468v.024a8.89 8.89 0 00.146 1.652l2.535-.585a4.106 4.106 0 01-.004-.022z" fill="url(#lobe-icons-meta-4-_R_0_)"></path><path d="M3.27 16.89c-.284-.31-.484-.756-.589-1.328l-.004-.021-2.535.585.004.021c.192 1.01.568 1.85 1.106 2.487l.014.017 2.018-1.745a2.106 2.106 0 01-.015-.016z" fill="url(#lobe-icons-meta-5-_R_0_)"></path><path d="M10.78 9.654c-1.528 2.35-2.454 3.825-2.454 3.825-2.035 3.2-2.739 3.917-3.871 3.917a1.545 1.545 0 01-1.186-.508l-2.017 1.744.014.017C2.01 19.518 3.058 20 4.356 20c1.963 0 3.374-.928 5.884-5.33l1.766-3.13a41.283 41.283 0 00-1.227-1.886z" fill="#0082FB"></path><path d="M13.502 5.946l-.016.016c-.4.43-.786.908-1.16 1.416.378.483.768 1.024 1.175 1.63.48-.743.928-1.345 1.367-1.807l.016-.016-1.382-1.24z" fill="url(#lobe-icons-meta-6-_R_0_)"></path><path d="M20.918 5.713C19.853 4.633 18.583 4 17.225 4c-1.432 0-2.637.787-3.723 1.944l-.016.016 1.382 1.24.016-.017c.715-.747 1.408-1.12 2.176-1.12.826 0 1.6.39 2.27 1.075l.015.016 1.589-1.425-.016-.016z" fill="#0082FB"></path><path d="M23.998 14.125c-.06-3.467-1.27-6.566-3.064-8.396l-.016-.016-1.588 1.424.015.016c1.35 1.392 2.277 3.98 2.361 6.971v.023h2.292v-.022z" fill="url(#lobe-icons-meta-7-_R_0_)"></path><path d="M23.998 14.15v-.023h-2.292v.022c.004.14.006.282.006.424 0 .815-.121 1.474-.368 1.95l-.011.022 1.708 1.782.013-.02c.62-.96.946-2.293.946-3.91 0-.083 0-.165-.002-.247z" fill="url(#lobe-icons-meta-8-_R_0_)"></path><path d="M21.344 16.52l-.011.02c-.214.402-.519.67-.917.787l.778 2.462a3.493 3.493 0 00.438-.182 3.558 3.558 0 001.366-1.218l.044-.065.012-.02-1.71-1.784z" fill="url(#lobe-icons-meta-9-_R_0_)"></path><path d="M19.92 17.393c-.262 0-.492-.039-.718-.14l-.798 2.522c.449.153.927.222 1.46.222.492 0 .943-.073 1.352-.215l-.78-2.462c-.167.05-.341.075-.517.073z" fill="url(#lobe-icons-meta-10-_R_0_)"></path><path d="M18.323 16.534l-.014-.017-1.836 1.914.016.017c.637.682 1.246 1.105 1.937 1.337l.797-2.52c-.291-.125-.573-.353-.9-.731z" fill="url(#lobe-icons-meta-11-_R_0_)"></path><path d="M18.309 16.515c-.55-.642-1.232-1.712-2.303-3.44l-1.396-2.336-.011-.02-1.62 2.438.012.02.989 1.668c.959 1.61 1.74 2.774 2.493 3.585l.016.016 1.834-1.914a2.353 2.353 0 01-.014-.017z" fill="url(#lobe-icons-meta-12-_R_0_)"></path><defs><linearGradient id="lobe-icons-meta-0-_R_0_" x1="75.897%" x2="26.312%" y1="89.199%" y2="12.194%"><stop offset=".06%" stop-color="#0867DF"></stop><stop offset="45.39%" stop-color="#0668E1"></stop><stop offset="85.91%" stop-color="#0064E0"></stop></linearGradient><linearGradient id="lobe-icons-meta-1-_R_0_" x1="21.67%" x2="97.068%" y1="75.874%" y2="23.985%"><stop offset="13.23%" stop-color="#0064DF"></stop><stop offset="99.88%" stop-color="#0064E0"></stop></linearGradient><linearGradient id="lobe-icons-meta-2-_R_0_" x1="38.263%" x2="60.895%" y1="89.127%" y2="16.131%"><stop offset="1.47%" stop-color="#0072EC"></stop><stop offset="68.81%" stop-color="#0064DF"></stop></linearGradient><linearGradient id="lobe-icons-meta-3-_R_0_" x1="47.032%" x2="52.15%" y1="90.19%" y2="15.745%"><stop offset="7.31%" stop-color="#007CF6"></stop><stop offset="99.43%" stop-color="#0072EC"></stop></linearGradient><linearGradient id="lobe-icons-meta-4-_R_0_" x1="52.155%" x2="47.591%" y1="58.301%" y2="37.004%"><stop offset="7.31%" stop-color="#007FF9"></stop><stop offset="100%" stop-color="#007CF6"></stop></linearGradient><linearGradient id="lobe-icons-meta-5-_R_0_" x1="37.689%" x2="61.961%" y1="12.502%" y2="63.624%"><stop offset="7.31%" stop-color="#007FF9"></stop><stop offset="100%" stop-color="#0082FB"></stop></linearGradient><linearGradient id="lobe-icons-meta-6-_R_0_" x1="34.808%" x2="62.313%" y1="68.859%" y2="23.174%"><stop offset="27.99%" stop-color="#007FF8"></stop><stop offset="91.41%" stop-color="#0082FB"></stop></linearGradient><linearGradient id="lobe-icons-meta-7-_R_0_" x1="43.762%" x2="57.602%" y1="6.235%" y2="98.514%"><stop offset="0%" stop-color="#0082FB"></stop><stop offset="99.95%" stop-color="#0081FA"></stop></linearGradient><linearGradient id="lobe-icons-meta-8-_R_0_" x1="60.055%" x2="39.88%" y1="4.661%" y2="69.077%"><stop offset="6.19%" stop-color="#0081FA"></stop><stop offset="100%" stop-color="#0080F9"></stop></linearGradient><linearGradient id="lobe-icons-meta-9-_R_0_" x1="30.282%" x2="61.081%" y1="59.32%" y2="33.244%"><stop offset="0%" stop-color="#027AF3"></stop><stop offset="100%" stop-color="#0080F9"></stop></linearGradient><linearGradient id="lobe-icons-meta-10-_R_0_" x1="20.433%" x2="82.112%" y1="50.001%" y2="50.001%"><stop offset="0%" stop-color="#0377EF"></stop><stop offset="99.94%" stop-color="#0279F1"></stop></linearGradient><linearGradient id="lobe-icons-meta-11-_R_0_" x1="40.303%" x2="72.394%" y1="35.298%" y2="57.811%"><stop offset=".19%" stop-color="#0471E9"></stop><stop offset="100%" stop-color="#0377EF"></stop></linearGradient><linearGradient id="lobe-icons-meta-12-_R_0_" x1="32.254%" x2="68.003%" y1="19.719%" y2="84.908%"><stop offset="27.65%" stop-color="#0867DF"></stop><stop offset="100%" stop-color="#0471E9"></stop></linearGradient></defs></svg>`,
+      ollama: `<svg fill="currentColor" fill-rule="evenodd" height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Ollama</title><path d="M7.905 1.09c.216.085.411.225.588.41.295.306.544.744.734 1.263.191.522.315 1.1.362 1.68a5.054 5.054 0 012.049-.636l.051-.004c.87-.07 1.73.087 2.48.474.101.053.2.11.297.17.05-.569.172-1.134.36-1.644.19-.52.439-.957.733-1.264a1.67 1.67 0 01.589-.41c.257-.1.53-.118.796-.042.401.114.745.368 1.016.737.248.337.434.769.561 1.287.23.934.27 2.163.115 3.645l.053.04.026.019c.757.576 1.284 1.397 1.563 2.35.435 1.487.216 3.155-.534 4.088l-.018.021.002.003c.417.762.67 1.567.724 2.4l.002.03c.064 1.065-.2 2.137-.814 3.19l-.007.01.01.024c.472 1.157.62 2.322.438 3.486l-.006.039a.651.651 0 01-.747.536.648.648 0 01-.54-.742c.167-1.033.01-2.069-.48-3.123a.643.643 0 01.04-.617l.004-.006c.604-.924.854-1.83.8-2.72-.046-.779-.325-1.544-.8-2.273a.644.644 0 01.18-.886l.009-.006c.243-.159.467-.565.58-1.12a4.229 4.229 0 00-.095-1.974c-.205-.7-.58-1.284-1.105-1.683-.595-.454-1.383-.673-2.38-.61a.653.653 0 01-.632-.371c-.314-.665-.772-1.141-1.343-1.436a3.288 3.288 0 00-1.772-.332c-1.245.099-2.343.801-2.67 1.686a.652.652 0 01-.61.425c-1.067.002-1.893.252-2.497.703-.522.39-.878.935-1.066 1.588a4.07 4.07 0 00-.068 1.886c.112.558.331 1.02.582 1.269l.008.007c.212.207.257.53.109.785-.36.622-.629 1.549-.673 2.44-.05 1.018.186 1.902.719 2.536l.016.019a.643.643 0 01.095.69c-.576 1.236-.753 2.252-.562 3.052a.652.652 0 01-1.269.298c-.243-1.018-.078-2.184.473-3.498l.014-.035-.008-.012a4.339 4.339 0 01-.598-1.309l-.005-.019a5.764 5.764 0 01-.177-1.785c.044-.91.278-1.842.622-2.59l.012-.026-.002-.002c-.293-.418-.51-.953-.63-1.545l-.005-.024a5.352 5.352 0 01.093-2.49c.262-.915.777-1.701 1.536-2.269.06-.045.123-.09.186-.132-.159-1.493-.119-2.73.112-3.67.127-.518.314-.95.562-1.287.27-.368.614-.622 1.015-.737.266-.076.54-.059.797.042zm4.116 9.09c.936 0 1.8.313 2.446.855.63.527 1.005 1.235 1.005 1.94 0 .888-.406 1.58-1.133 2.022-.62.375-1.451.557-2.403.557-1.009 0-1.871-.259-2.493-.734-.617-.47-.963-1.13-.963-1.845 0-.707.398-1.417 1.056-1.946.668-.537 1.55-.849 2.485-.849zm0 .896a3.07 3.07 0 00-1.916.65c-.461.37-.722.835-.722 1.25 0 .428.21.829.61 1.134.455.347 1.124.548 1.943.548.799 0 1.473-.147 1.932-.426.463-.28.7-.686.7-1.257 0-.423-.246-.89-.683-1.256-.484-.405-1.14-.643-1.864-.643zm.662 1.21l.004.004c.12.151.095.37-.056.49l-.292.23v.446a.375.375 0 01-.376.373.375.375 0 01-.376-.373v-.46l-.271-.218a.347.347 0 01-.052-.49.353.353 0 01.494-.051l.215.172.22-.174a.353.353 0 01.49.051zm-5.04-1.919c.478 0 .867.39.867.871a.87.87 0 01-.868.871.87.87 0 01-.867-.87.87.87 0 01.867-.872zm8.706 0c.48 0 .868.39.868.871a.87.87 0 01-.868.871.87.87 0 01-.867-.87.87.87 0 01.867-.872zM7.44 2.3l-.003.002a.659.659 0 00-.285.238l-.005.006c-.138.189-.258.467-.348.832-.17.692-.216 1.631-.124 2.782.43-.128.899-.208 1.404-.237l.01-.001.019-.034c.046-.082.095-.161.148-.239.123-.771.022-1.692-.253-2.444-.134-.364-.297-.65-.453-.813a.628.628 0 00-.107-.09L7.44 2.3zm9.174.04l-.002.001a.628.628 0 00-.107.09c-.156.163-.32.45-.453.814-.29.794-.387 1.776-.23 2.572l.058.097.008.014h.03a5.184 5.184 0 011.466.212c.086-1.124.038-2.043-.128-2.722-.09-.365-.21-.643-.349-.832l-.004-.006a.659.659 0 00-.285-.239h-.004z"></path></svg>`,
+      stepfun: `<svg height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Stepfun</title><path d="M22.012 0h1.032v.927H24v.968h-.956V3.78h-1.032V1.896h-1.878v-.97h1.878V0zM2.6 12.371V1.87h.969v10.502h-.97zm10.423.66h10.95v.918h-6.208v9.579h-4.742V13.03zM5.629 3.333v12.356H0v4.51h10.386V8L20.859 8l-.003-4.668-15.227.001z" fill="url(#lobe-icons-stepfun-_R_0_)" fill-rule="evenodd"></path><defs><linearGradient gradientUnits="userSpaceOnUse" id="lobe-icons-stepfun-_R_0_" x1="1.646" x2="18.342" y1="1.916" y2="22.091"><stop stop-color="#01A9FF"></stop><stop offset="1" stop-color="#0160FF"></stop></linearGradient></defs></svg>`,
+      openai: `<svg fill="currentColor" fill-rule="evenodd" height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>OpenAI</title><path d="M9.205 8.658v-2.26c0-.19.072-.333.238-.428l4.543-2.616c.619-.357 1.356-.523 2.117-.523 2.854 0 4.662 2.212 4.662 4.566 0 .167 0 .357-.024.547l-4.71-2.759a.797.797 0 00-.856 0l-5.97 3.473zm10.609 8.8V12.06c0-.333-.143-.57-.429-.737l-5.97-3.473 1.95-1.118a.433.433 0 01.476 0l4.543 2.617c1.309.76 2.189 2.378 2.189 3.948 0 1.808-1.07 3.473-2.76 4.163zM7.802 12.703l-1.95-1.142c-.167-.095-.239-.238-.239-.428V5.899c0-2.545 1.95-4.472 4.591-4.472 1 0 1.927.333 2.712.928L8.23 5.067c-.285.166-.428.404-.428.737v6.898zM12 15.128l-2.795-1.57v-3.33L12 8.658l2.795 1.57v3.33L12 15.128zm1.796 7.23c-1 0-1.927-.332-2.712-.927l4.686-2.712c.285-.166.428-.404.428-.737v-6.898l1.974 1.142c.167.095.238.238.238.428v5.233c0 2.545-1.974 4.472-4.614 4.472zm-5.637-5.303l-4.544-2.617c-1.308-.761-2.188-2.378-2.188-3.948A4.482 4.482 0 014.21 6.327v5.423c0 .333.143.571.428.738l5.947 3.449-1.95 1.118a.432.432 0 01-.476 0zm-.262 3.9c-2.688 0-4.662-2.021-4.662-4.519 0-.19.024-.38.047-.57l4.686 2.71c.286.167.571.167.856 0l5.97-3.448v2.26c0 .19-.07.333-.237.428l-4.543 2.616c-.619.357-1.356.523-2.117.523zm5.899 2.83a5.947 5.947 0 005.827-4.756C22.287 18.339 24 15.84 24 13.296c0-1.665-.713-3.282-1.998-4.448.119-.5.19-.999.19-1.498 0-3.401-2.759-5.947-5.946-5.947-.642 0-1.26.095-1.88.31A5.962 5.962 0 0010.205 0a5.947 5.947 0 00-5.827 4.757C1.713 5.447 0 7.945 0 10.49c0 1.666.713 3.283 1.998 4.448-.119.5-.19 1-.19 1.499 0 3.401 2.759 5.946 5.946 5.946.642 0 1.26-.095 1.88-.309a5.96 5.96 0 004.162 1.713z"></path></svg>`,
+      opencode: `<svg fill="currentColor" fill-rule="evenodd" height="100%"  viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><title>opencode</title><path d="M16 6H8v12h8V6zm4 16H4V2h16v20z"></path></svg>`,
+      universal: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 2L3 6V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V6L12 2Z" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="100%" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12 7V13M12 17H12.01" stroke="#10B981" stroke-width="100%" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`
+    };
+
+    function resolveLogo(item) {
+      const v = (item.vendor || '').toLowerCase();
+      const fn = (item.filename || '').toLowerCase();
+      const cat = (item.categoryKey || '').toLowerCase();
+
+      // StepFun
+      if (v.includes('stepfun') || fn.includes('step-5')) return VENDOR_LOGOS.stepfun;
+
+      // Google Gemma vs Gemini
+      if (fn.includes('gemma')) return VENDOR_LOGOS.gemma;
+      if (fn.includes('gemini') || v.includes('google deepmind') || v.includes('gemini')) return VENDOR_LOGOS.gemini;
+
+      // OpenAI / ChatGPT / GPT-OSS
+      if (fn.includes('gpt') || fn.includes('chatgpt') || v.includes('openai') || v.includes('chatgpt') || fn.includes('o3')) return VENDOR_LOGOS.openai;
+
+      // Anthropic Claude
+      if (cat.includes('claude') || v.includes('anthropic') || fn.includes('opus') || fn.includes('sonnet')) return VENDOR_LOGOS.claude;
+
+      // DeepSeek
+      if (cat.includes('deepseek') || v.includes('deepseek') || fn.includes('deepseek')) return VENDOR_LOGOS.deepseek;
+
+      // xAI Grok
+      if (cat.includes('grok') || v.includes('xai') || fn.includes('grok')) return VENDOR_LOGOS.grok;
+
+      // Moonshot Kimi
+      if (cat.includes('kimi') || v.includes('moonshot') || fn.includes('kimi')) return VENDOR_LOGOS.kimi;
+
+      // Zhipu GLM / ZCode
+      if (cat.includes('glm') || v.includes('zhipu') || fn.includes('glm') || fn.includes('zcode')) return VENDOR_LOGOS.zhipu;
+
+      // NVIDIA
+      if (v.includes('nvidia') || fn.includes('nemotron')) return VENDOR_LOGOS.nvidia;
+
+      // Mistral AI
+      if (v.includes('mistral') || fn.includes('mistral')) return VENDOR_LOGOS.mistral;
+
+      // Alibaba Qwen
+      if (v.includes('alibaba') || fn.includes('qwen')) return VENDOR_LOGOS.qwen;
+
+      // Meta MSL (Muse Spark / Wonder / Muse.ai)
+      if (v.includes('meta') || fn.includes('muse') || v.includes('muse')) return VENDOR_LOGOS.meta;
+
+      // Ollama Local Modelfiles
+      if (cat.includes('ollama') || fn.includes('ollama') || v.includes('ollama')) return VENDOR_LOGOS.ollama;
+
+      // Universal Policy
+      if (cat.includes('universal') || fn.includes('unified')) return VENDOR_LOGOS.universal;
+
+      // OpenCode Zen / Stealth
+      return VENDOR_LOGOS.opencode;
+    }
+
+    // ============================================================
+    // THEME SWITCHER (LIGHT & DARK MODES)
+    // ============================================================
+    function initTheme() {
+      const savedTheme = localStorage.getItem('jobright-theme') || 'light';
+      setTheme(savedTheme);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+    }
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('jobright-theme', theme);
+      const icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.innerHTML = theme === 'dark' ? UI_ICONS.sun : UI_ICONS.moon;
+      }
+    }
+
+    // ============================================================
+    // CATEGORY & PROMPT RENDERING
+    // ============================================================
+    let activeCategory = 'all';
+
+    function buildCategoryTabs() {
+      const tabsWrap = document.getElementById('categoryTabs');
+      let html = `<button class="cat-chip ${activeCategory === 'all' ? 'active' : ''}" onclick="selectCategory('all')">${UI_ICONS.star} ทั้งหมด (All)</button>`;
+      
+      if (typeof CATEGORIES_DATA !== 'undefined') {
+        for (const [key, data] of Object.entries(CATEGORIES_DATA)) {
+          const iconSvg = getUiIcon(data.icon);
+          html += `<button class="cat-chip ${activeCategory === key ? 'active' : ''}" onclick="selectCategory('${key}')">${iconSvg} ${data.badge}</button>`;
+        }
+      }
+      tabsWrap.innerHTML = html;
+    }
+
+    function selectCategory(catKey) {
+      activeCategory = catKey;
+      buildCategoryTabs();
+      renderPrompts();
+    }
+
+    function renderPrompts() {
+      if (typeof PROMPTS_DATA === 'undefined') {
+        document.getElementById('promptsGrid').innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px;">ไม่พบข้อมูล prompts_data.js</div>';
+        return;
+      }
+
+      const searchQuery = (document.getElementById('searchInput').value || '').toLowerCase().trim();
+      const typeFilter = document.getElementById('typeFilter').value;
+
+      const filtered = PROMPTS_DATA.filter(item => {
+        if (activeCategory !== 'all' && item.categoryKey !== activeCategory) {
+          return false;
+        }
+
+        if (typeFilter !== 'all') {
+          if (!item.type.toLowerCase().includes(typeFilter.toLowerCase()) && 
+              !item.typeBadge.toLowerCase().includes(typeFilter.toLowerCase())) {
+            return false;
+          }
+        }
+
+        if (searchQuery) {
+          const matchTitle = item.title.toLowerCase().includes(searchQuery);
+          const matchFilename = item.filename.toLowerCase().includes(searchQuery);
+          const matchVendor = item.vendor.toLowerCase().includes(searchQuery);
+          const matchSummary = item.summary.toLowerCase().includes(searchQuery);
+          const matchCategory = item.categoryName.toLowerCase().includes(searchQuery);
+          const matchHarness = item.targetHarness.toLowerCase().includes(searchQuery);
+          return matchTitle || matchFilename || matchVendor || matchSummary || matchCategory || matchHarness;
+        }
+
+        return true;
+      });
+
+      document.getElementById('promptsCounter').innerHTML = `กำลังแสดง <strong>${filtered.length}</strong> จากทั้งหมด ${PROMPTS_DATA.length} รายการ`;
+
+      const grid = document.getElementById('promptsGrid');
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; background: var(--color-surface-soft); border-radius: var(--radius-lg); border: 1px dashed var(--color-hairline);">
+            <h3 style="font-size: 1.3rem; margin-bottom: 8px;">ไม่พบชุดคำสั่งที่ตรงกับเงื่อนไข</h3>
+            <p style="color: var(--color-muted);">ลองเปลี่ยนคำค้นหา หรือรีเซ็ตตัวกรองเป็น "ทั้งหมด"</p>
+          </div>
+        `;
+        return;
+      }
+
+      let cardsHtml = '';
+      filtered.forEach(item => {
+        const logoSvg = resolveLogo(item);
+        cardsHtml += `
+          <div class="feature-card">
+            <div class="ascii-corner-tl">/* SPEC */</div>
+            <div>
+              <div class="card-header-group">
+                <div class="logo-container" title="${escapeHtml(item.vendor)}">
+                  ${logoSvg}
+                </div>
+                <div class="card-title-area">
+                  <h3>${escapeHtml(item.title)}</h3>
+                  <div class="badge-pill-row">
+                    <span class="mini-badge badge-year">ค.ศ. ${escapeHtml(item.releaseYear || '2026')}</span>
+                    <span class="mini-badge badge-vendor">${escapeHtml(item.vendor)}</span>
+                    <span class="mini-badge badge-type">${escapeHtml(item.typeBadge)}</span>
+                    <span class="mini-badge badge-author" title="${escapeHtml(item.credits)}">${escapeHtml(item.upstreamAuthor || 'j3xdr')}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-meta-line">
+                <span>${UI_ICONS.file} ${escapeHtml(item.filename)}</span>
+                <span>•</span>
+                <span>${(item.charCount / 1024).toFixed(1)} KB</span>
+                <span>•</span>
+                <span>${item.lineCount} บรรทัด</span>
+              </div>
+
+              <p class="card-summary-thai">${escapeHtml(item.summary)}</p>
+            </div>
+
+            <div>
+              <div class="target-harness-box">
+                <span>${UI_ICONS.target} ตำแหน่ง:</span>
+                <strong>${escapeHtml(item.targetHarness)}</strong>
+              </div>
+
+              <div class="card-button-row">
+                <button class="card-btn btn-card-copy" onclick="copyPrompt('${item.id}')" title="คัดลอกพรอมต์">
+                  ${UI_ICONS.clipboard} คัดลอก
+                </button>
+                <button class="card-btn btn-card-download" onclick="downloadPrompt('${item.id}')" title="ดาวน์โหลดไฟล์ .md">
+                  ${UI_ICONS.download} ดาวน์โหลด
+                </button>
+                <button class="card-btn btn-card-inspect" onclick="inspectPrompt('${item.id}')" title="ดูรายละเอียดสเปก">
+                  ${UI_ICONS.eye} รายละเอียด
+                </button>
+                <a class="card-btn btn-card-github" href="${item.upstreamFileUrl}" target="_blank" rel="noopener noreferrer" title="เปิดไฟล์ต้นฉบับบน GitHub (${escapeHtml(item.filename)})">
+                  ${UI_ICONS.github} GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      grid.innerHTML = cardsHtml;
+    }
+
+    // ============================================================
+    // MODAL OPERATIONS
+    // ============================================================
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function handleBackdropClick(e, id) {
+      if (e.target.id === id) {
+        closeModal(id);
+      }
+    }
+
+    function inspectPrompt(id) {
+      const item = PROMPTS_DATA.find(p => p.id === id);
+      if (!item) return;
+
+      document.getElementById('inspector-title').textContent = item.title;
+      document.getElementById('inspector-vendor').textContent = `${item.vendor} (${item.categoryName})`;
+      const yearEl = document.getElementById('inspector-year');
+      if (yearEl) yearEl.textContent = `ค.ศ. ${item.releaseYear || '2026'}`;
+      document.getElementById('inspector-type').textContent = item.type;
+      document.getElementById('inspector-harness').textContent = item.targetHarness;
+      document.getElementById('inspector-size').textContent = `${(item.charCount / 1024).toFixed(2)} KB (${item.lineCount} บรรทัด)`;
+      document.getElementById('inspector-summary').textContent = item.summary;
+      document.getElementById('inspector-instructions').textContent = item.instructions;
+      document.getElementById('inspector-chars').textContent = `${item.charCount.toLocaleString()} chars`;
+      document.getElementById('inspector-content').textContent = item.content;
+
+      document.getElementById('inspector-copy-btn').onclick = () => copyPrompt(item.id);
+      document.getElementById('inspector-download-btn').onclick = () => downloadPrompt(item.id);
+
+      const githubLink = document.getElementById('inspector-source-link');
+      if (githubLink) {
+        githubLink.href = item.upstreamFileUrl;
+        githubLink.title = `เปิด ${item.filename} บน GitHub`;
+        githubLink.innerHTML = `<span>${escapeHtml(item.upstreamRepoName || 'GitHub')} (${escapeHtml(item.filename)})</span>`;
+      }
+      const creditsEl = document.getElementById('inspector-credits');
+      if (creditsEl) {
+        creditsEl.textContent = item.credits || 'Original: togg53192-cmd | Curated by: j3xdr';
+      }
+      const githubBtn = document.getElementById('inspector-github-btn');
+      if (githubBtn) {
+        githubBtn.href = item.upstreamFileUrl;
+      }
+
+      openModal('modal-inspector');
+    }
+
+    // ============================================================
+    // CLIPBOARD & DOWNLOAD
+    // ============================================================
+    function copyPrompt(id) {
+      const item = PROMPTS_DATA.find(p => p.id === id);
+      if (!item) return;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(item.content).then(() => {
+          showToast(`คัดลอก "${item.filename}" สำเร็จ!`);
+        }).catch(() => fallbackCopy(item.content, item.filename));
+      } else {
+        fallbackCopy(item.content, item.filename);
+      }
+    }
+
+    function fallbackCopy(text, filename) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast(`คัดลอก "${filename}" สำเร็จ!`);
+    }
+
+    function downloadPrompt(id) {
+      const item = PROMPTS_DATA.find(p => p.id === id);
+      if (!item) return;
+
+      const blob = new Blob([item.content], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = item.filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast(`ดาวน์โหลด "${item.filename}" เรียบร้อย!`);
+    }
+
+    function copyOverview() {
+      const summaryText = `AI Jailbreaks & Agent Operating Specs Suite
+- รวมทั้งหมด 40 Prompts / Specifications
+- รองรับ 26+ โมเดลชั้นนำ (Claude, DeepSeek, Gemini, Grok, GLM, Kimi, Nemotron, Mistral, Qwen, OpenCode, Ollama)
+- แบ่ง 9 โฟลเดอร์ พร้อมเอกสาร PROMPT_TYPES_GUIDE.md และ USAGE_WORKFLOWS.md
+- ทำงานแบบ Standalone และรองรับทั้ง Light / Dark Mode`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(summaryText).then(() => {
+          showToast('คัดลอกสรุปภาพรวมเรียบร้อย!');
+        });
+      } else {
+        fallbackCopy(summaryText, 'สรุปภาพรวม');
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toast-text');
+      text.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2600);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, 
+        tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag)
+      );
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      buildCategoryTabs();
+      renderPrompts();
+    });
+  </script>
+
+  <!-- ============================================================
+       MOBILE STICKY BOTTOM NAVIGATION BAR
+       ============================================================ -->
+  <nav class="mobile-bottom-bar" aria-label="Mobile Navigation">
+    <div class="mobile-nav-grid">
+      <button class="mobile-tab-btn active" id="tab-home" onclick="handleMobileNav('home')">
+        <span class="mobile-tab-icon"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+        <span>หน้าแรก</span>
+      </button>
+      <button class="mobile-tab-btn" id="tab-search" onclick="handleMobileNav('search')">
+        <span class="mobile-tab-icon"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+        <span>ค้นหา</span>
+      </button>
+      <button class="mobile-tab-btn" id="tab-categories" onclick="handleMobileNav('categories')">
+        <span class="mobile-tab-icon"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
+        <span>หมวดหมู่</span>
+      </button>
+      <button class="mobile-tab-btn" id="tab-guide" onclick="handleMobileNav('guide')">
+        <span class="mobile-tab-icon"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+        <span>คู่มือ</span>
+      </button>
+    </div>
+  </nav>
+
+  <script>
+    function handleMobileNav(tab) {
+      document.querySelectorAll('.mobile-tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById('tab-' + tab);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      if (tab === 'home') {
+        selectCategory('all');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (tab === 'search') {
+        const searchInput = document.getElementById('searchInput');
+        searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => searchInput.focus(), 300);
+      } else if (tab === 'categories') {
+        const catTabs = document.getElementById('categoryTabs');
+        catTabs.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else if (tab === 'guide') {
+        openModal('modal-types');
+      }
+    }
+  </script>
+
+  <!-- ============================================================
+       HERO INTERACTIVE PIXEL CANVAS & MESH ENGINE (j3xdr)
+       ============================================================ -->
+  <script>
+    (function initHeroPixelEngine() {
+      const hero = document.getElementById('heroSection');
+      const canvas = document.getElementById('heroPixelCanvas');
+      if (!hero || !canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const CELL_SIZE = 14;   // Retro square pixel cell size in px
+      const RADIUS = 80;      // Activation radius in px around pointer
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
+      let cols = 0;
+      let rows = 0;
+
+      // Active cells map: "col_row" -> { col, row, alpha, decay, color, shape }
+      const activeCells = new Map();
+
+      function getTheme() {
+        return document.documentElement.getAttribute('data-theme') || 'light';
+      }
+
+      function pickColor(isDark) {
+        const rand = Math.random();
+        if (isDark) {
+          if (rand < 0.50) return '#00f0a0'; // Electric Spring Mint
+          if (rand < 0.75) return '#38bdf8'; // Electric Sky Cyan
+          if (rand < 0.90) return '#34d399'; // Emerald Glow
+          return '#ffffff';                  // Bright Star White
+        } else {
+          if (rand < 0.50) return '#00c285'; // Deep Spring Mint
+          if (rand < 0.75) return '#0284c7'; // Vivid Sky Blue
+          if (rand < 0.90) return '#059669'; // Forest Mint
+          return '#0f172a';                  // Ink Matrix Slate
+        }
+      }
+
+      function resize() {
+        const rect = hero.getBoundingClientRect();
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = rect.width;
+        height = rect.height;
+
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
+
+        cols = Math.ceil(width / CELL_SIZE);
+        rows = Math.ceil(height / CELL_SIZE);
+      }
+
+      function activatePixelsAt(x, y, multiplier) {
+        multiplier = multiplier || 1.0;
+        const isDark = getTheme() === 'dark';
+        const centerCol = Math.floor(x / CELL_SIZE);
+        const centerRow = Math.floor(y / CELL_SIZE);
+        const cellRadius = Math.ceil(RADIUS / CELL_SIZE);
+
+        for (let r = centerRow - cellRadius; r <= centerRow + cellRadius; r++) {
+          if (r < 0 || r >= rows) continue;
+          for (let c = centerCol - cellRadius; c <= centerCol + cellRadius; c++) {
+            if (c < 0 || c >= cols) continue;
+
+            const cellCenterX = c * CELL_SIZE + CELL_SIZE / 2;
+            const cellCenterY = r * CELL_SIZE + CELL_SIZE / 2;
+            const dist = Math.hypot(cellCenterX - x, cellCenterY - y);
+
+            if (dist <= RADIUS) {
+              const energy = Math.pow(1 - dist / RADIUS, 1.35) * multiplier;
+              const key = c + '_' + r;
+              const existing = activeCells.get(key);
+
+              if (existing) {
+                existing.alpha = Math.min(1.0, existing.alpha + energy * 0.75);
+                if (Math.random() < 0.25) existing.color = pickColor(isDark);
+              } else {
+                activeCells.set(key, {
+                  col: c,
+                  row: r,
+                  alpha: Math.min(1.0, energy * 0.95),
+                  decay: 0.016 + Math.random() * 0.022,
+                  color: pickColor(isDark),
+                  shape: Math.random() < 0.15 ? 'cross' : (Math.random() < 0.15 ? 'dot' : 'rect')
+                });
+              }
+            }
+          }
+        }
+      }
+
+      // Pointer event listeners on hero
+      function handlePointerMove(e) {
+        const rect = hero.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        if (x >= 0 && x <= width && y >= 0 && y <= height) {
+          activatePixelsAt(x, y, 1.0);
+        }
+      }
+
+      function handleTouchMove(e) {
+        if (!e.touches || !e.touches[0]) return;
+        const rect = hero.getBoundingClientRect();
+        const touch = e.touches[0];
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        if (x >= 0 && x <= width && y >= 0 && y <= height) {
+          activatePixelsAt(x, y, 1.15);
+        }
+      }
+
+      hero.addEventListener('mousemove', handlePointerMove, { passive: true });
+      hero.addEventListener('touchmove', handleTouchMove, { passive: true });
+      hero.addEventListener('touchstart', handleTouchMove, { passive: true });
+
+      // Ambient idle twinkling sparkles
+      let idleFrame = 0;
+      function spawnAmbientSparkle() {
+        if (cols <= 0 || rows <= 0) return;
+        const isDark = getTheme() === 'dark';
+        const c = Math.floor(Math.random() * cols);
+        const r = Math.floor(Math.random() * rows);
+        const key = c + '_' + r;
+        if (!activeCells.has(key)) {
+          activeCells.set(key, {
+            col: c,
+            row: r,
+            alpha: 0.35 + Math.random() * 0.35,
+            decay: 0.010 + Math.random() * 0.012,
+            color: pickColor(isDark),
+            shape: Math.random() < 0.2 ? 'cross' : 'rect'
+          });
+        }
+      }
+
+      // Animation frame loop
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+
+        idleFrame++;
+        if (idleFrame % 9 === 0) {
+          spawnAmbientSparkle();
+          if (Math.random() < 0.4) spawnAmbientSparkle();
+        }
+
+        const isDark = getTheme() === 'dark';
+
+        for (const [key, cell] of activeCells.entries()) {
+          cell.alpha -= cell.decay;
+          if (cell.alpha <= 0) {
+            activeCells.delete(key);
+            continue;
+          }
+
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, Math.min(1, cell.alpha));
+          ctx.fillStyle = cell.color;
+
+          if (isDark && cell.alpha > 0.35) {
+            ctx.shadowColor = cell.color;
+            ctx.shadowBlur = 5;
+          }
+
+          const px = cell.col * CELL_SIZE;
+          const py = cell.row * CELL_SIZE;
+          const sz = CELL_SIZE - 2;
+
+          if (cell.shape === 'cross') {
+            const midX = px + CELL_SIZE / 2;
+            const midY = py + CELL_SIZE / 2;
+            ctx.fillRect(midX - 1, py + 1, 2, sz);
+            ctx.fillRect(px + 1, midY - 1, sz, 2);
+          } else if (cell.shape === 'dot') {
+            const rad = sz / 2 - 1;
+            ctx.beginPath();
+            ctx.arc(px + CELL_SIZE / 2, py + CELL_SIZE / 2, Math.max(1, rad), 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            ctx.fillRect(px + 1, py + 1, sz, sz);
+          }
+
+          ctx.restore();
+        }
+
+        requestAnimationFrame(render);
+      }
+
+      // Resize observer
+      if (window.ResizeObserver) {
+        const ro = new ResizeObserver(() => resize());
+        ro.observe(hero);
+      } else {
+        window.addEventListener('resize', resize);
+      }
+
+      // Theme toggle observer: refresh palette for active cells
+      const observer = new MutationObserver(() => {
+        const isDark = getTheme() === 'dark';
+        activeCells.forEach(cell => {
+          cell.color = pickColor(isDark);
+        });
+      });
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+      resize();
+      requestAnimationFrame(render);
+    })();
+  </script>
+
+</body>
+</html>

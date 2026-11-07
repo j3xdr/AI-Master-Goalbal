@@ -1,0 +1,9 @@
+# System and temporary files
+__pycache__/
+*.py[cod]
+*$py.class
+*.tmp
+.DS_Store
+Thumbs.db
+temp_*
+.gemini/
